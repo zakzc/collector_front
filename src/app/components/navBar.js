@@ -85,7 +85,10 @@ const DashBar = () => {
             <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
           </NavDropdown>
           <h7 className="text-warning">My data</h7>
-          <NavDropdown title="Current user" id="navbarScrollingDropdown">
+          <NavDropdown
+            title={<span className="text-white">User</span>}
+            id="navbarScrollingDropdown"
+          >
             <NavDropdown.Item>Name: JOHN SMITH</NavDropdown.Item>
             <NavDropdown.Item>Email: "jasdf@asdf"</NavDropdown.Item>
           </NavDropdown>

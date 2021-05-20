@@ -14,8 +14,8 @@ const App = () => {
         <Col
           className="w-100 h-100 m-0 p-0"
           xs={12}
-          sm={3}
-          md={2}
+          sm={4}
+          md={3}
           lg={2}
           xl={2}
         >
@@ -24,8 +24,8 @@ const App = () => {
         <Col
           className="w-100% h-100% m-0 p-0"
           xs={12}
-          sm={9}
-          md={10}
+          sm={8}
+          md={9}
           lg={10}
           xl={10}
         >
