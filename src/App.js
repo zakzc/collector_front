@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// bootstrap
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+/// comps
+import DashBar from "./app/components/navBar";
+import Body from "./app/components/body";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Container fluid="*" className="h-100 mt-0 mb-0 p-0">
+      <Row className="h-100 m-0 p-0">
+        <Col
+          className="w-100 h-100 m-0 p-0"
+          xs={12}
+          sm={3}
+          md={2}
+          lg={2}
+          xl={2}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <DashBar />
+        </Col>
+        <Col
+          className="w-100% h-100% m-0 p-0"
+          xs={12}
+          sm={9}
+          md={10}
+          lg={10}
+          xl={10}
+        >
+          <Body />
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default App;
