@@ -8,10 +8,10 @@ const DashBar = () => {
     <Navbar fluid="*" bg="dark" expand="sm" className="h-100 mt-0 mb-0">
       <div>
         <NavbarBrand href="#" className="fixed-top">
-          <div className="text-warning">Logo</div>
+          <div className="infoText">Logo</div>
         </NavbarBrand>
         <ul className="nav flex-column">
-          <h7 className="text-warning">My Collections</h7>
+          <h7 className="infoText">My Collections</h7>
           <NavDropdown
             title={<span className="text-white">Audio Collection</span>}
             id="navbarScrollingDropdown"
@@ -28,13 +28,13 @@ const DashBar = () => {
             title={<span className="text-white">Book Collection</span>}
             id="navbarScrollingDropdown"
           >
-            <NavDropdown.Item href="#action5">
+            <NavDropdown.Item href="/bookOverview">
               Check Collection
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
+            <NavDropdown.Item href="/bookAdd">Add</NavDropdown.Item>
+            <NavDropdown.Item href="/bookUpdate">Update</NavDropdown.Item>
+            <NavDropdown.Item href="/bookDelete">Delete</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title={<span className="text-white">Graphic Collection</span>}
@@ -84,7 +84,7 @@ const DashBar = () => {
             <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
           </NavDropdown>
-          <h7 className="text-warning">My data</h7>
+          <h7 className="infoText">My data</h7>
           <NavDropdown
             title={<span className="text-white">User</span>}
             id="navbarScrollingDropdown"

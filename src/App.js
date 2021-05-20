@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 /// comps
 import DashBar from "./app/components/navBar";
-import Body from "./app/components/body";
+import Contents from "./app/components/contents";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
           lg={10}
           xl={10}
         >
-          <Body />
+          <Contents />
         </Col>
       </Row>
     </Container>
