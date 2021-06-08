@@ -11,18 +11,18 @@ const DashBar = () => {
           <div className="infoText">Logo</div>
         </NavbarBrand>
         <ul className="nav flex-column">
-          <h7 className="infoText">My Collections</h7>
+          <h5 className="infoText">My Collections</h5>
           <NavDropdown
             title={<span className="text-white">Audio Collection</span>}
             id="navbarScrollingDropdown"
           >
-            <NavDropdown.Item href="#action5">
+            <NavDropdown.Item href="/audioOverview">
               Check Collection
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
+            <NavDropdown.Item href="/audioAdd">Add</NavDropdown.Item>
+            <NavDropdown.Item href="/audioUpdate">Update</NavDropdown.Item>
+            <NavDropdown.Item href="/audioDelete">Delete</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title={<span className="text-white">Book Collection</span>}
@@ -84,7 +84,7 @@ const DashBar = () => {
             <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
           </NavDropdown>
-          <h7 className="infoText">My data</h7>
+          <h5 className="infoText">My data</h5>
           <NavDropdown
             title={<span className="text-white">User</span>}
             id="navbarScrollingDropdown"
@@ -93,7 +93,7 @@ const DashBar = () => {
             <NavDropdown.Item>Email: "jasdf@asdf"</NavDropdown.Item>
           </NavDropdown>
         </ul>
-        <a className="nav-link text-warning" href="#">
+        <a className="nav-link text-warning" href="/hereSomewhere">
           Log out
         </a>
       </div>

@@ -1,0 +1,22 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./app/styles/custom.scss";
+
+.header {
+  text-align: center;
+}
+
+span {
+  &.dangerText {
+    color: #dc3545;
+  }
+
+  &.infoText {
+    color: #17a2b8;
+    font-weight: bold;
+  }
+}
+
+.infoText {
+  color: #17a2b8;
+  font-weight: bold;
+}
