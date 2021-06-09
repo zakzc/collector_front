@@ -1,89 +1,30 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 const DashBar = () => {
   return (
-    <Navbar fluid="*" bg="dark" expand="sm" className="h-100 mt-0 mb-0">
+    <Navbar
+      fluid="*"
+      bg="dark"
+      variant="dark"
+      expand="sm"
+      className="h-100 mt-0 mb-0"
+    >
       <div>
-        <NavbarBrand href="#" className="fixed-top">
-          <div className="infoText">Logo</div>
-        </NavbarBrand>
         <ul className="nav flex-column">
+          <NavbarBrand className="fixed-top">
+            <div className="infoText">Logo</div>
+          </NavbarBrand>
           <h5 className="infoText">My Collections</h5>
-          <NavDropdown
-            title={<span className="text-white">Audio Collection</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="/audioOverview">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/audioAdd">Add</NavDropdown.Item>
-            <NavDropdown.Item href="/audioUpdate">Update</NavDropdown.Item>
-            <NavDropdown.Item href="/audioDelete">Delete</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
-            title={<span className="text-white">Book Collection</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="/bookOverview">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/bookAdd">Add</NavDropdown.Item>
-            <NavDropdown.Item href="/bookUpdate">Update</NavDropdown.Item>
-            <NavDropdown.Item href="/bookDelete">Delete</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
-            title={<span className="text-white">Graphic Collection</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="#action5">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
-            title={<span className="text-white">Equipment Collection</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="#action5">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
-            title={<span className="text-white">Media Collection</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="#action5">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
-            title={<span className="text-white">Other collectibles</span>}
-            id="navbarScrollingDropdown"
-          >
-            <NavDropdown.Item href="#action5">
-              Check Collection
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action3">Add</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Update</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Delete</NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link href="/audioOverview" className="text-white">
+            Audio
+          </Nav.Link>
+          <Nav.Link href="/bookOverview" className="text-white">
+            Books
+          </Nav.Link>
           <h5 className="infoText">My data</h5>
           <NavDropdown
             title={<span className="text-white">User</span>}

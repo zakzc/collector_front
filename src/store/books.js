@@ -116,8 +116,6 @@ export const addBook = (book) =>
     onSuccess: bookAdded.type,
   });
 
-//  url, method, headers, data, onStart, onSuccess, onError;
-
 export const updateBook = (id, dataToUpdate) =>
   apiCallBegan({
     url: url + "/updateItem/" + id,

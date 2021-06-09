@@ -6,10 +6,10 @@ import AudioAdd from "./audio/audioAdd";
 import AudioDelete from "./audio/audioDelete";
 import AudioOverview from "./audio/audioOverview";
 import AudioUpdate from "./audio/audioUpdate";
-import BookAdd from "./books/bookAdd";
-import BookDelete from "./books/bookDelete";
+// import BookAdd from "./books/bookAdd";
+// import BookDelete from "./books/bookDelete";
 import BookOverview from "./books/bookOverview";
-import BookUpdate from "./books/bookUpdate";
+// import BookUpdate from "./books/bookUpdate";
 
 const Routes = () => {
   // const [user, setUser] = useState("john smith");
@@ -28,14 +28,14 @@ const Routes = () => {
         />
         <Route exact path="/audioUpdate" render={(props) => <AudioUpdate />} />
         {/* Book routes */}
-        <Route exact path="/bookAdd" render={(props) => <BookAdd />} />
-        <Route exact path="/bookDelete" render={(props) => <BookDelete />} />
+        {/* <Route exact path="/bookAdd" render={(props) => <BookAdd />} />
+        <Route exact path="/bookDelete" render={(props) => <BookDelete />} /> */}
         <Route
           exact
           path="/bookOverview"
           render={(props) => <BookOverview />}
         />
-        <Route exact path="/bookUpdate" render={(props) => <BookUpdate />} />
+        {/* <Route exact path="/bookUpdate" render={(props) => <BookUpdate />} /> */}
       </Switch>
     </Router>
   );

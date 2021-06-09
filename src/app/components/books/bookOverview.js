@@ -1,14 +1,50 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadBooks } from "../../../store/books";
+import React, { useState } from "react";
+/// comps
+import BookOverviewHeader from "./bookOverviewHeader";
+import BookList from "./bookList";
+import BookAdd from "./bookAdd";
+import BookDelete from "./bookDelete";
+import BookUpdate from "./bookUpdate";
 
 const BookOverview = () => {
-  const dispatch = useDispatch();
-  const books = useSelector((state) => state.entities.books.listOfBooks);
-  useEffect(() => {
-    dispatch(loadBooks());
-  }, [books]);
-  return books.map((book) => <li key={book.mediaId}>{book.title}</li>);
+  const [currentView, setCurrentView] = useState("list");
+  const [bookToManage, setBookToManage] = useState();
+  ///
+  const bookView = () => {
+    switch (currentView) {
+      case "list":
+        return (
+          <BookList
+            setCurrentView={setCurrentView}
+            setBookToManage={setBookToManage}
+          />
+        );
+      case "add":
+        return <BookAdd setCurrentView={setCurrentView} />;
+      case "update":
+        return (
+          <BookUpdate
+            setCurrentView={setCurrentView}
+            bookToManage={bookToManage}
+          />
+        );
+      case "delete":
+        return (
+          <BookDelete
+            setCurrentView={setCurrentView}
+            bookToManage={bookToManage}
+          />
+        );
+      default:
+        return <BookAdd setCurrentView={setCurrentView} />;
+    }
+  };
+  ///
+  return (
+    <>
+      <BookOverviewHeader />
+      {bookView()}
+    </>
+  );
 };
-
 export default BookOverview;
