@@ -46,7 +46,7 @@ const BookAdd = ({ setCurrentView }) => {
 
             <Form.Group as={Col} controlId="formGridPrice">
               <Form.Label>Price</Form.Label>
-              <Form.Control placeholder="Media id" />
+              <Form.Control placeholder="Price" />
             </Form.Group>
 
             <Form.Group id="formGridCheckbox">
@@ -59,24 +59,24 @@ const BookAdd = ({ setCurrentView }) => {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridGenre">
               <Form.Label>Date of Purchase</Form.Label>
-              <Form.Control placeholder="Genre" />
+              <Form.Control placeholder="Date of purchase" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridMediaId">
               <Form.Label>Quantity</Form.Label>
-              <Form.Control placeholder="Media id" />
+              <Form.Control placeholder="Quantity" />
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
             <Form.Group as={Col} controlId="formGridGenre">
               <Form.Label>Details</Form.Label>
-              <Form.Control placeholder="Genre" />
+              <Form.Control placeholder="Details" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridMediaId">
               <Form.Label>Notes</Form.Label>
-              <Form.Control placeholder="Media id" />
+              <Form.Control placeholder="Notes" />
             </Form.Group>
           </Form.Row>
 
