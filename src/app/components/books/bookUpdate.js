@@ -20,7 +20,7 @@ const BookUpdate = ({ setCurrentView, bookToManage }) => {
   console.log("from update:", bookToManage, currentBook);
   return (
     <>
-      <h2>Book Update</h2>
+      <h2 className="mt-2 md-5">Update this book</h2>
       <p>You selected:</p>
       <ListGroup className="ml-2 mr-2" key={currentBook[0].title}>
         <ListGroup.Item key={currentBook[0].mediaId} variant="info">
