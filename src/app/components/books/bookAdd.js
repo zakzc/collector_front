@@ -38,9 +38,9 @@ const BookAdd = ({ setCurrentView }) => {
             <Form.Group as={Col} controlId="formGridType">
               <Form.Label>Type</Form.Label>
               <Form.Control as="select" defaultValue="Hardcover">
-                <option>HardCover</option>
-                <option>(Trade) PaperBack</option>
-                <option>Cheap/Popular PaperBack</option>
+                <option>HardCover - H</option>
+                <option>(Trade) PaperBack - T</option>
+                <option>Cheap/Popular PaperBack - P</option>
               </Form.Control>
             </Form.Group>
 

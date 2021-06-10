@@ -5,15 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadBooks } from "../../../store/books";
 // ui
 import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const BookUpdate = ({ setCurrentView, bookToManage }) => {
   const dispatch = useDispatch();
-  const currentBook = useSelector((state) =>
+  const findBook = useSelector((state) =>
     state.entities.books.listOfBooks.filter((book) => book._id === bookToManage)
   );
+  const currentBook = findBook[0];
   useEffect(() => {
     dispatch(loadBooks());
   }, [currentBook, dispatch]);
@@ -21,72 +23,150 @@ const BookUpdate = ({ setCurrentView, bookToManage }) => {
   return (
     <>
       <h2 className="mt-2 md-5">Update this book</h2>
-      <p>You selected:</p>
-      <ListGroup className="ml-2 mr-2" key={currentBook[0].title}>
-        <ListGroup.Item key={currentBook[0].mediaId} variant="info">
-          <h4 className="ml-1 mt-2 ">
-            <span className="font-weight-bold">{currentBook[0].title}</span> by{" "}
-            {currentBook[0].author}
-          </h4>
-          <br />
-          <Table striped bordered hover variant="dark">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Genre</th>
-                <th>Quantity</th>
-                <th>Sellable</th>
-                <th>Date of Purchase</th>
-                <th>Price</th>
-                <th>Details</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{currentBook[0].typeOfMedia}</td>
-                <td>{currentBook[0].genre}</td>
-                <td>{currentBook[0].quantity}</td>
-                <td>{currentBook[0].sellable ? "Yes" : "No"}</td>
-                <td>
-                  {currentBook[0].dateOfPurchase
-                    ? currentBook[0].dateOfPurchase
-                    : "not available"}
-                </td>
-                <td>
-                  {currentBook[0].price
-                    ? currentBook[0].price
-                    : "not available"}
-                </td>
-                <td>{currentBook[0].details ? currentBook.details : "none"}</td>
-                <td>{currentBook[0].notes ? currentBook[0].notes : "none"}</td>
-              </tr>
-            </tbody>
-          </Table>
-        </ListGroup.Item>
-        <div className="mt-3" />
-      </ListGroup>
-      {/* ///* TODO Make the table as a form */}
-      {/* <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form> */}
+      <div className="m-5">
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridTitle">
+              <Form.Label>
+                <strong>{currentBook.title}</strong>
+              </Form.Label>
+              <Form.Control placeholder="Title" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridAuthor">
+              <Form.Label>
+                <strong>{currentBook.author}</strong>
+              </Form.Label>
+              <Form.Control placeholder="Author" />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridGenre">
+              <Form.Label>
+                <strong>{currentBook.genre}</strong>
+              </Form.Label>
+              <Form.Control placeholder="Genre" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridMediaId">
+              <Form.Label>
+                <strong>{currentBook.mediaID}</strong>{" "}
+              </Form.Label>
+              <Form.Control placeholder="Media id" />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridType">
+              <Form.Label>{currentBook.typeOfMedia}</Form.Label>
+              <Form.Control as="select" defaultValue="Hardcover">
+                <option>HardCover - H</option>
+                <option>(Trade) PaperBack - T</option>
+                <option>Cheap/Popular PaperBack - P</option>
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPrice">
+              <Form.Label>
+                <strong>{currentBook.price}</strong>
+              </Form.Label>
+              <Form.Control placeholder="Price" />
+            </Form.Group>
+
+            <Form.Group id="formGridCheckbox">
+              <Form.Label>
+                Sellable: <strong>{currentBook.sellable ? "Yes" : "No"}</strong>
+              </Form.Label>
+              <Form.Check type="checkbox" label="Yes" />
+              <Form.Check type="checkbox" label="No" />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridGenre">
+              <Form.Label>
+                Date of Purchase: {currentBook.dateOfPurchase}
+              </Form.Label>
+              <Form.Control placeholder="Date of purchase" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridMediaId">
+              <Form.Label>
+                Quantity: <strong>{currentBook.quantity}</strong>{" "}
+              </Form.Label>
+              <Form.Control placeholder="Quantity" />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridGenre">
+              <Form.Label>
+                Details: <p>{currentBook.details}</p>
+              </Form.Label>
+              <Form.Control placeholder="Details" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridMediaId">
+              <Form.Label>
+                Notes:{" "}
+                <p>{currentBook.notes ? currentBook.notes : "no notes"}</p>
+              </Form.Label>
+              <Form.Control placeholder="Notes" />
+            </Form.Group>
+          </Form.Row>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+      <div>
+        <p>Original Values</p>
+        <ListGroup className="ml-2 mr-2" key={currentBook.title}>
+          <ListGroup.Item key={currentBook.mediaId} variant="info">
+            <h4 className="ml-1 mt-2 ">
+              <span className="font-weight-bold">{currentBook.title}</span> by{" "}
+              {currentBook.author}
+            </h4>
+            <br />
+            <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Genre</th>
+                  <th>Quantity</th>
+                  <th>Sellable</th>
+                  <th>Date of Purchase</th>
+                  <th>Price</th>
+                  <th>Details</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{currentBook.typeOfMedia}</td>
+                  <td>{currentBook.genre}</td>
+                  <td>{currentBook.quantity}</td>
+                  <td>{currentBook.sellable ? "Yes" : "No"}</td>
+                  <td>
+                    {currentBook.dateOfPurchase
+                      ? currentBook.dateOfPurchase
+                      : "not available"}
+                  </td>
+                  <td>
+                    {currentBook.price ? currentBook.price : "not available"}
+                  </td>
+                  <td>{currentBook.details ? currentBook.details : "none"}</td>
+                  <td>{currentBook.notes ? currentBook.notes : "none"}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </ListGroup.Item>
+          <div className="mt-3" />
+        </ListGroup>
+      </div>
       <Button
         variant="info"
         size="lg"

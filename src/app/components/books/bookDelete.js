@@ -64,6 +64,10 @@ const BookDelete = ({ setCurrentView, bookToManage }) => {
           </Table>
         </ListGroup.Item>
         <div className="mt-3" />
+        <Button variant="danger" type="submit">
+          Delete this record
+        </Button>
+        <div className="mt-3" />
       </ListGroup>
       <Button
         variant="info"
