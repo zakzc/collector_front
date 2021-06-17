@@ -5,8 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadBooks } from "../../../store/books";
 // ui
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
+// ico
+import { SkipBackward } from "react-bootstrap-icons";
+import { Trash } from "react-bootstrap-icons";
 
 const BookDelete = ({ setCurrentView, bookToManage }) => {
   const dispatch = useDispatch();
@@ -64,20 +69,34 @@ const BookDelete = ({ setCurrentView, bookToManage }) => {
           </Table>
         </ListGroup.Item>
         <div className="mt-3" />
-        <Button variant="danger" type="submit">
-          Delete this record
-        </Button>
+        <Row>
+          <Col>
+            <Button variant="danger" type="submit">
+              <Trash />
+            </Button>
+          </Col>
+          <Col></Col>
+          <Col></Col>
+        </Row>
         <div className="mt-3" />
       </ListGroup>
-      <Button
-        variant="info"
-        size="lg"
-        className="mb-3"
-        block
-        onClick={() => setCurrentView("list")}
-      >
-        <h1 className="p-1">Back to overview</h1>
-      </Button>
+      <Row>
+        <Col></Col>
+        <Col>
+          <Button
+            variant="info"
+            size="lg"
+            className="mb-3"
+            block
+            onClick={() => setCurrentView("list")}
+          >
+            <h1 className="p-1">
+              <SkipBackward />
+            </h1>
+          </Button>
+        </Col>
+        <Col></Col>
+      </Row>
     </>
   );
 };

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+// store
+import { addBook } from "../../../store/books";
 // utils
 import checkForContent from "../../utils/checkForContent";
 // ui
@@ -7,16 +10,19 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+// ico
+import { CheckCircle } from "react-bootstrap-icons";
 
 const BookAdd = ({ setCurrentView }) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
   const [genre, setGenre] = useState();
-  const [mediaId, setMediaId] = useState();
-  const [type, setType] = useState();
+  const [mediaID, setMediaID] = useState();
+  const [typeOfMedia, setTypeOfMedia] = useState();
   const [price, setPrice] = useState();
-  const [sell, setSell] = useState();
-  const [date, setDate] = useState();
+  const [sellable, setSellable] = useState();
+  const [dateOfPurchase, setDateOfPurchase] = useState();
   const [quantity, setQuantity] = useState();
   const [details, setDetails] = useState();
   const [notes, setNotes] = useState();
@@ -39,18 +45,18 @@ const BookAdd = ({ setCurrentView }) => {
   };
   const handleMediaId = (e) => {
     e.preventDefault();
-    setMediaId(e.target.value);
+    setMediaID(e.target.value);
   };
 
   const handleType = (e) => {
     e.preventDefault();
-    setType(e.target.value);
+    setTypeOfMedia(e.target.value);
   };
 
   const handleSell = (e) => {
     e.preventDefault();
-    e.target.value === "Yes" ? setSell(true) : setSell(false);
-    console.log("Sell is", sell, e.target.value);
+    e.target.value === "Yes" ? setSellable(true) : setSellable(false);
+    console.log("Sell is", sellable, e.target.value);
   };
 
   const handlePrice = (e) => {
@@ -60,7 +66,7 @@ const BookAdd = ({ setCurrentView }) => {
 
   const handleDate = (e) => {
     e.preventDefault();
-    setDate(e.target.value);
+    setDateOfPurchase(e.target.value);
   };
 
   const handleQuantity = (e) => {
@@ -78,57 +84,34 @@ const BookAdd = ({ setCurrentView }) => {
     setNotes(e.target.value);
   };
 
-  // const checkForContent = (formData) => {
-  //   console.log("Rec", formData);
-  //   if (formData.title === undefined) {
-  //     return { message: "Title is empty" };
-  //   } else if (!formData.author) {
-  //     return { message: "Author is empty" };
-  //   } else if (!formData.genre) {
-  //     return { message: "You must inform the genre" };
-  //   } else if (!formData.mediaId) {
-  //     return { message: "You must inform the media Id" };
-  //   } else if (!formData.type) {
-  //     return { message: "Type of book is mandatory" };
-  //   } else if (!formData.price) {
-  //     return { message: "Price is mandatory" };
-  //   } else if (!formData.date) {
-  //     return { message: "Date is empty" };
-  //   } else if (!formData.sell) {
-  //     return { message: "To sell or not to sell?" };
-  //   } else if (!formData.quantity) {
-  //     return { message: "Please inform the quantity" };
-  //   } else {
-  //     return { message: "All fields Ok" };
-  //   }
-  // };
-
   const formHandler = (e) => {
     e.preventDefault();
     const newItem = {
       title,
-      author,
+      author: [author],
       genre,
-      mediaId,
-      type,
+      mediaID,
+      typeOfMedia,
       price,
-      sell,
-      date,
+      sellable,
+      dateOfPurchase,
       quantity,
       details,
       notes,
     };
     const checkField = checkForContent(newItem);
-    console.log("fi", checkField);
     if (checkField.message === "OK") {
-      setMessageToUser("Todos os campos informados com sucesso");
+      setMessageToUser("All fields properly informed");
       setMessageColor("info");
-      console.log("Positive: ", newItem, messageToUser, messageColor);
+      console.log("Positive: ", newItem);
+      dispatch(addBook(newItem));
+      console.log("add book call", newItem);
     } else {
       setMessageToUser(checkField.message);
       setMessageColor("danger");
       console.log("Negative: ", newItem, messageToUser, messageColor);
     }
+    // TODO make the call to the store to implement the add book
   };
 
   ///
@@ -173,7 +156,7 @@ const BookAdd = ({ setCurrentView }) => {
               <Form.Label>Media Id</Form.Label>
               <Form.Control
                 placeholder="Media id"
-                value={mediaId}
+                value={mediaID}
                 onChange={(e) => handleMediaId(e)}
               />
             </Form.Group>
@@ -184,7 +167,7 @@ const BookAdd = ({ setCurrentView }) => {
               <Form.Label>Type</Form.Label>
               <Form.Control
                 as="select"
-                value={type}
+                value={typeOfMedia}
                 size="lg"
                 custom
                 onChange={(e) => handleType(e)}
@@ -215,7 +198,7 @@ const BookAdd = ({ setCurrentView }) => {
                 size="lg"
                 custom
                 as="select"
-                value={sell}
+                value={sellable}
                 onChange={(e) => handleSell(e)}
               >
                 <option> </option>
@@ -229,8 +212,8 @@ const BookAdd = ({ setCurrentView }) => {
             <Form.Group as={Col} controlId="formGridGenre">
               <Form.Label>Date of Purchase</Form.Label>
               <Form.Control
-                placeholder="Date of purchase"
-                value={date}
+                placeholder="Date of purchase YYYY-MM-DD"
+                value={dateOfPurchase}
                 onChange={(e) => handleDate(e)}
               />
             </Form.Group>
@@ -246,7 +229,7 @@ const BookAdd = ({ setCurrentView }) => {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridGenre">
+            <Form.Group as={Col} controlId="formGridDetails">
               <Form.Label>Details</Form.Label>
               <Form.Control
                 placeholder="Details"
@@ -256,7 +239,7 @@ const BookAdd = ({ setCurrentView }) => {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridMediaId">
+            <Form.Group as={Col} controlId="formGridNotes">
               <Form.Label>Notes</Form.Label>
               <Form.Control
                 placeholder="Notes"
@@ -274,7 +257,7 @@ const BookAdd = ({ setCurrentView }) => {
                 type="submit"
                 onClick={formHandler}
               >
-                Submit
+                <CheckCircle />
               </Button>
             </Col>
             <Col sm={7}>

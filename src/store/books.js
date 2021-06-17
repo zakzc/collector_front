@@ -114,6 +114,7 @@ export const addBook = (book) =>
     method: "post",
     data: book,
     onSuccess: bookAdded.type,
+    onError: booksRequestFailed.type,
   });
 
 export const updateBook = (id, dataToUpdate) =>

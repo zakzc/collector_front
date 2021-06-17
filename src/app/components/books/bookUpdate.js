@@ -9,6 +9,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
+import Row from "react-bootstrap/Row";
+// ico
+import { CheckCircle } from "react-bootstrap-icons";
+import { SkipBackward } from "react-bootstrap-icons";
 
 const BookUpdate = ({ setCurrentView, bookToManage }) => {
   const dispatch = useDispatch();
@@ -118,7 +122,7 @@ const BookUpdate = ({ setCurrentView, bookToManage }) => {
           </Form.Row>
 
           <Button variant="primary" type="submit">
-            Submit
+            <CheckCircle />
           </Button>
         </Form>
       </div>
@@ -167,15 +171,23 @@ const BookUpdate = ({ setCurrentView, bookToManage }) => {
           <div className="mt-3" />
         </ListGroup>
       </div>
-      <Button
-        variant="info"
-        size="lg"
-        className="mb-3"
-        block
-        onClick={() => setCurrentView("list")}
-      >
-        <h1 className="p-1">Back to overview</h1>
-      </Button>
+      <Row>
+        <Col></Col>
+        <Col>
+          <Button
+            variant="info"
+            size="lg"
+            className="mb-3"
+            block
+            onClick={() => setCurrentView("list")}
+          >
+            <h1 className="p-1">
+              <SkipBackward />
+            </h1>
+          </Button>
+        </Col>
+        <Col></Col>
+      </Row>
     </>
   );
 };

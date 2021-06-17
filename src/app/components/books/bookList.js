@@ -2,8 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // ui
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
+import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
+// ico
+import { Pencil } from "react-bootstrap-icons";
+import { PlusCircle } from "react-bootstrap-icons";
+import { Trash } from "react-bootstrap-icons";
 // store
 import { loadBooks } from "../../../store/books";
 
@@ -21,15 +27,22 @@ const BookList = ({ setCurrentView, setBookToManage }) => {
   ///
   return (
     <>
-      <Button
-        variant="info"
-        size="lg"
-        className="mb-3"
-        block
-        onClick={() => setCurrentView("add")}
-      >
-        <h1 className="p-1">+</h1>
-      </Button>
+      <Row>
+        <Col></Col>
+        <Col>
+          <Button
+            variant="info"
+            size="lg"
+            className="mb-3"
+            block
+            onClick={() => setCurrentView("add")}
+          >
+            <PlusCircle />
+          </Button>
+        </Col>
+
+        <Col></Col>
+      </Row>
       {books.map((book) => (
         <ListGroup className="ml-2 mr-2" key={book.title}>
           <ListGroup.Item key={book.mediaId} variant="info">
@@ -69,21 +82,23 @@ const BookList = ({ setCurrentView, setBookToManage }) => {
               </tbody>
             </Table>
             <Button
-              variant="info"
+              className="m-1"
+              variant="primary"
               // href="/bookUpdate"
               onClick={() => {
                 handleClick("update", book._id);
               }}
             >
-              Update
-            </Button>{" "}
+              <Pencil />
+            </Button>
             <Button
+              className="m-1"
               variant="danger"
               onClick={() => {
                 handleClick("delete", book._id);
               }}
             >
-              Delete
+              <Trash />
             </Button>
           </ListGroup.Item>
           <div className="mt-3" />
