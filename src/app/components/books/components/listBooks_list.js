@@ -1,48 +1,20 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 // ui
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 // ico
 import { Pencil } from "react-bootstrap-icons";
-import { PlusCircle } from "react-bootstrap-icons";
 import { Trash } from "react-bootstrap-icons";
 // store
-import { loadBooks } from "../../../store/books";
 
-const BookList = ({ setCurrentView, setBookToManage }) => {
-  const dispatch = useDispatch();
-  const books = useSelector((state) => state.entities.books.listOfBooks);
-  useEffect(() => {
-    dispatch(loadBooks());
-  }, [books, dispatch]);
-  ///
+const ListOfBooks = ({ books, setCurrentView, setBookToManage }) => {
   const handleClick = (type, id) => {
     setBookToManage(id);
     type === "update" ? setCurrentView("update") : setCurrentView("delete");
   };
-  ///
   return (
     <>
-      <Row>
-        <Col></Col>
-        <Col>
-          <Button
-            variant="info"
-            size="lg"
-            className="mb-3"
-            block
-            onClick={() => setCurrentView("add")}
-          >
-            <PlusCircle />
-          </Button>
-        </Col>
-
-        <Col></Col>
-      </Row>
       {books.map((book) => (
         <ListGroup className="ml-2 mr-2" key={book.title}>
           <ListGroup.Item key={book.mediaId} variant="info">
@@ -51,7 +23,7 @@ const BookList = ({ setCurrentView, setBookToManage }) => {
               {book.author}
             </h4>
             <br />
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="light">
               <thead>
                 <tr>
                   <th>Type</th>
@@ -107,5 +79,4 @@ const BookList = ({ setCurrentView, setBookToManage }) => {
     </>
   );
 };
-
-export default BookList;
+export default ListOfBooks;

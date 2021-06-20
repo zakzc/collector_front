@@ -1,6 +1,6 @@
 import React from "react";
 
-const audioOverview = () => {
+const AudioMain = () => {
   return <p>Audio Overview</p>;
 };
-export default audioOverview;
+export default AudioMain;

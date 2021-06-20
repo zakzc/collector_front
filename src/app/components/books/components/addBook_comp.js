@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // store
-import { addBook } from "../../../store/books";
+import { addBook } from "../../../../store/books";
+// comps
+import BackButton from "../../views/backButton";
+import SmallHeader from "../../views/smallHeader";
 // utils
-import checkForContent from "../../utils/checkForContent";
+import checkForContent from "../../../utils/checkForContent";
 // ui
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -14,6 +17,7 @@ import Row from "react-bootstrap/Row";
 import { CheckCircle } from "react-bootstrap-icons";
 
 const BookAdd = ({ setCurrentView }) => {
+  // * data
   const dispatch = useDispatch();
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
@@ -30,6 +34,8 @@ const BookAdd = ({ setCurrentView }) => {
     "Please, fill in the form to add a new entry"
   );
   const [messageColor, setMessageColor] = useState("secondary");
+
+  // TODO redo this form with Formik
 
   const handleTitle = (e) => {
     e.preventDefault();
@@ -114,10 +120,10 @@ const BookAdd = ({ setCurrentView }) => {
     // TODO make the call to the store to implement the add book
   };
 
-  ///
+  // * view
   return (
     <>
-      <h2>Add a new book</h2>
+      <SmallHeader subtitle={"Add new book"} />
       <div className="m-5">
         <Form>
           <Form.Row>
@@ -268,7 +274,8 @@ const BookAdd = ({ setCurrentView }) => {
           </Row>
         </Form>
       </div>
-      <Button
+      <BackButton setCurrentView={setCurrentView} />
+      {/* <Button
         variant="info"
         size="lg"
         className="mb-3"
@@ -276,7 +283,7 @@ const BookAdd = ({ setCurrentView }) => {
         onClick={() => setCurrentView("list")}
       >
         <h1 className="p-1">Back to overview</h1>
-      </Button>
+      </Button> */}
     </>
   );
 };

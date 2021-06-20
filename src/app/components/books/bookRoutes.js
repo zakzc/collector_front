@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 /// comps
-import BookOverviewHeader from "./bookOverviewHeader";
-import BookList from "./bookList";
-import BookAdd from "./bookAdd";
-import BookDelete from "./bookDelete";
-import BookUpdate from "./bookUpdate";
+import ListBooks from "./components/listBooks_comp";
+import AddBook from "./components/addBook_comp";
+import DeleteBook from "./components/deleteBook_comp";
+import UpdateBook from "./components/updateBook_comp";
 
-const BookOverview = () => {
+const BookRoutes = () => {
+  // * data
   const [currentView, setCurrentView] = useState("list");
   const [bookToManage, setBookToManage] = useState();
   ///
@@ -14,37 +14,33 @@ const BookOverview = () => {
     switch (currentView) {
       case "list":
         return (
-          <BookList
+          <ListBooks
             setCurrentView={setCurrentView}
             setBookToManage={setBookToManage}
           />
         );
       case "add":
-        return <BookAdd setCurrentView={setCurrentView} />;
+        return <AddBook setCurrentView={setCurrentView} />;
       case "update":
         return (
-          <BookUpdate
+          <UpdateBook
             setCurrentView={setCurrentView}
             bookToManage={bookToManage}
           />
         );
       case "delete":
         return (
-          <BookDelete
+          <DeleteBook
             setCurrentView={setCurrentView}
             bookToManage={bookToManage}
           />
         );
       default:
-        return <BookAdd setCurrentView={setCurrentView} />;
+        return <AddBook setCurrentView={setCurrentView} />;
     }
   };
-  ///
-  return (
-    <>
-      <BookOverviewHeader />
-      {bookView()}
-    </>
-  );
+
+  // * view
+  return <>{bookView()}</>;
 };
-export default BookOverview;
+export default BookRoutes;

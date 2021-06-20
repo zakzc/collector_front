@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// comps
+import BackButton from "../../views/backButton";
+import SmallHeader from "../../views/smallHeader";
 // store
-import { loadBooks } from "../../../store/books";
+import { loadBooks } from "../../../../store/books";
 // ui
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -10,10 +13,10 @@ import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 // ico
-import { SkipBackward } from "react-bootstrap-icons";
 import { Trash } from "react-bootstrap-icons";
 
-const BookDelete = ({ setCurrentView, bookToManage }) => {
+const DeleteBook = ({ setCurrentView, bookToManage }) => {
+  // * data
   const dispatch = useDispatch();
   const currentBook = useSelector((state) =>
     state.entities.books.listOfBooks.filter((book) => book._id === bookToManage)
@@ -22,9 +25,11 @@ const BookDelete = ({ setCurrentView, bookToManage }) => {
     dispatch(loadBooks());
   }, [currentBook, dispatch]);
   console.log("from delete:", bookToManage, currentBook);
+
+  // * view
   return (
     <>
-      <h2>Book Delete</h2>
+      <SmallHeader subtitle={"Delete book"} />
       <p>You selected this entry to delete:</p>
       <ListGroup className="ml-2 mr-2" key={currentBook[0].title}>
         <ListGroup.Item key={currentBook[0].mediaId} variant="info">
@@ -80,24 +85,8 @@ const BookDelete = ({ setCurrentView, bookToManage }) => {
         </Row>
         <div className="mt-3" />
       </ListGroup>
-      <Row>
-        <Col></Col>
-        <Col>
-          <Button
-            variant="info"
-            size="lg"
-            className="mb-3"
-            block
-            onClick={() => setCurrentView("list")}
-          >
-            <h1 className="p-1">
-              <SkipBackward />
-            </h1>
-          </Button>
-        </Col>
-        <Col></Col>
-      </Row>
+      <BackButton setCurrentView={setCurrentView} />
     </>
   );
 };
-export default BookDelete;
+export default DeleteBook;

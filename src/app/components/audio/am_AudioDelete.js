@@ -1,6 +1,6 @@
 import React from "react";
 
-const audioDelete = () => {
+const AudioDelete = () => {
   return <p>Audio Delete</p>;
 };
-export default audioDelete;
+export default AudioDelete;
