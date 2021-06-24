@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
 import GoBackButton from "../../views/goBackButton";
-import ItemToDelete from "./deleteBook_ItemToDelete";
+import ItemToDelete from "./deleteMedia_ItemToDelete";
 import SmallHeader from "../../views/smallHeader";
 // store
-import { loadBooks } from "../../../../store/books";
+import { loadMedias } from "../../../../store/medias";
 // ui
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -14,15 +14,15 @@ import Row from "react-bootstrap/Row";
 // ico
 import { Trash } from "react-bootstrap-icons";
 
-const DeleteBook = ({ setCurrentView, bookToManage }) => {
+const DeleteMedia = ({ setCurrentView, bookToManage }) => {
   // * data
   const dispatch = useDispatch();
   const currentBook = useSelector((state) =>
-    state.entities.books.listOfBooks.filter((book) => book._id === bookToManage)
+    state.Medias.listOfMedias.filter((book) => book._id === bookToManage)
   );
 
   useEffect(() => {
-    dispatch(loadBooks());
+    dispatch(loadMedias());
   }, [currentBook, dispatch]);
   console.log("from delete:", bookToManage, currentBook);
 
@@ -46,4 +46,4 @@ const DeleteBook = ({ setCurrentView, bookToManage }) => {
     </>
   );
 };
-export default DeleteBook;
+export default DeleteMedia;

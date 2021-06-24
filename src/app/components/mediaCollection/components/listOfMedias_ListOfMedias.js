@@ -8,14 +8,14 @@ import { Pencil } from "react-bootstrap-icons";
 import { Trash } from "react-bootstrap-icons";
 // store
 
-const ListOfBooks = ({ books, setCurrentView, setBookToManage }) => {
+const ListOfMedias = ({ Medias, setCurrentView, setBookToManage }) => {
   const handleClick = (type, id) => {
     setBookToManage(id);
     type === "update" ? setCurrentView("update") : setCurrentView("delete");
   };
   return (
     <>
-      {books.map((book) => (
+      {Medias.map((book) => (
         <ListGroup className="ml-2 mr-2" key={book.title}>
           <ListGroup.Item key={book.mediaId} variant="info">
             <h4 className="ml-1 mt-2 ">
@@ -79,4 +79,4 @@ const ListOfBooks = ({ books, setCurrentView, setBookToManage }) => {
     </>
   );
 };
-export default ListOfBooks;
+export default ListOfMedias;

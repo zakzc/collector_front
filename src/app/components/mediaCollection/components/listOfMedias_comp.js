@@ -7,18 +7,18 @@ import Row from "react-bootstrap/Row";
 // ico
 import { PlusCircle } from "react-bootstrap-icons";
 // store
-import { loadBooks } from "../../../../store/books";
+import { loadMedias } from "../../../../store/medias";
 // comps
-import ListOfBooks from "./listBooks_ListOfBooks";
+import MediaList from "./listOfMedias_ListOfMedias";
 
-const ListBooks = ({ setCurrentView, setBookToManage }) => {
+const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
   // * data
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.entities.books.listOfBooks);
+  const Medias = useSelector((state) => state.medias.mediasList);
   ///
   useEffect(() => {
-    dispatch(loadBooks());
-  }, [books, dispatch]);
+    dispatch(loadMedias());
+  }, [Medias, dispatch]);
   ///
 
   // * view
@@ -39,8 +39,8 @@ const ListBooks = ({ setCurrentView, setBookToManage }) => {
         </Col>
         <Col></Col>
       </Row>
-      <ListOfBooks
-        books={books}
+      <MediaList
+        Medias={Medias}
         setCurrentView={setCurrentView}
         setBookToManage={setBookToManage}
       />
@@ -48,4 +48,4 @@ const ListBooks = ({ setCurrentView, setBookToManage }) => {
   );
 };
 
-export default ListBooks;
+export default ListOfMedias;

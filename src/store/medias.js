@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import axios from "axios";
+// import axios from "axios";
 /// comps
 import { apiCallBegan } from "./api_actions";
 
@@ -14,7 +14,9 @@ const slice = createSlice({
       medias.loading = true;
     },
     mediasReceived: (medias, action) => {
-      action.payload.success === true ? medias.mediasList = action.payload.data : null;
+      if (action.payload.success === true) {
+        medias.mediasList = action.payload.data;
+      }
       medias.loading = false;
       medias.lastFetch = Date.now();
     },
@@ -30,7 +32,9 @@ const slice = createSlice({
     },
     /// events
     addNewMedia: (medias, action) => {
-      action.payload.success === true ?  medias.mediasList.push(action.payload.data): null;
+      if (action.payload.success === true) {
+        medias.mediasList.push(action.payload.data);
+      }
     },
 
     mediaRemoved: (medias, action) => {
@@ -141,14 +145,17 @@ export const selectSells = createSelector(
   (mediasList) => mediasList.filter((item) => item.sellable === true)
 );
 
-export const selectBooks = createSelector(
+export const selectMedias = createSelector(
   (state) => state.medias.mediasList,
   (mediasList) => mediasList.filter((item) => item.typeOfMedia === "BOOK")
 );
 
-export const selectBooksToSell = createSelector(
+export const selectMediasToSell = createSelector(
   (state) => state.medias.mediasList,
-  (mediasList) => mediasList.filter((item) => item.typeOfMedia === "BOOK" && item.sellable === true)
+  (mediasList) =>
+    mediasList.filter(
+      (item) => item.typeOfMedia === "BOOK" && item.sellable === true
+    )
 );
 
 export const selectAudioAnalog = createSelector(
@@ -164,7 +171,8 @@ export const selectLPs = createSelector(
 
 export const selectAudioDigital = createSelector(
   (state) => state.medias,
-  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "AUDIO_DIGITAL")
+  (medias) =>
+    medias.mediasList.filter((item) => item.typeOfMedia === "AUDIO_DIGITAL")
 );
 
 export const selectGraphic = createSelector(
@@ -174,9 +182,9 @@ export const selectGraphic = createSelector(
 
 export const selectGame = createSelector(
   (state) => state.medias,
-  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "GAME_MEDIA")
+  (medias) =>
+    medias.mediasList.filter((item) => item.typeOfMedia === "GAME_MEDIA")
 );
 
-
 // * Categories:
-// ! Books, AUDIO_Analog, Audio_Digital, Graphic, Visual_Media, Game_Media
+// Medias, AUDIO_Analog, Audio_Digital, Graphic, Visual_Media, Game_Media

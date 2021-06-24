@@ -11,7 +11,7 @@ describe("Test for media slice", () => {
     store = configureStore();
   });
 
-  const mediasSlice = () => store.getState().entities.medias;
+  const mediasSlice = () => store.getState().medias;
 
   describe("loading medias", () => {
     describe("If medias in the cache", () => {

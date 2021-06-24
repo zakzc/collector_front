@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const bookSchema = Yup.object().shape({
+const Mediaschema = Yup.object().shape({
   title: Yup.string()
     .min(2, "Title is too short")
     .max(70, "Title is too long")
@@ -38,4 +38,4 @@ const bookSchema = Yup.object().shape({
   notes: Yup.string().max(120, "Reached maximum text space"),
 });
 
-export default bookSchema;
+export default Mediaschema;

@@ -2,22 +2,22 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // store
-import { loadBooks } from "../../../../store/books";
+import { loadMedias } from "../../../../store/medias";
 // comps
-import FormBook from "./formBook";
+import FormMedia from "./formMedia";
 import GoBackButton from "../../views/goBackButton";
 import SmallHeader from "../../views/smallHeader";
-import ItemToUpdate from "./updateBook_ItemToUpdate";
+import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
-const UpdateBook = ({ setCurrentView, bookToManage }) => {
+const UpdateMedia = ({ setCurrentView, bookToManage }) => {
   // * data
   const dispatch = useDispatch();
   const findBook = useSelector((state) =>
-    state.entities.books.listOfBooks.filter((book) => book._id === bookToManage)
+    state.Medias.listOfMedias.filter((book) => book._id === bookToManage)
   );
   const currentBook = findBook[0];
   useEffect(() => {
-    dispatch(loadBooks());
+    dispatch(loadMedias());
   }, [currentBook, dispatch]);
   console.log("from update:", bookToManage, currentBook);
 
@@ -27,9 +27,9 @@ const UpdateBook = ({ setCurrentView, bookToManage }) => {
       <SmallHeader subtitle={"Update book"} />
       <h4>Original Values</h4>
       <ItemToUpdate currentBook={currentBook} />
-      <FormBook formMode={"UPDATE_book"} />
+      <FormMedia formMode={"UPDATE_book"} />
       <GoBackButton setCurrentView={setCurrentView} />
     </>
   );
 };
-export default UpdateBook;
+export default UpdateMedia;

@@ -22,8 +22,8 @@ const DashBar = () => {
           <Nav.Link href="/audioOverview" className="text-white">
             Audio
           </Nav.Link>
-          <Nav.Link href="/bookOverview" className="text-white">
-            Books
+          <Nav.Link href="/mediaOverview" className="text-white">
+            Medias
           </Nav.Link>
           <h5 className="infoText">My data</h5>
           <NavDropdown

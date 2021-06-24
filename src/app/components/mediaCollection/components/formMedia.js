@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 // import { useDispatch } from "react-redux";
 // store
-// import { addBook } from "../../../../store/books";
+// import { AddMedia } from "../../../../store/Medias";
 // utils
-import formBookHandler from "../../../utils/formBookHandler";
-import validationSchema from "../../../utils/BookSchema";
+import FormMediaHandler from "../../../utils/formMediaHandler";
+import validationSchema from "../../../utils/mediaSchema";
 // ui
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -15,7 +15,7 @@ import Row from "react-bootstrap/Row";
 import { CheckCircle } from "react-bootstrap-icons";
 import ConfirmationToast from "../../views/confirmationToast";
 
-const FormBook = ({ formMode }) => {
+const FormMedia = ({ formMode }) => {
   // * data
   const [confirmDataProcessing, setConfirmDataProcessing] = useState(false);
   ///
@@ -36,7 +36,7 @@ const FormBook = ({ formMode }) => {
       },
       validationSchema,
       onSubmit: (values, { resetForm }) => {
-        formBookHandler(formMode, values);
+        FormMediaHandler(formMode, values);
         setConfirmDataProcessing(true);
         resetForm();
       },
@@ -256,4 +256,4 @@ const FormBook = ({ formMode }) => {
     </Form>
   );
 };
-export default FormBook;
+export default FormMedia;

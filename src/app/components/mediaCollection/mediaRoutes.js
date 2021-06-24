@@ -1,46 +1,46 @@
 import React, { useState } from "react";
 /// comps
-import ListBooks from "./components/listBooks_comp";
-import AddBook from "./components/addBook";
-import DeleteBook from "./components/deleteBook_comp";
-import UpdateBook from "./components/updateBook_comp";
+import ListOfMedias from "./components/listOfMedias_comp";
+import AddMedia from "./components/addMedia";
+import DeleteMedia from "./components/deleteMedia_comp";
+import UpdateMedia from "./components/updateMedia_comp";
 
-const BookRoutes = () => {
+const MediaRoutes = () => {
   // * data
   const [currentView, setCurrentView] = useState("list");
   const [bookToManage, setBookToManage] = useState();
   ///
-  const bookView = () => {
+  const mediaView = () => {
     switch (currentView) {
       case "list":
         return (
-          <ListBooks
+          <ListOfMedias
             setCurrentView={setCurrentView}
             setBookToManage={setBookToManage}
           />
         );
       case "add":
-        return <AddBook setCurrentView={setCurrentView} />;
+        return <AddMedia setCurrentView={setCurrentView} />;
       case "update":
         return (
-          <UpdateBook
+          <UpdateMedia
             setCurrentView={setCurrentView}
             bookToManage={bookToManage}
           />
         );
       case "delete":
         return (
-          <DeleteBook
+          <DeleteMedia
             setCurrentView={setCurrentView}
             bookToManage={bookToManage}
           />
         );
       default:
-        return <AddBook setCurrentView={setCurrentView} />;
+        return <AddMedia setCurrentView={setCurrentView} />;
     }
   };
 
   // * view
-  return <>{bookView()}</>;
+  return <>{mediaView()}</>;
 };
-export default BookRoutes;
+export default MediaRoutes;
