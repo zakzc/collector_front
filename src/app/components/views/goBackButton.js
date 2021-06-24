@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 // ico
 import { SkipBackward } from "react-bootstrap-icons";
 
-const BackButton = ({ setCurrentView }) => {
+const GoBackButton = ({ setCurrentView }) => {
   return (
     <Row>
       <Col></Col>
@@ -25,4 +25,4 @@ const BackButton = ({ setCurrentView }) => {
     </Row>
   );
 };
-export default BackButton;
+export default GoBackButton;

@@ -9,7 +9,7 @@ import { PlusCircle } from "react-bootstrap-icons";
 // store
 import { loadBooks } from "../../../../store/books";
 // comps
-import ListOfBooks from "./listBooks_list";
+import ListOfBooks from "./listBooks_ListOfBooks";
 
 const ListBooks = ({ setCurrentView, setBookToManage }) => {
   // * data

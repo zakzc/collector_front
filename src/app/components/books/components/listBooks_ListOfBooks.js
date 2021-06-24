@@ -27,7 +27,7 @@ const ListOfBooks = ({ books, setCurrentView, setBookToManage }) => {
               <thead>
                 <tr>
                   <th>Type</th>
-                  <th>Genre</th>
+                  <th>subTitle</th>
                   <th>Quantity</th>
                   <th>Sellable</th>
                   <th>Date of Purchase</th>
@@ -39,7 +39,7 @@ const ListOfBooks = ({ books, setCurrentView, setBookToManage }) => {
               <tbody>
                 <tr>
                   <td>{book.typeOfMedia}</td>
-                  <td>{book.genre}</td>
+                  <td>{book.subTitle}</td>
                   <td>{book.quantity}</td>
                   <td>{book.sellable ? "Yes" : "No"}</td>
                   <td>

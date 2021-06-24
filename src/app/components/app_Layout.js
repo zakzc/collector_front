@@ -5,9 +5,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 /// comps
 import DashBar from "./views/dashBar";
-import Routes from "./routes";
+import Routes from "./app_Routes";
 
-const AppLayout = () => {
+const Layout = () => {
   return (
     <Container fluid="*" className="h-100 mt-0 mb-0 p-0">
       <Row className="h-100 m-0 p-0">
@@ -36,4 +36,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default Layout;

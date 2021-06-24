@@ -16,7 +16,7 @@ const ItemToUpdate = ({ currentBook }) => {
           <thead>
             <tr>
               <th>Type</th>
-              <th>Genre</th>
+              <th>subTitle</th>
               <th>Quantity</th>
               <th>Sellable</th>
               <th>Date of Purchase</th>
@@ -28,7 +28,7 @@ const ItemToUpdate = ({ currentBook }) => {
           <tbody>
             <tr>
               <td>{currentBook.typeOfMedia}</td>
-              <td>{currentBook.genre}</td>
+              <td>{currentBook.subTitle}</td>
               <td>{currentBook.quantity}</td>
               <td>{currentBook.sellable ? "Yes" : "No"}</td>
               <td>

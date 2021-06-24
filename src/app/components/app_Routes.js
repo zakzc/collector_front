@@ -24,10 +24,7 @@ const Routes = () => {
         <Route exact path="/audioOverview" render={(props) => <AudioMain />} />
         <Route exact path="/audioUpdate" render={(props) => <AudioUpdate />} />
         {/* Book routes */}
-        {/* <Route exact path="/bookAdd" render={(props) => <BookAdd />} />
-        <Route exact path="/bookDelete" render={(props) => <BookDelete />} /> */}
         <Route exact path="/bookOverview" render={(props) => <BookLayout />} />
-        {/* <Route exact path="/bookUpdate" render={(props) => <BookUpdate />} /> */}
       </Switch>
     </Router>
   );
