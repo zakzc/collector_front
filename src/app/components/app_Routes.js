@@ -10,11 +10,7 @@ const Routes = () => {
       {/* <p>{user}</p> */}
       <Switch>
         {/* <Route exact path="/" render={(props) => <Login />} /> */}
-        <Route
-          exact
-          path="/mediaOverview"
-          render={(props) => <MediaLayout />}
-        />
+        <Route exact path="/" render={(props) => <MediaLayout />} />
       </Switch>
     </Router>
   );
