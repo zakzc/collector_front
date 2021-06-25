@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // ui Elements
 import AppLogo from "../uiElements/appLogo";
 // ui
@@ -11,68 +11,41 @@ import Button from "react-bootstrap/Button";
 // import { ReactComponent as AppLogo } from "../../assets/turntable.svg";
 
 const Navigation = () => {
-  const [selected, setSelected] = useState("Analog");
+  // * data
   const currentView = useSelector((state) => state.context[0].currentView);
+  const [selected, setSelected] = useState(currentView);
   console.log("Currently: ", currentView);
+  ///
   const setNewView = (e) => {
     console.log("Val", e.target.value);
     setSelected(e.target.value);
   };
+
+  const categories = [
+    "Analog Audio",
+    "Digital Audio",
+    "Books",
+    "Video",
+    "Graphic",
+    "Game",
+  ];
+
+  // * view
   return (
     <>
       <Navbar bg="dark" variant="dark">
         <AppLogo extraStyle={{}} />
         <div className="ml-5">
-          <Nav className="mr-auto">
+          {categories.map((c) => (
             <Button
               className="m-1"
-              variant={selected === "Analog" ? "light" : "dark"}
-              value="Analog"
+              variant={selected === c ? "light" : "dark"}
+              value={c}
               onClick={setNewView}
             >
-              Analog Audio
+              {c}
             </Button>
-            <Button
-              className="m-1"
-              variant={selected === "Digital" ? "light" : "dark"}
-              value="Digital"
-              onClick={setNewView}
-            >
-              Digital Audio
-            </Button>
-            <Button
-              className="m-1"
-              variant={selected === "Books" ? "light" : "dark"}
-              value="Books"
-              onClick={setNewView}
-            >
-              Books and Print
-            </Button>
-            <Button
-              className="m-1"
-              variant={selected === "Video" ? "light" : "dark"}
-              value="Video"
-              onClick={setNewView}
-            >
-              Multimedia, DVDs, Bluray
-            </Button>
-            <Button
-              className="m-1"
-              variant={selected === "Graphic" ? "light" : "dark"}
-              value="Graphic"
-              onClick={setNewView}
-            >
-              Graphic, Magazines, Graphic Novels
-            </Button>
-            <Button
-              className="m-1"
-              variant={selected === "Games" ? "light" : "dark"}
-              value="Games"
-              onClick={setNewView}
-            >
-              Video Games, cartridges, CDs
-            </Button>
-          </Nav>
+          ))}
         </div>
       </Navbar>
       <br />

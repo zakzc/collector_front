@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "context",
-  initialState: [{ connected: true, currentView: "Books" }],
+  initialState: [
+    { connected: true, currentView: "Books", subTitle: "Books in any format" },
+  ],
   reducers: {
     setConnection: (state, action) => {
       state[0].connected = action.payload;
