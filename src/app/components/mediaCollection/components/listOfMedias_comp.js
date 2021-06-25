@@ -14,11 +14,11 @@ import MediaList from "./listOfMedias_ListOfMedias";
 const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
   // * data
   const dispatch = useDispatch();
-  const Medias = useSelector((state) => state.medias.mediasList);
+  const medias = useSelector((state) => state.medias.mediasList);
   ///
   useEffect(() => {
     dispatch(loadMedias());
-  }, [Medias, dispatch]);
+  }, [medias, dispatch]);
   ///
 
   // * view
@@ -40,7 +40,7 @@ const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
         <Col></Col>
       </Row>
       <MediaList
-        Medias={Medias}
+        Medias={medias}
         setCurrentView={setCurrentView}
         setBookToManage={setBookToManage}
       />

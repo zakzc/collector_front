@@ -1,37 +1,24 @@
 import React from "react";
+// import { useSelector } from "react-redux";
 // bootstrap
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 /// comps
-import DashBar from "./views/dashBar";
+import Navigation from "./views/navigation";
 import Routes from "./app_Routes";
 
 const Layout = () => {
+  // TODO: use this as the base for the offline page when backend is offline
+  // const currentMode = useSelector((state) => state.context[0].connected);
+  // console.log("Currently: ", currentMode, medias);
   return (
-    <Container fluid="*" className="h-100 mt-0 mb-0 p-0">
-      <Row className="h-100 m-0 p-0">
-        <Col
-          className="w-100 h-100 m-0 p-0"
-          xs={12}
-          sm={4}
-          md={3}
-          lg={2}
-          xl={2}
-        >
-          <DashBar />
-        </Col>
-        <Col
-          className="w-100% h-100% m-0 p-0"
-          xs={12}
-          sm={8}
-          md={9}
-          lg={10}
-          xl={10}
-        >
-          <Routes />
-        </Col>
-      </Row>
+    <Container fluid="*" className="w-100 mt-0 mb-0 p-0">
+      <Col className="h-100 w-100 m-0 p-0">
+        <Navigation />
+      </Col>
+      <Col className="h-100 w-100 m-0 p-0">
+        <Routes />
+      </Col>
     </Container>
   );
 };
