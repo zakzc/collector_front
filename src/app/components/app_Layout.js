@@ -1,6 +1,6 @@
 import React from "react";
 // import { useSelector } from "react-redux";
-// bootstrap
+// ui
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 /// comps
@@ -19,6 +19,16 @@ const Layout = () => {
       <Col className="h-100 w-100 m-0 p-0">
         <Routes />
       </Col>
+      {/* <div>
+        Icons made by{" "}
+        <a href="https://www.freepik.com" title="Freepik">
+          Freepik
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
+        </a>
+      </div> */}
     </Container>
   );
 };

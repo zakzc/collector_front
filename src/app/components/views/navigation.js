@@ -1,24 +1,29 @@
 import React from "react";
+import { useSelector } from "react-redux";
+// comps
+import AppLogo from "../mediaCollection/components/appLogo";
+// ui
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 // import NavDropdown from "react-bootstrap/NavDropdown";
+// assets
+// import { ReactComponent as AppLogo } from "../../assets/turntable.svg";
 
 const Navigation = () => {
+  const currentView = useSelector((state) => state.context[0].currentView);
+  console.log("Currently: ", currentView);
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Collector App</Navbar.Brand>
+        <AppLogo extraStyle={{}} />
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Analog Audio </Nav.Link>
-          <Nav.Link href="#features">Digital Audio</Nav.Link>
-          <Nav.Link href="#pricing">Books and Print</Nav.Link>
-          <Nav.Link href="#pricing">
-            Graphic, Magazines, Graphic Novels
-          </Nav.Link>
-          <Nav.Link href="#pricing">Multimedia, DVDs, Blurays</Nav.Link>
-          <Nav.Link href="#pricing">Video Games, cartridges, CDs</Nav.Link>
-          <Button variant="dark">Something</Button>{" "}
+          <Button variant="dark">Analog Audio </Button>
+          <Button variant="dark">Digital Audio</Button>
+          <Button variant="dark">Books and Print</Button>
+          <Button variant="dark">Multimedia, DVDs, Bluray</Button>
+          <Button variant="dark"> Graphic, Magazines, Graphic Novels</Button>
+          <Button variant="dark">Video Games, cartridges, CDs</Button>
         </Nav>
       </Navbar>
       <br />
