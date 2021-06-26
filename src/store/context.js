@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "context",
-  initialState: [
-    { connected: true, currentView: "Books", subTitle: "Books in any format" },
-  ],
+  initialState: [{ connected: true, currentView: "Books" }],
   reducers: {
     setConnection: (state, action) => {
       state[0].connected = action.payload;
@@ -15,5 +13,5 @@ const slice = createSlice({
   },
 });
 
-export const { setConnection } = slice.actions;
+export const { setConnection, setCurrentView } = slice.actions;
 export default slice.reducer;

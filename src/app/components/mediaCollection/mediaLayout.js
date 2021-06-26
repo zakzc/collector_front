@@ -6,10 +6,9 @@ import MediaRoutes from "./mediaRoutes";
 
 const MediaLayout = () => {
   const currentView = useSelector((state) => state.context[0].currentView);
-  const subTitle = useSelector((state) => state.context[0].subTitle);
   return (
     <>
-      <Header title={currentView} subTitle={subTitle} />
+      <Header title={currentView} />
       <MediaRoutes />
     </>
   );

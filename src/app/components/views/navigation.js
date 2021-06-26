@@ -4,21 +4,21 @@ import { useSelector, useDispatch } from "react-redux";
 import AppLogo from "../uiElements/appLogo";
 // ui
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
-// import NavDropdown from "react-bootstrap/NavDropdown";
-// assets
-// import { ReactComponent as AppLogo } from "../../assets/turntable.svg";
+// store
+import { setCurrentView } from "../../../store/context";
 
 const Navigation = () => {
   // * data
   const currentView = useSelector((state) => state.context[0].currentView);
   const [selected, setSelected] = useState(currentView);
+  const dispatch = useDispatch();
   console.log("Currently: ", currentView);
   ///
   const setNewView = (e) => {
     console.log("Val", e.target.value);
     setSelected(e.target.value);
+    dispatch(setCurrentView(e.target.value));
   };
 
   const categories = [
