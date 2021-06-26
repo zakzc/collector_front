@@ -14,11 +14,11 @@ import Row from "react-bootstrap/Row";
 // ico
 import { Trash } from "react-bootstrap-icons";
 
-const DeleteMedia = ({ setCurrentView, bookToManage }) => {
+const DeleteMedia = ({ setCurrentOperation, bookToManage }) => {
   // * data
   const dispatch = useDispatch();
   const currentBook = useSelector((state) =>
-    state.Medias.listOfMedias.filter((book) => book._id === bookToManage)
+    state.medias.listOfMedias.filter((book) => book._id === bookToManage)
   );
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const DeleteMedia = ({ setCurrentView, bookToManage }) => {
         <Col></Col>
         <Col></Col>
       </Row>
-      <GoBackButton setCurrentView={setCurrentView} />
+      <GoBackButton setCurrentOperation={setCurrentOperation} />
     </>
   );
 };

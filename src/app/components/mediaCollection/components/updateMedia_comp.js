@@ -9,7 +9,7 @@ import GoBackButton from "../../views/goBackButton";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
-const UpdateMedia = ({ setCurrentView, bookToManage }) => {
+const UpdateMedia = ({ setCurrentOperation, bookToManage }) => {
   // * data
   const dispatch = useDispatch();
   const findBook = useSelector((state) =>
@@ -28,7 +28,7 @@ const UpdateMedia = ({ setCurrentView, bookToManage }) => {
       <h4>Original Values</h4>
       <ItemToUpdate currentBook={currentBook} />
       <FormMedia formMode={"UPDATE_book"} />
-      <GoBackButton setCurrentView={setCurrentView} />
+      <GoBackButton setCurrentOperation={setCurrentOperation} />
     </>
   );
 };

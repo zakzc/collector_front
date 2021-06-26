@@ -6,19 +6,21 @@ import AppLogo from "../uiElements/appLogo";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 // store
-import { setCurrentView } from "../../../store/context";
+import { setCurrentMediaView } from "../../../store/context";
 
 const Navigation = () => {
   // * data
-  const currentView = useSelector((state) => state.context[0].currentView);
-  const [selected, setSelected] = useState(currentView);
+  const currentMediaView = useSelector(
+    (state) => state.context[0].currentMediaView
+  );
+  const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();
-  console.log("Currently: ", currentView);
+  console.log("Currently: ", currentMediaView);
   ///
-  const setNewView = (e) => {
+  const setNewMediaView = (e) => {
     console.log("Val", e.target.value);
     setSelected(e.target.value);
-    dispatch(setCurrentView(e.target.value));
+    dispatch(setCurrentMediaView(e.target.value));
   };
 
   const categories = [
@@ -38,10 +40,11 @@ const Navigation = () => {
         <div className="ml-5">
           {categories.map((c) => (
             <Button
+              key={c}
               className="m-1"
               variant={selected === c ? "light" : "dark"}
               value={c}
-              onClick={setNewView}
+              onClick={setNewMediaView}
             >
               {c}
             </Button>

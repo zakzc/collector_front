@@ -8,10 +8,12 @@ import { Pencil } from "react-bootstrap-icons";
 import { Trash } from "react-bootstrap-icons";
 // store
 
-const ListOfMedias = ({ Medias, setCurrentView, setBookToManage }) => {
+const ListOfMedias = ({ Medias, setCurrentOperation, setMediaToManage }) => {
   const handleClick = (type, id) => {
-    setBookToManage(id);
-    type === "update" ? setCurrentView("update") : setCurrentView("delete");
+    setMediaToManage(id);
+    type === "update"
+      ? setCurrentOperation("update")
+      : setCurrentOperation("delete");
   };
   return (
     <>

@@ -2,14 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 /// comps
 import Header from "../views/header";
-import MediaRoutes from "./mediaRoutes";
+import MediaView from "./mediaView";
 
 const MediaLayout = () => {
-  const currentView = useSelector((state) => state.context[0].currentView);
+  const currentMediaView = useSelector(
+    (state) => state.context[0].currentMediaView
+  );
   return (
     <>
-      <Header title={currentView} />
-      <MediaRoutes />
+      <Header title={currentMediaView} />
+      <MediaView />
     </>
   );
 };

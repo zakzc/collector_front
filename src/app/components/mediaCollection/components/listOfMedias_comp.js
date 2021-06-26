@@ -11,7 +11,7 @@ import { loadMedias } from "../../../../store/medias";
 // comps
 import MediaList from "./listOfMedias_ListOfMedias";
 
-const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
+const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
   const medias = useSelector((state) => state.medias.mediasList);
@@ -32,7 +32,7 @@ const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
             size="lg"
             className="mb-3"
             block
-            onClick={() => setCurrentView("add")}
+            onClick={() => setCurrentOperation("add")}
           >
             <PlusCircle />
           </Button>
@@ -41,8 +41,8 @@ const ListOfMedias = ({ setCurrentView, setBookToManage }) => {
       </Row>
       <MediaList
         Medias={medias}
-        setCurrentView={setCurrentView}
-        setBookToManage={setBookToManage}
+        setCurrentOperation={setCurrentOperation}
+        setMediaToManage={setMediaToManage}
       />
     </>
   );
