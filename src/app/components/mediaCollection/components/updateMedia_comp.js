@@ -9,17 +9,17 @@ import GoBackButton from "../../views/goBackButton";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
-const UpdateMedia = ({ setCurrentOperation, bookToManage }) => {
+const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
   const findBook = useSelector((state) =>
-    state.Medias.listOfMedias.filter((book) => book._id === bookToManage)
+    state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
   const currentBook = findBook[0];
   useEffect(() => {
     dispatch(loadMedias());
   }, [currentBook, dispatch]);
-  console.log("from update:", bookToManage, currentBook);
+  console.log("from update:", setMediaToManage, currentBook);
 
   // * view
   return (

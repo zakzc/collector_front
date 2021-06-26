@@ -14,17 +14,17 @@ import Row from "react-bootstrap/Row";
 // ico
 import { Trash } from "react-bootstrap-icons";
 
-const DeleteMedia = ({ setCurrentOperation, bookToManage }) => {
+const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
   const currentBook = useSelector((state) =>
-    state.medias.listOfMedias.filter((book) => book._id === bookToManage)
+    state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
 
   useEffect(() => {
     dispatch(loadMedias());
   }, [currentBook, dispatch]);
-  console.log("from delete:", bookToManage, currentBook);
+  console.log("from delete:", setMediaToManage, currentBook);
 
   // * view
   return (
