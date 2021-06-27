@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadMedias } from "../../../../store/medias";
 // comps
 import FormMedia from "./formMedia";
-import GoBackButton from "../../views/goBackButton";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
@@ -27,8 +26,7 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
       <SmallHeader subtitle={"Update book"} />
       <h4>Original Values</h4>
       <ItemToUpdate currentBook={currentBook} />
-      <FormMedia formMode={"UPDATE_book"} />
-      <GoBackButton setCurrentOperation={setCurrentOperation} />
+      <FormMedia formMode={"UPDATE_media"} />
     </>
   );
 };

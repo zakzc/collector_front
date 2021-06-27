@@ -1,20 +1,32 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
+// store
+// import { currentMediaView } from "../../../../store/context";
 // comps
-import GoBackButton from "../../views/goBackButton";
 import FormMedia from "./formMedia";
 import SmallHeader from "../../views/smallHeader";
 
 const AddMedia = ({ setCurrentOperation }) => {
+  // * data
+
+  // TODO: make this change bellow to other children comps
+
+  const currentMediaView = useSelector(
+    (state) => state.context[0].currentMediaView
+  );
+  console.log("cur viw", currentMediaView);
   // * view
   return (
     <>
-      <SmallHeader subtitle={"Add new book"} />
+      <SmallHeader subtitle={`Add new ${currentMediaView.toLowerCase()}`} />
       <div className="m-5">
-        <FormMedia formMode={"ADD_book"} />
+        <FormMedia formMode={"ADD_media"} />
       </div>
-      <GoBackButton setCurrentOperation={setCurrentOperation} />
     </>
   );
 };
 export default AddMedia;
+
+// {
+//   id = {`question${qnum+1}_option1`}
+// }

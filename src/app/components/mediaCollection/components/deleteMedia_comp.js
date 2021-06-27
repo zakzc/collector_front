@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
-import GoBackButton from "../../views/goBackButton";
 import ItemToDelete from "./deleteMedia_ItemToDelete";
 import SmallHeader from "../../views/smallHeader";
 // store
@@ -35,14 +34,13 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
       <h4>Click here to confirm</h4>
       <Row>
         <Col>
-          <Button className="ml-2" variant="danger" type="submit">
+          <Button className="m-2" size="lg" variant="danger" type="submit">
             <Trash />
           </Button>
         </Col>
         <Col></Col>
         <Col></Col>
       </Row>
-      <GoBackButton setCurrentOperation={setCurrentOperation} />
     </>
   );
 };

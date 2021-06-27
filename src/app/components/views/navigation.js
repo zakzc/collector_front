@@ -26,7 +26,7 @@ const Navigation = () => {
   const categories = [
     "Analog Audio",
     "Digital Audio",
-    "Books",
+    "Book",
     "Video",
     "Graphic",
     "Game",

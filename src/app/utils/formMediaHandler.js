@@ -4,10 +4,10 @@
 // utils
 
 const formHandler = (formMode, values) => {
-  if (formMode === "ADD_book") {
-    console.log("ADD book", values);
-  } else if (formMode === "UPDATE_book") {
-    console.log("Update book", values);
+  if (formMode === "ADD_media") {
+    console.log("ADD new media: ", values);
+  } else if (formMode === "UPDATE_media") {
+    console.log("Update this media", values);
   }
   return true;
 };
