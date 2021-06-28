@@ -19,6 +19,10 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
   const currentBook = useSelector((state) =>
     state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
+  const currentMediaView = useSelector(
+    (state) => state.context[0].currentMediaView
+  );
+  console.log("it ", currentMediaView);
 
   useEffect(() => {
     dispatch(loadMedias());
@@ -28,7 +32,7 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
   // * view
   return (
     <>
-      <SmallHeader subtitle={"Delete book"} />
+      <SmallHeader subtitle={`Delete ${currentMediaView.toLowerCase()}`} />
       <h3>You selected this entry to delete:</h3>
       <ItemToDelete bookToDelete={currentBook[0]} />
       <h4>Click here to confirm</h4>

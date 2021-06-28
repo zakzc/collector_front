@@ -8,13 +8,10 @@ import SmallHeader from "../../views/smallHeader";
 
 const AddMedia = ({ setCurrentOperation }) => {
   // * data
-
-  // TODO: make this change bellow to other children comps
-
   const currentMediaView = useSelector(
     (state) => state.context[0].currentMediaView
   );
-  console.log("cur viw", currentMediaView);
+
   // * view
   return (
     <>
@@ -26,7 +23,3 @@ const AddMedia = ({ setCurrentOperation }) => {
   );
 };
 export default AddMedia;
-
-// {
-//   id = {`question${qnum+1}_option1`}
-// }

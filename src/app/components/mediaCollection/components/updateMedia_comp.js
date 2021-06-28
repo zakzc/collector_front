@@ -15,6 +15,10 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
     state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
   const currentBook = findBook[0];
+  const currentMediaView = useSelector(
+    (state) => state.context[0].currentMediaView
+  );
+  ///
   useEffect(() => {
     dispatch(loadMedias());
   }, [currentBook, dispatch]);
@@ -23,7 +27,7 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
   // * view
   return (
     <>
-      <SmallHeader subtitle={"Update book"} />
+      <SmallHeader subtitle={`Update ${currentMediaView.toLowerCase()}`} />
       <h4>Original Values</h4>
       <ItemToUpdate currentBook={currentBook} />
       <FormMedia formMode={"UPDATE_media"} />
