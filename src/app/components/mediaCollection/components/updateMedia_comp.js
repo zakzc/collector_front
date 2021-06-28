@@ -14,22 +14,22 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
   const findBook = useSelector((state) =>
     state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
-  const currentBook = findBook[0];
+  const currentItem = findBook[0];
   const currentMediaView = useSelector(
     (state) => state.context[0].currentMediaView
   );
   ///
   useEffect(() => {
     dispatch(loadMedias());
-  }, [currentBook, dispatch]);
-  console.log("from update:", setMediaToManage, currentBook);
+  }, [currentItem, dispatch]);
+  console.log("from update:", setMediaToManage, currentItem);
 
   // * view
   return (
     <>
       <SmallHeader subtitle={`Update ${currentMediaView.toLowerCase()}`} />
       <h4>Original Values</h4>
-      <ItemToUpdate currentBook={currentBook} />
+      <ItemToUpdate currentItem={currentItem} />
       <FormMedia formMode={"UPDATE_media"} />
     </>
   );

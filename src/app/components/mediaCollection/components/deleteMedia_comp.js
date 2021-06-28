@@ -34,7 +34,7 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
     <>
       <SmallHeader subtitle={`Delete ${currentMediaView.toLowerCase()}`} />
       <h3>You selected this entry to delete:</h3>
-      <ItemToDelete bookToDelete={currentBook[0]} />
+      <ItemToDelete itemToDelete={currentBook[0]} />
       <h4>Click here to confirm</h4>
       <Row>
         <Col>

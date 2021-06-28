@@ -3,8 +3,12 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 
 const Header = ({ title }) => {
   return (
-    <Jumbotron>
-      <h1 className="text-center">{title}</h1>
+    <Jumbotron
+      style={{
+        backgroundImage: "linear-gradient(to right, CadetBlue , AliceBlue)",
+      }}
+    >
+      <h1 className="text-center text-black-50">{title}</h1>
     </Jumbotron>
   );
 };
