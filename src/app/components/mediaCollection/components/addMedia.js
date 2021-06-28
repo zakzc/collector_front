@@ -16,9 +16,9 @@ const AddMedia = ({ setCurrentOperation }) => {
   return (
     <>
       <SmallHeader subtitle={`Add new ${currentMediaView.toLowerCase()}`} />
-      <div className="m-5">
-        <FormMedia formMode={"ADD_media"} />
-      </div>
+      {/* <div className="m-5"> */}
+      <FormMedia formMode={"ADD_media"} />
+      {/* </div> */}
     </>
   );
 };

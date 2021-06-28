@@ -3,16 +3,15 @@ import { useFormik } from "formik";
 // import { useDispatch } from "react-redux";
 // store
 // import { AddMedia } from "../../../../store/Medias";
+// comps
+import CheckButton from "../../views/buttons/checkButton";
 // utils
 import FormMediaHandler from "../../../utils/formMediaHandler";
 import validationSchema from "../../../utils/mediaSchema";
 // ui
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 // ico
-import { CheckCircle } from "react-bootstrap-icons";
 import ConfirmationToast from "../../views/confirmationToast";
 
 const FormMedia = ({ formMode }) => {
@@ -238,21 +237,15 @@ const FormMedia = ({ formMode }) => {
           />
         </Form.Group>
       </Form.Row>
-      <Row>
-        <Col sm={5}>
-          <Button size="lg" variant="primary" type="submit">
-            <CheckCircle />
-          </Button>
-        </Col>
-        <Col sm={7}>
-          {confirmDataProcessing ? (
-            <ConfirmationToast
-              success={true}
-              message={"Dados informados com sucesso"}
-            />
-          ) : null}
-        </Col>
-      </Row>
+      <CheckButton />
+      <Col sm={7}>
+        {confirmDataProcessing ? (
+          <ConfirmationToast
+            success={true}
+            message={"Dados informados com sucesso"}
+          />
+        ) : null}
+      </Col>
     </Form>
   );
 };

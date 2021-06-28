@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 /// comps
 import Header from "../views/header";
-import GoBackButton from "../../components/views/goBackButton";
+import GoBackButton from "../views/buttons/goBackButton";
 import MediaView from "./mediaView";
 // ui
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const MediaLayout = () => {
   const [currentOperation, setCurrentOperation] = useState("list");
@@ -13,18 +14,24 @@ const MediaLayout = () => {
     (state) => state.context[0].currentMediaView
   );
   return (
-    <Col>
+    <>
       <Header title={currentMediaView} />
-      <div className="ml-2">
-        {currentOperation === "list" ? null : (
-          <GoBackButton setCurrentOperation={setCurrentOperation} />
-        )}
-      </div>
-      <MediaView
-        currentOperation={currentOperation}
-        setCurrentOperation={setCurrentOperation}
-      />
-    </Col>
+      <Row>
+        <Col></Col>
+        <Col xs={12} md={9}>
+          <div className="ml-2">
+            {currentOperation === "list" ? null : (
+              <GoBackButton setCurrentOperation={setCurrentOperation} />
+            )}
+          </div>
+          <MediaView
+            currentOperation={currentOperation}
+            setCurrentOperation={setCurrentOperation}
+          />
+        </Col>
+        <Col></Col>
+      </Row>
+    </>
   );
 };
 export default MediaLayout;
