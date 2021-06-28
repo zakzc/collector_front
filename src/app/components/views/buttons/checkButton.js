@@ -8,7 +8,7 @@ const CheckButton = () => {
   return (
     <div className="text-center">
       <Button
-        variant="outline-primary"
+        variant="outline-success"
         className="mb-3"
         style={{ width: "80px", height: "60px", border: "none" }}
         type="submit"

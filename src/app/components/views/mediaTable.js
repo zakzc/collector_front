@@ -5,7 +5,11 @@ import Table from "react-bootstrap/Table";
 import formatDate from "../../utils/formatDate";
 
 const MediaTable = ({ media }) => {
+  // * data
   let adjustedDate = formatDate(media.dateOfPurchase);
+  let mediaType = media.typeOfMedia.toLowerCase().split("_").join(" ");
+
+  // * view
   return (
     <Table striped bordered hover variant="light" size="sm">
       <thead>
@@ -18,7 +22,7 @@ const MediaTable = ({ media }) => {
       </thead>
       <tbody>
         <tr>
-          <td>{media.typeOfMedia}</td>
+          <td>{mediaType}</td>
           <td>{media.subType}</td>
           <td>{media.quantity}</td>
           <td>{media.sellable ? "Yes" : "No"}</td>

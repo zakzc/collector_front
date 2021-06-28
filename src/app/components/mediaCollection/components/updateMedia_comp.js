@@ -22,7 +22,6 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
   useEffect(() => {
     dispatch(loadMedias());
   }, [currentItem, dispatch]);
-  console.log("from update:", setMediaToManage, currentItem);
 
   // * view
   return (

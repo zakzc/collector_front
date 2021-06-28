@@ -7,7 +7,7 @@ import { Pencil } from "react-bootstrap-icons";
 const PencilButton = ({ handleClick, media }) => {
   return (
     <Button
-      variant="outline-primary"
+      variant="outline-secondary"
       className="m-1"
       style={{ width: "80px", height: "60px", border: "none" }}
       onClick={() => {

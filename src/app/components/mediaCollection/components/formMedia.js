@@ -23,7 +23,7 @@ const FormMedia = ({ formMode }) => {
       initialValues: {
         title: "",
         author: "",
-        subTitle: "",
+        subType: "",
         mediaID: "",
         typeOfMedia: "",
         price: "",
@@ -83,10 +83,10 @@ const FormMedia = ({ formMode }) => {
       <Form.Row>
         <Col>
           <Form.Group as={Col} controlId="formGridsubTitle">
-            <Form.Label>subTitle</Form.Label>
+            <Form.Label>subType</Form.Label>
             <Form.Control
-              placeholder="subTitle"
-              name="subTitle"
+              placeholder="subType"
+              name="subType"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.subTitle}
@@ -107,6 +107,7 @@ const FormMedia = ({ formMode }) => {
               onBlur={handleBlur}
               value={values.mediaID}
             />
+            <p>Unique identifier: ISBN for books, MID for DVDs etc.</p>
             {touched.mediaID && errors.mediaID ? (
               <span className="text-danger ml-3">{errors.mediaID}</span>
             ) : null}
@@ -114,31 +115,7 @@ const FormMedia = ({ formMode }) => {
         </Form.Group>
       </Form.Row>
 
-      <Form.Row className="ml-2">
-        <Form.Group as={Col} controlId="formGridType">
-          <Form.Label>Type</Form.Label>
-          <Form.Control
-            as="select"
-            size="lg"
-            custom
-            name="typeOfMedia"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.typeOfMedia}
-          >
-            <option> -- </option>
-            <option value="H">H</option>
-            <option value="T">T</option>
-            <option value="P">P</option>
-          </Form.Control>
-          <p>
-            H for hardcover, T for Trade-Paperback and P for cheaper paperbacks
-          </p>
-          {touched.typeOfMedia && errors.typeOfMedia ? (
-            <span className="text-danger ml-3">{errors.typeOfMedia}</span>
-          ) : null}
-        </Form.Group>
-
+      <Form.Row>
         <Form.Group as={Col} controlId="formGridPrice">
           <Col>
             <Form.Label>Price</Form.Label>
