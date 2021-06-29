@@ -161,30 +161,44 @@ export const selectMediasToSell = createSelector(
 export const selectAudioAnalog = createSelector(
   (state) => state.medias,
   (medias) =>
-    medias.mediasList.filter((item) => item.typeOfMedia === "AUDIO_ANALOG")
+    medias.mediasList.filter((item) => item.typeOfMedia === "Analog Audio")
 );
 
 export const selectLPs = createSelector(
   (state) => state.medias,
-  (medias) => medias.mediasList.filter((item) => item.subType === "LP")
+  (medias) => medias.mediasList.filter((item) => item.subType === "lp")
 );
 
 export const selectAudioDigital = createSelector(
   (state) => state.medias,
   (medias) =>
-    medias.mediasList.filter((item) => item.typeOfMedia === "AUDIO_DIGITAL")
+    medias.mediasList.filter((item) => item.typeOfMedia === "Digital Audio")
+);
+
+export const selectBooks = createSelector(
+  (state) => state.medias,
+  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "Book")
 );
 
 export const selectGraphic = createSelector(
   (state) => state.medias,
-  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "GRAPHIC")
+  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "Graphic")
 );
 
 export const selectGame = createSelector(
   (state) => state.medias,
-  (medias) =>
-    medias.mediasList.filter((item) => item.typeOfMedia === "GAME_MEDIA")
+  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "Game")
+);
+
+export const selectVideo = createSelector(
+  (state) => state.medias,
+  (medias) => medias.mediasList.filter((item) => item.typeOfMedia === "Video")
 );
 
 // * Categories:
-// Medias, AUDIO_Analog, Audio_Digital, Graphic, Visual_Media, Game_Media
+// "Analog Audio",
+// "Digital Audio",
+// "Book",
+// "Video",
+// "Graphic",
+// "Game",
