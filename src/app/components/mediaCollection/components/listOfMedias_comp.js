@@ -7,6 +7,7 @@ import { loadMedias } from "../../../../store/medias";
 // comps
 import AddButton from "../../views/buttons/addButton";
 import MediaList from "./listOfMedias_MediaList";
+import NoMediaToShow from "../../views/noMediaToShow";
 import SmallHeader from "../../views/smallHeader";
 
 const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
@@ -31,12 +32,15 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
     <>
       <AddButton setCurrentOperation={setCurrentOperation} />
       <SmallHeader subtitle={`List of ${currentMediaView.toLowerCase()}s`} />
-      <MediaList
-        Medias={medias}
-        setCurrentOperation={setCurrentOperation}
-        setMediaToManage={setMediaToManage}
-      />
-      {/* </div> */}
+      {medias.length === 0 ? (
+        <NoMediaToShow />
+      ) : (
+        <MediaList
+          Medias={medias}
+          setCurrentOperation={setCurrentOperation}
+          setMediaToManage={setMediaToManage}
+        />
+      )}
     </>
   );
 };
