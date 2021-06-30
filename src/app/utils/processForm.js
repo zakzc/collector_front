@@ -1,16 +1,15 @@
 // import React from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // store
 import { addMedia } from "../../store/medias";
+import { updateMedia } from "../../store/medias";
 
-const ProcessForm = (data) => {
-  const dispatch = useDispatch(addMedia(data));
-  console.log("what? ", dispatch);
-  //   if (dispatch) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
+const ProcessForm = (formMode, data, dispatch, id) => {
+  if (formMode === "addMedia") {
+    dispatch(addMedia(data));
+  } else if (formMode === "updateMedia") {
+    dispatch(updateMedia(id, data));
+  }
 };
 
 export default ProcessForm;

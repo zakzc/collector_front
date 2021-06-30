@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../../views/buttons/checkButton";
-// hooks
-// import useDataToStore from "../../../hooks/useDataToStore";
 // utils
 import ProcessForm from "../../../utils/processForm";
 import validationSchema from "../../../utils/mediaSchema";
@@ -13,9 +11,6 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // ico
 import ConfirmationToast from "../../views/confirmationToast";
-
-// import { connect } from "react-redux";
-import { addMedia } from "../../../../store/medias";
 import { useDispatch } from "react-redux";
 
 const FormMedia = ({ formMode }) => {
@@ -44,17 +39,14 @@ const FormMedia = ({ formMode }) => {
         notes: "",
       },
       validationSchema,
-      onSubmit: (values) => {
-        console.log(values);
-        dispatch(addMedia(values));
+      onSubmit: (values, resetForm) => {
+        console.log(formMode, values);
+        // dispatch(addMedia(values));
+        ProcessForm(formMode, values, dispatch);
+        setConfirmDataProcessing(true);
+        resetForm({});
       },
     });
-
-  //  onSubmit: (values, { resetForm }) => {
-  //     ProcessForm(values);
-  //     dispatch(addMedia(values));
-  //     setConfirmDataProcessing(true);
-  //     resetForm({});
 
   // * view
   return (
