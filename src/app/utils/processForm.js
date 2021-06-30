@@ -1,5 +1,3 @@
-// import React from "react";
-// import { useDispatch } from "react-redux";
 // store
 import { addMedia } from "../../store/medias";
 import { updateMedia } from "../../store/medias";
