@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
-  name: "context",
-  initialState: [{ connected: true, currentMediaView: "BOOK" }],
+  name: "mediaContext",
+  initialState: [{ connected: true, currentMediaView: "Book" }],
   reducers: {
     setConnection: (state, action) => {
       state[0].connected = action.payload;

@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { useSelector } from "react-redux";
 // store
 import { selectAudioAnalog } from "../../store/medias";
@@ -10,7 +10,7 @@ import { selectVideo } from "../../store/medias";
 
 export default function UseSelectedData() {
   let currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
   let audioAnalog = useSelector(selectAudioAnalog);
   let audioDigital = useSelector(selectAudioDigital);
@@ -39,8 +39,6 @@ export default function UseSelectedData() {
     default:
       dataToReturn = books;
   }
-  console.log("it is:", currentMediaView);
-  console.log("values: ", audioAnalog, audioDigital, books, games, graphic);
-  console.log("back:", dataToReturn, currentMediaView);
+
   return dataToReturn;
 }

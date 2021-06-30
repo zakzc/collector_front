@@ -11,7 +11,7 @@ import Row from "react-bootstrap/Row";
 const MediaLayout = () => {
   const [currentOperation, setCurrentOperation] = useState("list");
   const currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
   return (
     <>

@@ -16,7 +16,7 @@ const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
   );
   const currentItem = findBook[0];
   const currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
   ///
   useEffect(() => {

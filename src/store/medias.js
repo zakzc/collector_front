@@ -145,17 +145,14 @@ export const selectSells = createSelector(
   (mediasList) => mediasList.filter((item) => item.sellable === true)
 );
 
-export const selectMedias = createSelector(
-  (state) => state.medias.mediasList,
-  (mediasList) => mediasList.filter((item) => item.typeOfMedia === "BOOK")
-);
+// export const selectMedias = createSelector(
+//   (state) => state.medias.mediasList,
+//   (mediasList) => mediasList.filter((item) => item.typeOfMedia === "BOOK")
+// );
 
 export const selectMediasToSell = createSelector(
   (state) => state.medias.mediasList,
-  (mediasList) =>
-    mediasList.filter(
-      (item) => item.typeOfMedia === "BOOK" && item.sellable === true
-    )
+  (mediasList) => mediasList.filter((item) => item.sellable === true)
 );
 
 export const selectAudioAnalog = createSelector(

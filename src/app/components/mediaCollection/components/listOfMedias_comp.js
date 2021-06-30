@@ -16,11 +16,8 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   // const medias = useSelector((state) => state.medias.mediasList);
   const medias = UseSelectedData();
   const currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
-  let now = UseSelectedData();
-  console.log("return => ", now);
-
   ///
   useEffect(() => {
     dispatch(loadMedias());

@@ -20,7 +20,7 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
     state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
   const currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
   console.log("it ", currentMediaView);
 

@@ -6,16 +6,16 @@ import AppLogo from "../uiElements/appLogo";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 // store
-import { setCurrentMediaView } from "../../../store/context";
+import { setCurrentMediaView } from "../../../store/mediaContext";
 
 const Navigation = () => {
   // * data
   const currentMediaView = useSelector(
-    (state) => state.context[0].currentMediaView
+    (state) => state.mediaContext[0].currentMediaView
   );
   const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();
-  console.log("Currently: ", currentMediaView);
+  // console.log("Currently: ", currentMediaView);
   ///
   const setNewMediaView = (e) => {
     console.log("Val", e.target.value);

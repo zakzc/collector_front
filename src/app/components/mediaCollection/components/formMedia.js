@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
-// import { useDispatch } from "react-redux";
-// store
-// import { AddMedia } from "../../../../store/Medias";
 // comps
 import CheckButton from "../../views/buttons/checkButton";
+// hooks
+// import useDataToStore from "../../../hooks/useDataToStore";
 // utils
-import FormMediaHandler from "../../../utils/formMediaHandler";
+import ProcessForm from "../../../utils/processForm";
 import validationSchema from "../../../utils/mediaSchema";
 // ui
 import Col from "react-bootstrap/Col";
@@ -14,9 +14,19 @@ import Form from "react-bootstrap/Form";
 // ico
 import ConfirmationToast from "../../views/confirmationToast";
 
+// import { connect } from "react-redux";
+import { addMedia } from "../../../../store/medias";
+import { useDispatch } from "react-redux";
+
 const FormMedia = ({ formMode }) => {
   // * data
   const [confirmDataProcessing, setConfirmDataProcessing] = useState(false);
+  // const [errorProcessing, setErrorProcessing] = useState(false);
+  const currentMediaView = useSelector(
+    (state) => state.mediaContext[0].currentMediaView
+  );
+  ///
+  const dispatch = useDispatch();
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
@@ -25,7 +35,7 @@ const FormMedia = ({ formMode }) => {
         author: "",
         subType: "",
         mediaID: "",
-        typeOfMedia: "",
+        typeOfMedia: currentMediaView,
         price: "",
         sellable: "",
         dateOfPurchase: "",
@@ -34,12 +44,17 @@ const FormMedia = ({ formMode }) => {
         notes: "",
       },
       validationSchema,
-      onSubmit: (values, { resetForm }) => {
-        FormMediaHandler(formMode, values);
-        setConfirmDataProcessing(true);
-        resetForm();
+      onSubmit: (values) => {
+        console.log(values);
+        dispatch(addMedia(values));
       },
     });
+
+  //  onSubmit: (values, { resetForm }) => {
+  //     ProcessForm(values);
+  //     dispatch(addMedia(values));
+  //     setConfirmDataProcessing(true);
+  //     resetForm({});
 
   // * view
   return (
@@ -47,7 +62,7 @@ const FormMedia = ({ formMode }) => {
       <Form.Row>
         <Col>
           <Form.Group as={Col} controlId="formGridTitle">
-            <Form.Label>Book title</Form.Label>
+            <Form.Label>Title - Name</Form.Label>
             <Form.Control
               placeholder="Title"
               as="textarea"
@@ -142,11 +157,11 @@ const FormMedia = ({ formMode }) => {
               name="sellable"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.sellable}
+              // value={values.sellable}
             >
               <option> -- </option>
-              <option>Yes</option>
-              <option>No</option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
             </Form.Control>
             {touched.sellable && errors.sellable ? (
               <span className="text-danger ml-3">{errors.sellable}</span>
@@ -222,6 +237,9 @@ const FormMedia = ({ formMode }) => {
             message={"Dados informados com sucesso"}
           />
         ) : null}
+        {/* {errorProcessing ? (
+          <h4>There was an error processing the data</h4>
+        ) : null} */}
       </Col>
     </Form>
   );

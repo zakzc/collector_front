@@ -9,7 +9,7 @@ import Routes from "./app_Routes";
 
 const Layout = () => {
   // TODO: use this as the base for the offline page when backend is offline
-  // const currentMode = useSelector((state) => state.context[0].connected);
+  // const currentMode = useSelector((state) => state.mediaContext[0].connected);
   // console.log("Currently: ", currentMode, medias);
   return (
     <Container fluid="*" className="w-100 mt-0 mb-0 p-0">
