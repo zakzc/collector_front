@@ -12,8 +12,9 @@ import Form from "react-bootstrap/Form";
 // ico
 import ConfirmationToast from "../../views/confirmationToast";
 import { useDispatch } from "react-redux";
+// import { setCurrentMediaView } from "../../../../store/mediaContext";
 
-const FormMedia = ({ formMode }) => {
+const FormMedia = ({ formMode, setCurrentOperation }) => {
   // * data
   const [confirmDataProcessing, setConfirmDataProcessing] = useState(false);
   // const [errorProcessing, setErrorProcessing] = useState(false);
@@ -22,6 +23,7 @@ const FormMedia = ({ formMode }) => {
   );
   ///
   const dispatch = useDispatch();
+  let id = null;
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
@@ -39,12 +41,11 @@ const FormMedia = ({ formMode }) => {
         notes: "",
       },
       validationSchema,
-      onSubmit: (values, resetForm) => {
-        console.log(formMode, values);
-        // dispatch(addMedia(values));
-        ProcessForm(formMode, values, dispatch);
-        setConfirmDataProcessing(true);
-        resetForm({});
+      onSubmit: (values, { resetForm }) => {
+        ProcessForm(formMode, values, dispatch, setConfirmDataProcessing, id);
+        // setConfirmDataProcessing(true);
+        // resetForm({});
+        setCurrentOperation("list");
       },
     });
 

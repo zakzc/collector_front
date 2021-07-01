@@ -1,11 +1,13 @@
 import React from "react";
 // comps
-import MediaTable from "../../views/mediaTable";
+import MediaTable from "./listOfMedias_MediaTable";
 // buttons
 import PencilButton from "../../views/buttons/pencilButton";
 import TrashButton from "../../views/buttons/trashButton";
 // ui
+import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
+import Row from "react-bootstrap/Row";
 
 const MediaList = ({ Medias, setCurrentOperation, setMediaToManage }) => {
   const handleClick = (type, id) => {
@@ -23,10 +25,21 @@ const MediaList = ({ Medias, setCurrentOperation, setMediaToManage }) => {
               <span className="font-weight-bold">{media.title}</span> by{" "}
               {media.author}
             </h4>
+
             <br />
             <MediaTable media={media} />
-            <PencilButton handleClick={handleClick} media={media} />
-            <TrashButton handleClick={handleClick} media={media} />
+
+            <Row>
+              <Col>
+                <PencilButton handleClick={handleClick} media={media} />
+                <TrashButton handleClick={handleClick} media={media} />
+              </Col>
+              <Col>
+                <span className="text-secondary text-right">
+                  Unique mediaID: {media.mediaID}
+                </span>
+              </Col>
+            </Row>
           </ListGroup.Item>
           <div className="mt-2" />
         </ListGroup>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // ui Elements
-import AppLogo from "../uiElements/appLogo";
+import AppLogo from "../assets/appLogo";
 // ui
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";

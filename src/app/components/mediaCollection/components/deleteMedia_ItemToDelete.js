@@ -1,6 +1,6 @@
 import React from "react";
 // comps
-import MediaTable from "../../views/mediaTable";
+import MediaTable from "./listOfMedias_MediaTable";
 // ui
 import ListGroup from "react-bootstrap/ListGroup";
 

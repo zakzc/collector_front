@@ -2,7 +2,7 @@ import React from "react";
 // ui
 import Table from "react-bootstrap/Table";
 // utils
-import formatDate from "../../utils/formatDate";
+import formatDate from "../../../utils/formatDate";
 
 const MediaTable = ({ media }) => {
   // * data
