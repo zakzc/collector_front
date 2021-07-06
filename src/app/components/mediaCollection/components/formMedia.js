@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../../views/buttons/checkButton";
-// utils
-import ProcessForm from "../../../utils/processForm";
-import validationSchema from "../../../utils/mediaSchema";
+import ConfirmationToast from "../../views/confirmationToast";
 // ui
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-// ico
-import ConfirmationToast from "../../views/confirmationToast";
-import { useDispatch } from "react-redux";
-// import { setCurrentMediaView } from "../../../../store/mediaContext";
+// utils
+import ProcessForm from "../../../utils/processForm";
+import validationSchema from "../../../utils/mediaSchema";
 
 const FormMedia = ({ formMode, setCurrentOperation }) => {
   // * data
@@ -37,8 +34,8 @@ const FormMedia = ({ formMode, setCurrentOperation }) => {
         sellable: "",
         dateOfPurchase: "",
         quantity: "",
-        details: "",
-        notes: "",
+        details: " ",
+        notes: " ",
       },
       validationSchema,
       onSubmit: (values, { resetForm }) => {

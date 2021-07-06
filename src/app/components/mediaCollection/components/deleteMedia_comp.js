@@ -1,21 +1,24 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
+import ConfirmationToast from "../../views/confirmationToast";
 import ItemToDelete from "./deleteMedia_ItemToDelete";
 import SmallHeader from "../../views/smallHeader";
-// store
-import { loadMedias } from "../../../../store/medias";
+// ico
+import { Trash } from "react-bootstrap-icons";
 // ui
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// ico
-import { Trash } from "react-bootstrap-icons";
+// util
+import ProcessForm from "../../../utils/processForm";
+// store
+import { loadMedias } from "../../../../store/medias";
 
 const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
+  const [confirmDataProcessing, setConfirmDataProcessing] = useState(false);
   const currentBook = useSelector((state) =>
     state.medias.mediasList.filter((book) => book._id === setMediaToManage)
   );
@@ -38,9 +41,28 @@ const DeleteMedia = ({ setCurrentOperation, setMediaToManage }) => {
       <h4>Click here to confirm</h4>
       <Row>
         <Col>
-          <Button className="m-2" size="lg" variant="danger" type="submit">
+          <Button
+            className="m-2"
+            size="lg"
+            variant="danger"
+            type="submit"
+            onClick={() =>
+              ProcessForm(
+                "delete",
+                currentBook[0]._id,
+                dispatch,
+                setConfirmDataProcessing
+              )
+            }
+          >
             <Trash />
           </Button>
+          {confirmDataProcessing ? (
+            <ConfirmationToast
+              success={true}
+              message={"Dados informados com sucesso"}
+            />
+          ) : null}
         </Col>
         <Col></Col>
         <Col></Col>
