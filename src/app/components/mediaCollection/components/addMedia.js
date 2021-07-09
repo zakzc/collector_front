@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import FormMedia from "./formMedia";
 import SmallHeader from "../../views/smallHeader";
 
-const AddMedia = ({ setCurrentOperation }) => {
+const AddMedia = () => {
   // * data
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
@@ -16,12 +16,7 @@ const AddMedia = ({ setCurrentOperation }) => {
   return (
     <>
       <SmallHeader subtitle={`Add new ${currentMediaView.toLowerCase()}`} />
-      {/* <div className="m-5"> */}
-      <FormMedia
-        formMode={"addMedia"}
-        setCurrentOperation={setCurrentOperation}
-      />
-      {/* </div> */}
+      <FormMedia />
     </>
   );
 };

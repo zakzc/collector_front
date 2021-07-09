@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // comps
-import MediaTable from "./listOfMedias_MediaTable";
+import MediaItemTableView from "../../views/mediaItemTableView";
 // ui
 import ListGroup from "react-bootstrap/ListGroup";
+// store
+import { loadMedias } from "../../../../store/medias";
 
-const ItemToDelete = ({ itemToDelete }) => {
+const ItemToDelete = () => {
+  // * data
+  const dispatch = useDispatch();
+  const currentItemId = useSelector(
+    (state) => state.mediaContext[0].currentSelectedItem
+  );
+  const getItem = useSelector((state) =>
+    state.medias.mediasList.filter((item) => item._id === currentItemId)
+  );
+  const itemToDelete = getItem[0];
+  ///
+  useEffect(() => {
+    dispatch(loadMedias());
+  }, [getItem, dispatch]);
+
   return (
     <ListGroup className="ml-2 mr-2" key={itemToDelete.title}>
       <ListGroup.Item key={itemToDelete.mediaId} variant="info">
@@ -13,7 +30,7 @@ const ItemToDelete = ({ itemToDelete }) => {
           {itemToDelete.author}
         </h4>
         <br />
-        <MediaTable media={itemToDelete} />
+        <MediaItemTableView media={itemToDelete} />
       </ListGroup.Item>
       <div className="mt-3" />
     </ListGroup>

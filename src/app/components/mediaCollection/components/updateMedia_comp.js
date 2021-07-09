@@ -8,28 +8,31 @@ import FormMedia from "./formMedia";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
-const UpdateMedia = ({ setCurrentOperation, setMediaToManage }) => {
+const UpdateMedia = () => {
   // * data
   const dispatch = useDispatch();
-  const findBook = useSelector((state) =>
-    state.medias.mediasList.filter((book) => book._id === setMediaToManage)
-  );
-  const currentItem = findBook[0];
+  // const currentItemId = useSelector(
+  //   (state) => state.mediaContext[0].currentSelectedItem
+  // );
+  // const currentItem = useSelector((state) =>
+  //   state.medias.mediasList.filter((item) => item._id === currentItemId)
+  // );
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+
   ///
   useEffect(() => {
     dispatch(loadMedias());
-  }, [currentItem, dispatch]);
+  }, [currentMediaView, dispatch]);
 
   // * view
   return (
     <>
       <SmallHeader subtitle={`Update ${currentMediaView.toLowerCase()}`} />
       <h4>Original Values</h4>
-      <ItemToUpdate currentItem={currentItem} />
-      <FormMedia formMode={"UPDATE_media"} />
+      <ItemToUpdate />
+      <FormMedia />
     </>
   );
 };

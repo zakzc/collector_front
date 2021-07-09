@@ -1,6 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+// data
+import UseSelectedData from "../../../hooks/useSelectedData";
+// store
+import { loadMedias } from "../../../../store/medias";
+// import { setCurrentMediaCRUD } from "../../../../store/mediaContext";
 // comps
-import MediaTable from "./listOfMedias_MediaTable";
+import MediaItemTableView from "../../views/mediaItemTableView";
 // buttons
 import PencilButton from "../../views/buttons/pencilButton";
 import TrashButton from "../../views/buttons/trashButton";
@@ -8,31 +15,39 @@ import TrashButton from "../../views/buttons/trashButton";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
+import { setCurrentMediaCRUD } from "../../../../store/mediaContext";
+import { setCurrentSelectedItem } from "../../../../store/mediaContext";
 
-const MediaList = ({ Medias, setCurrentOperation, setMediaToManage }) => {
-  const handleClick = (type, id) => {
-    setMediaToManage(id);
-    type === "update"
-      ? setCurrentOperation("update")
-      : setCurrentOperation("delete");
-  };
+const MediaList = ({ setCurrentOperation, setMediaToManage }) => {
+  // * data
+  const dispatch = useDispatch();
+  // const medias = useSelector((state) => state.medias.mediasList);
+  const medias = UseSelectedData();
+  // const currentMediaView = useSelector(
+  //   (state) => state.mediaContext[0].currentMediaView
+  // );
+  ///
+  useEffect(() => {
+    dispatch(loadMedias());
+  }, [medias, dispatch]);
+  ///
+
+  // * view
   return (
     <>
-      {Medias.map((media) => (
+      {medias.map((media) => (
         <ListGroup key={media.title}>
           <ListGroup.Item key={media.mediaId} variant="info">
             <h4>
               <span className="font-weight-bold">{media.title}</span> by{" "}
               {media.author}
             </h4>
-
             <br />
-            <MediaTable media={media} />
-
+            <MediaItemTableView media={media} />
             <Row>
               <Col>
-                <PencilButton handleClick={handleClick} media={media} />
-                <TrashButton handleClick={handleClick} media={media} />
+                <PencilButton id={media._id} />
+                <TrashButton id={media._id} />
               </Col>
               <Col>
                 <span className="text-secondary text-right">

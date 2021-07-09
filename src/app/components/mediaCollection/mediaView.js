@@ -1,43 +1,29 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 /// comps
 import AddMedia from "./components/addMedia";
 import DeleteMedia from "./components/deleteMedia_comp";
 import ListOfMedias from "./components/listOfMedias_comp";
 import UpdateMedia from "./components/updateMedia_comp";
 
-const MediaView = ({ currentOperation, setCurrentOperation }) => {
-  const [mediaToManage, setMediaToManage] = useState();
-  switch (currentOperation) {
-    case "list":
-      return (
-        <ListOfMedias
-          setCurrentOperation={setCurrentOperation}
-          setMediaToManage={setMediaToManage}
-        />
-      );
-    case "add":
-      return <AddMedia setCurrentOperation={setCurrentOperation} />;
+const MediaView = () => {
+  // data
+  const currentMediaCRUD = useSelector(
+    (state) => state.mediaContext[0].currentMediaCRUD
+  );
+
+  // Data-View
+  switch (currentMediaCRUD) {
+    case "read":
+      return <ListOfMedias />;
+    case "create":
+      return <AddMedia />;
     case "update":
-      return (
-        <UpdateMedia
-          setCurrentOperation={setCurrentOperation}
-          setMediaToManage={mediaToManage}
-        />
-      );
+      return <UpdateMedia />;
     case "delete":
-      return (
-        <DeleteMedia
-          setCurrentOperation={setCurrentOperation}
-          setMediaToManage={mediaToManage}
-        />
-      );
+      return <DeleteMedia />;
     default:
-      return (
-        <ListOfMedias
-          setCurrentOperation={setCurrentOperation}
-          setMediaToManage={setMediaToManage}
-        />
-      );
+      return <ListOfMedias />;
   }
 };
 

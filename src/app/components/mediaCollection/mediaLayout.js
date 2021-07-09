@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 /// comps
+import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
 import GoBackButton from "../views/buttons/goBackButton";
 import MediaView from "./mediaView";
@@ -9,10 +10,20 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const MediaLayout = () => {
-  const [currentOperation, setCurrentOperation] = useState("list");
+  // data
+  //const [currentOperation, setCurrentOperation] = useState("list");
+  const currentMediaCRUD = useSelector(
+    (state) => state.mediaContext[0].currentMediaCRUD
+  );
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+  const dataProcessed = useSelector(
+    (state) => state.mediaContext[0].dataWasProcessed
+  );
+  console.log("CRUD = ", currentMediaCRUD);
+
+  // view
   return (
     <>
       <Header title={currentMediaView} />
@@ -20,16 +31,18 @@ const MediaLayout = () => {
         <Col></Col>
         <Col xs={12} md={9}>
           <div className="ml-2">
-            {currentOperation === "list" ? null : (
-              <GoBackButton setCurrentOperation={setCurrentOperation} />
-            )}
+            {currentMediaCRUD === "read" ? null : <GoBackButton />}
           </div>
-          <MediaView
-            currentOperation={currentOperation}
-            setCurrentOperation={setCurrentOperation}
-          />
+          <MediaView />
         </Col>
-        <Col></Col>
+        <Col>
+          {dataProcessed ? (
+            <ConfirmationToast
+              success={true}
+              message={"Data was processed successfully"}
+            />
+          ) : null}
+        </Col>
       </Row>
     </>
   );

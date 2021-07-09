@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../../views/buttons/checkButton";
-import ConfirmationToast from "../../views/confirmationToast";
 // ui
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -11,16 +10,11 @@ import Form from "react-bootstrap/Form";
 import ProcessForm from "../../../utils/processForm";
 import validationSchema from "../../../utils/mediaSchema";
 
-const FormMedia = ({ formMode, setCurrentOperation }) => {
+const FormMedia = () => {
   // * data
-  const [confirmDataProcessing, setConfirmDataProcessing] = useState(false);
-  // const [errorProcessing, setErrorProcessing] = useState(false);
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
-  ///
-  const dispatch = useDispatch();
-  let id = null;
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
@@ -38,11 +32,8 @@ const FormMedia = ({ formMode, setCurrentOperation }) => {
         notes: " ",
       },
       validationSchema,
-      onSubmit: (values, { resetForm }) => {
-        ProcessForm(formMode, values, dispatch, setConfirmDataProcessing, id);
-        // setConfirmDataProcessing(true);
-        // resetForm({});
-        setCurrentOperation("list");
+      onSubmit: (values) => {
+        ProcessForm(values);
       },
     });
 
@@ -220,17 +211,7 @@ const FormMedia = ({ formMode, setCurrentOperation }) => {
         </Form.Group>
       </Form.Row>
       <CheckButton />
-      <Col sm={7}>
-        {confirmDataProcessing ? (
-          <ConfirmationToast
-            success={true}
-            message={"Dados informados com sucesso"}
-          />
-        ) : null}
-        {/* {errorProcessing ? (
-          <h4>There was an error processing the data</h4>
-        ) : null} */}
-      </Col>
+      <Col sm={7}></Col>
     </Form>
   );
 };

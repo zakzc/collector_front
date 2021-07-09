@@ -13,7 +13,6 @@ import SmallHeader from "../../views/smallHeader";
 const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
-  // const medias = useSelector((state) => state.medias.mediasList);
   const medias = UseSelectedData();
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
@@ -29,15 +28,7 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
     <>
       <AddButton setCurrentOperation={setCurrentOperation} />
       <SmallHeader subtitle={`List of ${currentMediaView.toLowerCase()}s`} />
-      {medias.length === 0 ? (
-        <NoMediaToShow />
-      ) : (
-        <MediaList
-          Medias={medias}
-          setCurrentOperation={setCurrentOperation}
-          setMediaToManage={setMediaToManage}
-        />
-      )}
+      {medias.length === 0 ? <NoMediaToShow /> : <MediaList />}
     </>
   );
 };

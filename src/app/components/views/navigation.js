@@ -18,7 +18,6 @@ const Navigation = () => {
   // console.log("Currently: ", currentMediaView);
   ///
   const setNewMediaView = (e) => {
-    console.log("Val", e.target.value);
     setSelected(e.target.value);
     dispatch(setCurrentMediaView(e.target.value));
   };
