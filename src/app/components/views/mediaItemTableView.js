@@ -2,13 +2,12 @@ import React from "react";
 // ui
 import Table from "react-bootstrap/Table";
 // utils
-import formatDate from "../../utils/formatDate";
+import formatDateView from "../../utils/formatDateView";
 
 const MediaItemTableView = ({ media }) => {
   // * data
-  let adjustedDate = formatDate(media.dateOfPurchase);
+  let adjustedDate = formatDateView(media.dateOfPurchase);
   let mediaType = media.typeOfMedia.toLowerCase().split("_").join(" ");
-  console.log("Media Item tab", media);
   // * view
   return (
     <Table striped bordered hover variant="light" size="sm">

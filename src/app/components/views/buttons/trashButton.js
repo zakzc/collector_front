@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 import { Trash } from "react-bootstrap-icons";
 
 const TrashButton = ({ id }) => {
-  console.log("trash got:", id);
   // * data
   const dispatch = useDispatch();
   const handleDeleteClick = () => {

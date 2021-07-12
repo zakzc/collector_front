@@ -10,8 +10,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const MediaLayout = () => {
-  // data
-  //const [currentOperation, setCurrentOperation] = useState("list");
+  // * data
   const currentMediaCRUD = useSelector(
     (state) => state.mediaContext[0].currentMediaCRUD
   );
@@ -21,9 +20,8 @@ const MediaLayout = () => {
   const dataProcessed = useSelector(
     (state) => state.mediaContext[0].dataWasProcessed
   );
-  console.log("CRUD = ", currentMediaCRUD);
 
-  // view
+  // * view
   return (
     <>
       <Header title={currentMediaView} />

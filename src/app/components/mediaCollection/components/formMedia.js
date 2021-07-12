@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../../views/buttons/checkButton";
@@ -7,33 +7,62 @@ import CheckButton from "../../views/buttons/checkButton";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // utils
-import ProcessForm from "../../../utils/processForm";
+import adjustFormValues from "../../../utils/adjustFormValues";
 import validationSchema from "../../../utils/mediaSchema";
+// store
+import { addMedia } from "../../../../store/medias";
+import {
+  setCurrentMediaCRUD,
+  setCurrentMediaView,
+  setDataWasProcessed,
+} from "../../../../store/mediaContext";
 
 const FormMedia = () => {
   // * data
+  const dispatch = useDispatch();
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+  const currentMediaCRUD = useSelector(
+    (state) => state.mediaContext[0].currentMediaCRUD
+  );
+
+  let initialValuesForAdding = {
+    title: "",
+    author: "",
+    subType: "",
+    mediaID: "",
+    typeOfMedia: currentMediaView,
+    price: "",
+    sellable: "",
+    dayOfPurchase: "",
+    monthOfPurchase: "",
+    yearOfPurchase: "",
+    quantity: "",
+    details: " ",
+    notes: " ",
+  };
+
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
-      initialValues: {
-        title: "",
-        author: "",
-        subType: "",
-        mediaID: "",
-        typeOfMedia: currentMediaView,
-        price: "",
-        sellable: "",
-        dateOfPurchase: "",
-        quantity: "",
-        details: " ",
-        notes: " ",
-      },
+      initialValues: initialValuesForAdding,
       validationSchema,
       onSubmit: (values) => {
-        ProcessForm(values);
+        let adjustedValues = adjustFormValues(values);
+        switch (currentMediaCRUD) {
+          case "create":
+            dispatch(addMedia(adjustedValues));
+            break;
+          case "update":
+            // TODO: implement the rest of the functionalities
+            break;
+          default:
+            break;
+        }
+        dispatch(setDataWasProcessed(true));
+        dispatch(setCurrentMediaCRUD("read"));
+        dispatch(setCurrentMediaView(currentMediaView));
       },
     });
 
@@ -128,48 +157,6 @@ const FormMedia = () => {
           </Col>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridSell">
-          <Col>
-            <Form.Label>Available to sell?</Form.Label>
-            <Form.Control
-              size="lg"
-              custom
-              as="select"
-              name="sellable"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              // value={values.sellable}
-            >
-              <option> -- </option>
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </Form.Control>
-            {touched.sellable && errors.sellable ? (
-              <span className="text-danger ml-3">{errors.sellable}</span>
-            ) : null}
-          </Col>
-        </Form.Group>
-      </Form.Row>
-
-      <Form.Row className="mr-2">
-        <Form.Group as={Col} controlId="formGridsubTitle">
-          <Col>
-            <Form.Label>Date of Purchase</Form.Label>
-            <Form.Control
-              placeholder="Date of purchase YYYY-MM-DD"
-              name="dateOfPurchase"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.dateOfPurchase}
-            />
-            {touched.dateOfPurchase && errors.dateOfPurchase ? (
-              <span className="text-danger ml-3">
-                Please inform date of purchase as YYYY-MM-DD
-              </span>
-            ) : null}
-          </Col>
-        </Form.Group>
-
         <Form.Group as={Col} controlId="formGridMediaId">
           <Form.Label>Quantity</Form.Label>
           <Form.Control
@@ -182,6 +169,102 @@ const FormMedia = () => {
           {touched.quantity && errors.quantity ? (
             <span className="text-danger ml-3">Only numbers are allowed</span>
           ) : null}
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridSell">
+          <Col>
+            <Form.Label>Available to sell?</Form.Label>
+            <Form.Control
+              size="lg"
+              custom
+              as="select"
+              name="sellable"
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              <option> -- </option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </Form.Control>
+            {touched.sellable && errors.sellable ? (
+              <span className="text-danger ml-3">{errors.sellable}</span>
+            ) : null}
+          </Col>
+        </Form.Group>
+      </Form.Row>
+
+      <p>Date of purchase</p>
+
+      <Form.Row className="mr-2">
+        <Form.Group as={Col} controlId="formGridSell">
+          <Col>
+            <Form.Label>Day</Form.Label>
+            <Form.Control
+              size="lg"
+              custom
+              as="select"
+              name="dayOfPurchase"
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              <option> -- </option>
+              {[...Array(31).keys()].map((i) => (
+                <option value={i + 1}>{i + 1}</option>
+              ))}
+            </Form.Control>
+            {touched.dayOfPurchase && errors.dayOfPurchase ? (
+              <span className="text-danger ml-3">{errors.dayOfPurchase}</span>
+            ) : null}
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridSell">
+          <Col>
+            <Form.Label>Month</Form.Label>
+            <Form.Control
+              size="lg"
+              custom
+              as="select"
+              name="monthOfPurchase"
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              <option> -- </option>
+              <option value={1}>January</option>
+              <option value={2}>February</option>
+              <option value={3}>March</option>
+              <option value={4}>April</option>
+              <option value={5}>May</option>
+              <option value={6}>June</option>
+              <option value={7}>July</option>
+              <option value={8}>August</option>
+              <option value={9}>September</option>
+              <option value={10}>October</option>
+              <option value={11}>November</option>
+              <option value={12}>December</option>
+            </Form.Control>
+            {touched.monthOfPurchase && errors.monthOfPurchase ? (
+              <span className="text-danger ml-3">{errors.monthOfPurchase}</span>
+            ) : null}
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridsubTitle">
+          <Col>
+            <Form.Label>Year</Form.Label>
+            <Form.Control
+              placeholder="Year"
+              name="yearOfPurchase"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.dateOfPurchase}
+            />
+            {touched.yearOfPurchase && errors.yearOfPurchase ? (
+              <span className="text-danger ml-3">
+                Year ranges from 1900 to 2050
+              </span>
+            ) : null}
+          </Col>
         </Form.Group>
       </Form.Row>
 

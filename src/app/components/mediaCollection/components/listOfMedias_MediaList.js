@@ -15,8 +15,6 @@ import TrashButton from "../../views/buttons/trashButton";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
-import { setCurrentMediaCRUD } from "../../../../store/mediaContext";
-import { setCurrentSelectedItem } from "../../../../store/mediaContext";
 
 const MediaList = ({ setCurrentOperation, setMediaToManage }) => {
   // * data

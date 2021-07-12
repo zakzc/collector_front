@@ -12,11 +12,9 @@ const PencilButton = ({ id }) => {
   // * data
   const dispatch = useDispatch();
   const handleUpdateClick = () => {
-    console.log("update handler", id);
     dispatch(setCurrentSelectedItem(id));
     dispatch(setCurrentMediaCRUD("update"));
   };
-  console.log("pencil got:", id);
 
   /// * view
   return (
