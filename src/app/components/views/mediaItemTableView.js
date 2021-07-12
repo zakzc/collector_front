@@ -21,10 +21,10 @@ const MediaItemTableView = ({ media }) => {
       </thead>
       <tbody>
         <tr>
-          <td>{mediaType}</td>
-          <td>{media.subType}</td>
-          <td>{media.quantity}</td>
-          <td>{media.sellable ? "Yes" : "No"}</td>
+          <td className="text-info">{mediaType}</td>
+          <td className="text-info">{media.subType}</td>
+          <td className="text-info">{media.quantity}</td>
+          <td className="text-info">{media.sellable ? "Yes" : "No"}</td>
         </tr>
       </tbody>
       <thead>
@@ -37,10 +37,16 @@ const MediaItemTableView = ({ media }) => {
       </thead>
       <tbody>
         <tr>
-          <td>{media.dateOfPurchase ? adjustedDate : "not available"}</td>
-          <td>{media.price ? media.price : "not available"}</td>
-          <td>{media.details ? media.details : "none"}</td>
-          <td>{media.notes ? media.notes : "none"}</td>
+          <td className="text-info">
+            {media.dateOfPurchase ? adjustedDate : "not available"}
+          </td>
+          <td className="text-info">
+            {media.price ? media.price : "not available"}
+          </td>
+          <td className="text-info">
+            {media.details ? media.details : "none"}
+          </td>
+          <td className="text-info">{media.notes ? media.notes : "none"}</td>
         </tr>
       </tbody>
     </Table>

@@ -37,8 +37,10 @@ const MediaList = ({ setCurrentOperation, setMediaToManage }) => {
         <ListGroup key={media.title}>
           <ListGroup.Item key={media.mediaId} variant="info">
             <h4>
-              <span className="font-weight-bold">{media.title}</span> by{" "}
-              {media.author}
+              <span className="font-weight-bold text-secondary">
+                {media.title}
+              </span>{" "}
+              by <span className="text-secondary">{media.author}</span>
             </h4>
             <br />
             <MediaItemTableView media={media} />
