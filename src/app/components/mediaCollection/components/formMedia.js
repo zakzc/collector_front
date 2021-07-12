@@ -209,7 +209,9 @@ const FormMedia = () => {
             >
               <option> -- </option>
               {[...Array(31).keys()].map((i) => (
-                <option value={i + 1}>{i + 1}</option>
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
               ))}
             </Form.Control>
             {touched.dayOfPurchase && errors.dayOfPurchase ? (

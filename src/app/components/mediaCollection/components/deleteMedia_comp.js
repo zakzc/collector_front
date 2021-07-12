@@ -9,10 +9,13 @@ import { Trash } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// util
-import ProcessForm from "../../../utils/processForm";
 // store
-import { loadMedias } from "../../../../store/medias";
+import { loadMedias, removeMedia } from "../../../../store/medias";
+import {
+  setCurrentMediaCRUD,
+  setCurrentMediaView,
+  setDataWasProcessed,
+} from "../../../../store/mediaContext";
 
 const DeleteMedia = () => {
   // * data
@@ -23,6 +26,13 @@ const DeleteMedia = () => {
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+  console.log("delete media: ", currentItemId, currentMediaView);
+  const handleClickDelete = () => {
+    dispatch(removeMedia(currentItemId));
+    dispatch(setDataWasProcessed(true));
+    dispatch(setCurrentMediaView(currentMediaView));
+    dispatch(setCurrentMediaCRUD("read"));
+  };
   ///
   useEffect(() => {
     dispatch(loadMedias());
@@ -35,20 +45,25 @@ const DeleteMedia = () => {
       <SmallHeader subtitle={`Delete this ${currentMediaView.toLowerCase()}`} />
       <h3>You selected this entry to delete:</h3>
       <ItemToDelete />
-      <h4>Click here to confirm</h4>
+
       <Row>
         <Col>
+          <h4>Are you sure you want to delete this item?</h4>
+        </Col>
+        <Col></Col>
+        <p className="text-danger">
+          Click this icon
           <Button
             className="m-2"
             size="lg"
             variant="danger"
             type="submit"
-            onClick={() => ProcessForm(currentItemId)}
+            onClick={() => handleClickDelete()}
           >
             <Trash />
           </Button>
-        </Col>
-        <Col></Col>
+          to delete it.
+        </p>
       </Row>
     </>
   );
