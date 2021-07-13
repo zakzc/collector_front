@@ -17,7 +17,6 @@ const ItemToUpdate = () => {
     state.medias.mediasList.filter((item) => item._id === currentItemId)
   );
   const itemToUpdate = getItem[0];
-  console.log("update item  ==> ", currentItemId, itemToUpdate);
   ///
   useEffect(() => {
     dispatch(loadMedias());

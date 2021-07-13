@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // store
 import { loadMedias } from "../../../../store/medias";
 // comps
-import FormUpdateMedia from "./updateMedia_FormUpdateMedia";
+import FormUpdateMedia from "./updateMedia_Form";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 

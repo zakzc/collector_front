@@ -8,9 +8,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // utils
 import adjustFormValues from "../../../utils/adjustFormValues";
+import formatDateView from "../../../utils/formatDateView";
 import validationSchema from "../../../utils/mediaSchema";
 // store
-import { addMedia } from "../../../../store/medias";
+import { updateMedia } from "../../../../store/medias";
 import {
   setCurrentMediaCRUD,
   setCurrentMediaView,
@@ -23,43 +24,49 @@ const FormUpdateMedia = () => {
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
-  const currentMediaCRUD = useSelector(
-    (state) => state.mediaContext[0].currentMediaCRUD
-  );
+  // const currentMediaCRUD = useSelector(
+  //   (state) => state.mediaContext[0].currentMediaCRUD
+  // );
 
-  let initialValuesForAdding = {
-    title: "",
-    author: "",
-    subType: "",
-    mediaID: "",
-    typeOfMedia: currentMediaView,
-    price: "",
-    sellable: "",
-    dayOfPurchase: "",
-    monthOfPurchase: "",
-    yearOfPurchase: "",
-    quantity: "",
-    details: " ",
-    notes: " ",
-  };
+  const currentItemId = useSelector(
+    (state) => state.mediaContext[0].currentSelectedItem
+  );
+  const getItem = useSelector((state) =>
+    state.medias.mediasList.filter((item) => item._id === currentItemId)
+  );
+  const itemToUpdate = getItem[0];
+
+  // data treatment
+  let formattedDate = formatDateView(itemToUpdate.dateOfPurchase);
+  let processedDate = itemToUpdate.dateOfPurchase.split("-");
+  let day = processedDate[2].substring(0, 2);
+  let month = processedDate[1];
+  let year = processedDate[0];
+  ///
 
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
-      initialValues: initialValuesForAdding,
+      initialValues: {
+        title: itemToUpdate.title,
+        author: itemToUpdate.author,
+        subType: itemToUpdate.subType,
+        mediaID: itemToUpdate.mediaID,
+        typeOfMedia: currentMediaView,
+        price: itemToUpdate.price,
+        sellable: itemToUpdate.sellable,
+        dayOfPurchase: day,
+        monthOfPurchase: month,
+        yearOfPurchase: year,
+        quantity: itemToUpdate.quantity,
+        details: itemToUpdate.details,
+        notes: itemToUpdate.notes,
+      },
       validationSchema,
       onSubmit: (values) => {
         let adjustedValues = adjustFormValues(values);
-        switch (currentMediaCRUD) {
-          case "create":
-            dispatch(addMedia(adjustedValues));
-            break;
-          case "update":
-            // TODO: implement the rest of the functionalities
-            break;
-          default:
-            break;
-        }
+        console.log("Vals: ", adjustedValues, itemToUpdate._id);
+        dispatch(updateMedia(itemToUpdate._id, adjustedValues));
         dispatch(setDataWasProcessed(true));
         dispatch(setCurrentMediaCRUD("read"));
         dispatch(setCurrentMediaView(currentMediaView));
@@ -69,12 +76,18 @@ const FormUpdateMedia = () => {
   // * view
   return (
     <Form onSubmit={handleSubmit} className="m-3">
+      <p>
+        Only the items that are filled in will be updated. The rest will retain
+        its original value.
+      </p>
       <Form.Row>
         <Col>
           <Form.Group as={Col} controlId="formGridTitle">
-            <Form.Label>Title - Name</Form.Label>
+            <Form.Label>
+              Title: <span className="text-info">{itemToUpdate.title}</span>
+            </Form.Label>
             <Form.Control
-              placeholder="Title"
+              placeholder={itemToUpdate.title}
               as="textarea"
               name="title"
               onChange={handleChange}
@@ -89,9 +102,11 @@ const FormUpdateMedia = () => {
 
         <Col>
           <Form.Group as={Col} controlId="formGridAuthor">
-            <Form.Label>Author</Form.Label>
+            <Form.Label>
+              Author <span className="text-info">{itemToUpdate.author}</span>
+            </Form.Label>
             <Form.Control
-              placeholder="Author"
+              placeholder={itemToUpdate.author}
               as="textarea"
               name="author"
               onChange={handleChange}
@@ -108,9 +123,11 @@ const FormUpdateMedia = () => {
       <Form.Row>
         <Col>
           <Form.Group as={Col} controlId="formGridsubTitle">
-            <Form.Label>subType</Form.Label>
+            <Form.Label>
+              subType: <span className="text-info">{itemToUpdate.subType}</span>
+            </Form.Label>
             <Form.Control
-              placeholder="subType"
+              placeholder={itemToUpdate.subType}
               name="subType"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -123,29 +140,24 @@ const FormUpdateMedia = () => {
         </Col>
 
         <Form.Group as={Col} controlId="formGridMediaId">
-          <Col>
-            <Form.Label>Media Id</Form.Label>
-            <Form.Control
-              placeholder="Media id"
-              name="mediaID"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.mediaID}
-            />
-            <p>Unique identifier: ISBN for books, MID for DVDs etc.</p>
-            {touched.mediaID && errors.mediaID ? (
-              <span className="text-danger ml-3">{errors.mediaID}</span>
-            ) : null}
-          </Col>
+          <p>
+            Media Id: <span className="text-info">{itemToUpdate.mediaID}</span>
+          </p>
+          <span>This is a unique number, it cannot be changed</span>
+          {touched.mediaID && errors.mediaID ? (
+            <span className="text-danger ml-3">{errors.mediaID}</span>
+          ) : null}
         </Form.Group>
       </Form.Row>
 
       <Form.Row>
         <Form.Group as={Col} controlId="formGridPrice">
           <Col>
-            <Form.Label>Price</Form.Label>
+            <Form.Label>
+              Price: <span className="text-info">{itemToUpdate.price}</span>
+            </Form.Label>
             <Form.Control
-              placeholder="Price"
+              placeholder={itemToUpdate.price}
               name="price"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -158,9 +170,11 @@ const FormUpdateMedia = () => {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridMediaId">
-          <Form.Label>Quantity</Form.Label>
+          <Form.Label>
+            Quantity: <span className="text-info">{itemToUpdate.quantity}</span>
+          </Form.Label>
           <Form.Control
-            placeholder="Quantity"
+            placeholder={itemToUpdate.quantity}
             name="quantity"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -173,6 +187,19 @@ const FormUpdateMedia = () => {
 
         <Form.Group as={Col} controlId="formGridSell">
           <Col>
+            {" "}
+            <p>
+              Value:{" "}
+              {itemToUpdate.sellable ? (
+                <span span className="text-info">
+                  true
+                </span>
+              ) : (
+                <span span className="text-info">
+                  false
+                </span>
+              )}{" "}
+            </p>
             <Form.Label>Available to sell?</Form.Label>
             <Form.Control
               size="lg"
@@ -193,8 +220,9 @@ const FormUpdateMedia = () => {
         </Form.Group>
       </Form.Row>
 
-      <p>Date of purchase</p>
-
+      <p>
+        Date of purchase: <span className="text-info">{formattedDate}</span>{" "}
+      </p>
       <Form.Row className="mr-2">
         <Form.Group as={Col} controlId="formGridSell">
           <Col>
@@ -206,6 +234,7 @@ const FormUpdateMedia = () => {
               name="dayOfPurchase"
               onChange={handleChange}
               onBlur={handleBlur}
+              value={day}
             >
               <option> -- </option>
               {[...Array(31).keys()].map((i) => (
@@ -228,6 +257,7 @@ const FormUpdateMedia = () => {
               custom
               as="select"
               name="monthOfPurchase"
+              value={month}
               onChange={handleChange}
               onBlur={handleBlur}
             >
@@ -259,7 +289,7 @@ const FormUpdateMedia = () => {
               name="yearOfPurchase"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.dateOfPurchase}
+              value={year}
             />
             {touched.yearOfPurchase && errors.yearOfPurchase ? (
               <span className="text-danger ml-3">{errors.yearOfPurchase}</span>
@@ -272,7 +302,7 @@ const FormUpdateMedia = () => {
         <Form.Group as={Col} controlId="formGridDetails">
           <Form.Label>Details</Form.Label>
           <Form.Control
-            placeholder="Details"
+            placeholder={itemToUpdate.details}
             as="textarea"
             name="details"
             onChange={handleChange}
@@ -284,7 +314,7 @@ const FormUpdateMedia = () => {
         <Form.Group as={Col} controlId="formGridNotes">
           <Form.Label>Notes</Form.Label>
           <Form.Control
-            placeholder="Notes"
+            placeholder={itemToUpdate.notes}
             as="textarea"
             name="notes"
             onChange={handleChange}

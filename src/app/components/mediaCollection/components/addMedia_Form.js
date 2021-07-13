@@ -48,16 +48,7 @@ const FormAddMedia = () => {
       validationSchema,
       onSubmit: (values) => {
         let adjustedValues = adjustFormValues(values);
-        switch (currentMediaCRUD) {
-          case "create":
-            dispatch(addMedia(adjustedValues));
-            break;
-          case "update":
-            // TODO: implement the rest of the functionalities
-            break;
-          default:
-            break;
-        }
+        dispatch(addMedia(adjustedValues));
         dispatch(setDataWasProcessed(true));
         dispatch(setCurrentMediaCRUD("read"));
         dispatch(setCurrentMediaView(currentMediaView));
