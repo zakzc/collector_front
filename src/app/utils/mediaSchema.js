@@ -32,14 +32,21 @@ const MediaSchema = Yup.object().shape({
   yearOfPurchase: Yup.number()
     .positive()
     .min(1900)
-    .max(2050)
-    .required("Years range from 1900 to 2050"),
+    .max(new Date().getFullYear())
+    .required("Years range from 1900 to the current year"),
   // dateOfPurchase: Yup.date().required(
   //   "Date is required and on the format YYYY-MM-DD"
   // ),
-  quantity: Yup.number().min(1, "Inform quantity").required(),
+  quantity: Yup.number()
+    .min(1, "Inform quantity")
+    .max(100, "maximum number of items is 100")
+    .required("You must inform how many items"),
   details: Yup.string().max(120, "Reached maximum text space"),
   notes: Yup.string().max(120, "Reached maximum text space"),
 });
+
+// MediaSchema.validate({}).catch(function (e) {
+//   console.log("Another validation error: ", e);
+// });
 
 export default MediaSchema;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Toast from "react-bootstrap/Toast";
 // ui - icon
 import { CheckCircle } from "react-bootstrap-icons";
@@ -8,6 +8,16 @@ const ConfirmationToast = ({ success, message }) => {
   // * data
   const [showA, setShowA] = useState(true);
   const toggleShowA = () => setShowA(!showA);
+
+  useEffect(() => {
+    setTimeToDisappear();
+  }, []);
+
+  const setTimeToDisappear = () => {
+    setTimeout(() => {
+      setShowA(false);
+    }, 3000);
+  };
 
   // * view
   return (

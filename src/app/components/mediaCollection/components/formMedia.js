@@ -152,7 +152,7 @@ const FormMedia = () => {
               value={values.price}
             />
             {touched.price && errors.price ? (
-              <span className="text-danger ml-3">Only numbers are allowed</span>
+              <span className="text-danger ml-3">{errors.price}</span>
             ) : null}
           </Col>
         </Form.Group>
@@ -167,7 +167,7 @@ const FormMedia = () => {
             value={values.quantity}
           />
           {touched.quantity && errors.quantity ? (
-            <span className="text-danger ml-3">Only numbers are allowed</span>
+            <span className="text-danger ml-3">{errors.quantity}</span>
           ) : null}
         </Form.Group>
 
@@ -262,9 +262,7 @@ const FormMedia = () => {
               value={values.dateOfPurchase}
             />
             {touched.yearOfPurchase && errors.yearOfPurchase ? (
-              <span className="text-danger ml-3">
-                Year ranges from 1900 to 2050
-              </span>
+              <span className="text-danger ml-3">{errors.yearOfPurchase}</span>
             ) : null}
           </Col>
         </Form.Group>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
+import ConfirmationToast from "../../views/confirmationToast";
 import ItemToDelete from "./deleteMedia_ItemToDelete";
 import SmallHeader from "../../views/smallHeader";
 // ico
@@ -26,12 +27,19 @@ const DeleteMedia = () => {
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+  const dataProcessed = useSelector(
+    (state) => state.mediaContext[0].dataWasProcessed
+  );
   console.log("delete media: ", currentItemId, currentMediaView);
+  ///
   const handleClickDelete = () => {
     dispatch(removeMedia(currentItemId));
     dispatch(setDataWasProcessed(true));
     dispatch(setCurrentMediaView(currentMediaView));
     dispatch(setCurrentMediaCRUD("read"));
+    dispatch(setDataWasProcessed(true));
+
+    // window.location.reload(false);
   };
   ///
   useEffect(() => {
@@ -65,6 +73,12 @@ const DeleteMedia = () => {
           to delete it.
         </p>
       </Row>
+      {dataProcessed ? (
+        <ConfirmationToast
+          success={true}
+          message={"This data was erased. Reload the page to see changes."}
+        />
+      ) : null}
     </>
   );
 };
