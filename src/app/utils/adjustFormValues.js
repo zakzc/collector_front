@@ -4,8 +4,9 @@ const adjustFormValues = (data) => {
     data.yearOfPurchase + "-" + data.monthOfPurchase + "-" + data.dayOfPurchase
   );
   let adjustedPrice = Math.abs(parseFloat(data.price));
+  let adjustedQuantity = Math.abs(parseInt(data.quantity));
+  ///
   let adjustedValues = {
-    _id: data._id,
     author: data.author,
     collector: data.collector,
     dateOfPurchase: adjustedDate,
@@ -13,7 +14,7 @@ const adjustFormValues = (data) => {
     mediaID: data.mediaID,
     notes: data.notes,
     price: adjustedPrice,
-    quantity: data.quantity,
+    quantity: adjustedQuantity,
     sellable: data.sellable,
     subType: data.subType,
     title: data.title,

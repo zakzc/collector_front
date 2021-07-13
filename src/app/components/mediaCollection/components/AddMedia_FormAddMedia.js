@@ -27,26 +27,24 @@ const FormAddMedia = () => {
     (state) => state.mediaContext[0].currentMediaCRUD
   );
 
-  let initialValuesForAdding = {
-    title: "",
-    author: "",
-    subType: "",
-    mediaID: "",
-    typeOfMedia: currentMediaView,
-    price: "",
-    sellable: "",
-    dayOfPurchase: "",
-    monthOfPurchase: "",
-    yearOfPurchase: "",
-    quantity: "",
-    details: " ",
-    notes: " ",
-  };
-
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
-      initialValues: initialValuesForAdding,
+      initialValues: {
+        title: "",
+        author: "",
+        subType: "",
+        mediaID: "",
+        typeOfMedia: currentMediaView,
+        price: "",
+        sellable: "",
+        dayOfPurchase: "",
+        monthOfPurchase: "",
+        yearOfPurchase: "",
+        quantity: "",
+        details: " ",
+        notes: " ",
+      },
       validationSchema,
       onSubmit: (values) => {
         let adjustedValues = adjustFormValues(values);

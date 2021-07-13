@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-// store
-// import { currentMediaView } from "../../../../store/mediaContext";
 // comps
-import FormAddMedia from "./formAddMedia";
+import FormAddMedia from "./AddMedia_FormAddMedia";
 import SmallHeader from "../../views/smallHeader";
 
 const AddMedia = () => {

@@ -25,8 +25,6 @@ const Navigation = () => {
     dispatch(setCurrentMediaView(e.target.value));
   };
 
-  console.log("Navig: ", currentMediaCRUD);
-
   const categories = [
     "Analog Audio",
     "Digital Audio",
@@ -62,11 +60,15 @@ const Navigation = () => {
         <Navbar bg="dark" variant="dark">
           <AppLogo extraStyle={{}} />
           <div className="ml-5">
+            {currentMediaCRUD === "create" ? (
+              <h4 className="text-light">Add</h4>
+            ) : null}
             {currentMediaCRUD === "delete" ? (
-              <h4 className="text-info">Delete</h4>
-            ) : (
-              <h4 className="text-info">Update</h4>
-            )}
+              <h4 className="text-light">Delete</h4>
+            ) : null}
+            {currentMediaCRUD === "update" ? (
+              <h4 className="text-light">Update</h4>
+            ) : null}
           </div>
         </Navbar>
       )}

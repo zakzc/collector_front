@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
 import ConfirmationToast from "../../views/confirmationToast";
 import ItemToDelete from "./deleteMedia_ItemToDelete";
-import NoMediaToShow from "../../views/noMediaToShow";
 import SmallHeader from "../../views/smallHeader";
 // ico
 import { Trash } from "react-bootstrap-icons";
@@ -35,6 +34,7 @@ const DeleteMedia = () => {
     state.medias.mediasList.filter((item) => item._id === currentItemId)
   );
   const itemToDelete = getItem[0];
+  const [deleteProcess, setDeleteProcess] = useState(false);
   console.log(
     "delete media: ",
     dataProcessed,
@@ -48,9 +48,7 @@ const DeleteMedia = () => {
     dispatch(setDataWasProcessed(true));
     dispatch(setCurrentMediaView(currentMediaView));
     dispatch(setCurrentMediaCRUD("read"));
-    dispatch(setDataWasProcessed(true));
-
-    // window.location.reload(false);
+    setDeleteProcess(true);
   };
   ///
   useEffect(() => {
@@ -83,7 +81,7 @@ const DeleteMedia = () => {
           to delete it.
         </p>
       </Row>
-      {dataProcessed ? (
+      {deleteProcess ? (
         <ConfirmationToast
           success={true}
           message={"This data was erased. Reload the page to see changes."}
