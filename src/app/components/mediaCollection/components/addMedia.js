@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // store
 // import { currentMediaView } from "../../../../store/mediaContext";
 // comps
-import FormMedia from "./formMedia";
+import FormAddMedia from "./formAddMedia";
 import SmallHeader from "../../views/smallHeader";
 
 const AddMedia = () => {
@@ -16,7 +16,7 @@ const AddMedia = () => {
   return (
     <>
       <SmallHeader subtitle={`Add new ${currentMediaView.toLowerCase()}`} />
-      <FormMedia />
+      <FormAddMedia />
     </>
   );
 };

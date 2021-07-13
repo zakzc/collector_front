@@ -13,6 +13,9 @@ const Navigation = () => {
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
+  const currentMediaCRUD = useSelector(
+    (state) => state.mediaContext[0].currentMediaCRUD
+  );
   const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();
   // console.log("Currently: ", currentMediaView);
@@ -21,6 +24,8 @@ const Navigation = () => {
     setSelected(e.target.value);
     dispatch(setCurrentMediaView(e.target.value));
   };
+
+  console.log("Navig: ", currentMediaCRUD);
 
   const categories = [
     "Analog Audio",
@@ -34,23 +39,37 @@ const Navigation = () => {
   // * view
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <AppLogo extraStyle={{}} />
-        <div className="ml-5">
-          {categories.map((c) => (
-            <Button
-              key={c}
-              className="m-1"
-              variant={selected === c ? "light" : "dark"}
-              value={c}
-              onClick={setNewMediaView}
-            >
-              {c}
-            </Button>
-          ))}
-        </div>
-      </Navbar>
-      <br />
+      {currentMediaCRUD === "read" ? (
+        <>
+          <Navbar bg="dark" variant="dark">
+            <AppLogo extraStyle={{}} />
+            <div className="ml-5">
+              {categories.map((c) => (
+                <Button
+                  key={c}
+                  className="m-1"
+                  variant={selected === c ? "light" : "dark"}
+                  value={c}
+                  onClick={setNewMediaView}
+                >
+                  {c}
+                </Button>
+              ))}
+            </div>
+          </Navbar>
+        </>
+      ) : (
+        <Navbar bg="dark" variant="dark">
+          <AppLogo extraStyle={{}} />
+          <div className="ml-5">
+            {currentMediaCRUD === "delete" ? (
+              <h4 className="text-info">Delete</h4>
+            ) : (
+              <h4 className="text-info">Update</h4>
+            )}
+          </div>
+        </Navbar>
+      )}
     </>
   );
 };

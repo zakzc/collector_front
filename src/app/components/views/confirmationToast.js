@@ -21,19 +21,21 @@ const ConfirmationToast = ({ success, message }) => {
 
   // * view
   return (
-    <Toast show={showA} onClose={toggleShowA}>
-      <Toast.Header className="bg-info shadow-1-strong">
-        <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-        <strong className="mr-auto text-white">
-          {success ? (
-            <CheckCircle className="mr-2" />
-          ) : (
-            <XCircle className="mr-2" />
-          )}
-          {message}
-        </strong>
-      </Toast.Header>
-    </Toast>
+    <>
+      <Toast show={showA} onClose={toggleShowA}>
+        <Toast.Header className="bg-info shadow-1-strong">
+          <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+          <strong className="mr-auto text-white">
+            {success ? (
+              <CheckCircle className="mr-2" />
+            ) : (
+              <XCircle className="mr-2" />
+            )}
+            {message}
+          </strong>
+        </Toast.Header>
+      </Toast>
+    </>
   );
 };
 

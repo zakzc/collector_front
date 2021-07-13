@@ -3,7 +3,7 @@ const adjustFormValues = (data) => {
   let adjustedDate = String(
     data.yearOfPurchase + "-" + data.monthOfPurchase + "-" + data.dayOfPurchase
   );
-  let adjustedPrice = Math.abs(parseInt(data.price)).toFixed(2);
+  let adjustedPrice = Math.abs(parseFloat(data.price));
   let adjustedValues = {
     _id: data._id,
     author: data.author,

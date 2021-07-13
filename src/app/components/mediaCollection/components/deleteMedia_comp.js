@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // comps
 import ConfirmationToast from "../../views/confirmationToast";
 import ItemToDelete from "./deleteMedia_ItemToDelete";
+import NoMediaToShow from "../../views/noMediaToShow";
 import SmallHeader from "../../views/smallHeader";
 // ico
 import { Trash } from "react-bootstrap-icons";
@@ -30,7 +31,17 @@ const DeleteMedia = () => {
   const dataProcessed = useSelector(
     (state) => state.mediaContext[0].dataWasProcessed
   );
-  console.log("delete media: ", currentItemId, currentMediaView);
+  const getItem = useSelector((state) =>
+    state.medias.mediasList.filter((item) => item._id === currentItemId)
+  );
+  const itemToDelete = getItem[0];
+  console.log(
+    "delete media: ",
+    dataProcessed,
+    itemToDelete.typeOfMedia,
+    currentItemId,
+    currentMediaView
+  );
   ///
   const handleClickDelete = () => {
     dispatch(removeMedia(currentItemId));
@@ -53,7 +64,6 @@ const DeleteMedia = () => {
       <SmallHeader subtitle={`Delete this ${currentMediaView.toLowerCase()}`} />
       <h3>You selected this entry to delete:</h3>
       <ItemToDelete />
-
       <Row>
         <Col>
           <h4>Are you sure you want to delete this item?</h4>

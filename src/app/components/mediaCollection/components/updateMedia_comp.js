@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // store
 import { loadMedias } from "../../../../store/medias";
 // comps
-import FormMedia from "./formMedia";
+import formAddMedia from "./formAddMedia";
 import SmallHeader from "../../views/smallHeader";
 import ItemToUpdate from "./updateMedia_ItemToUpdate";
 
@@ -32,7 +32,7 @@ const UpdateMedia = () => {
       <SmallHeader subtitle={`Update ${currentMediaView.toLowerCase()}`} />
       <h4>Original Values</h4>
       <ItemToUpdate />
-      <FormMedia />
+      <formAddMedia />
     </>
   );
 };
