@@ -6,7 +6,12 @@ import { apiCallBegan } from "./api_actions";
 
 const slice = createSlice({
   name: "medias",
-  initialState: { mediasList: [], loading: false, lastFetch: null },
+  initialState: {
+    mediasList: [],
+    loading: false,
+    lastFetch: null,
+    connectedToAPI: false,
+  },
   ///
   reducers: {
     /// calls
@@ -16,6 +21,7 @@ const slice = createSlice({
     mediasReceived: (medias, action) => {
       if (action.payload.success === true) {
         medias.mediasList = action.payload.data;
+        medias.connectedToAPI = true;
       }
       medias.loading = false;
       medias.lastFetch = Date.now();

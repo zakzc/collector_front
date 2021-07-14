@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // comps
-import FormAddMedia from "./AddMedia_FormAddMedia";
+import FormAddMedia from "./addMedia_Form";
 import SmallHeader from "../../views/smallHeader";
 
 const AddMedia = () => {
