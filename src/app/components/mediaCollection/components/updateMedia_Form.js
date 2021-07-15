@@ -65,7 +65,6 @@ const FormUpdateMedia = () => {
       validationSchema,
       onSubmit: (values) => {
         let adjustedValues = adjustFormValues(values);
-        console.log("Vals: ", adjustedValues, itemToUpdate._id);
         dispatch(updateMedia(itemToUpdate._id, adjustedValues));
         dispatch(setDataWasProcessed(true));
         dispatch(setCurrentMediaCRUD("read"));
@@ -103,7 +102,9 @@ const FormUpdateMedia = () => {
         <Col>
           <Form.Group as={Col} controlId="formGridAuthor">
             <Form.Label>
-              Author <span className="text-info">{itemToUpdate.author}</span>
+              <span>
+                Author <span className="text-info">{itemToUpdate.author}</span>
+              </span>
             </Form.Label>
             <Form.Control
               placeholder={itemToUpdate.author}
@@ -191,13 +192,9 @@ const FormUpdateMedia = () => {
             <p>
               Value:{" "}
               {itemToUpdate.sellable ? (
-                <span span className="text-info">
-                  true
-                </span>
+                <span className="text-info">true</span>
               ) : (
-                <span span className="text-info">
-                  false
-                </span>
+                <span className="text-info">false</span>
               )}{" "}
             </p>
             <Form.Label>Available to sell?</Form.Label>

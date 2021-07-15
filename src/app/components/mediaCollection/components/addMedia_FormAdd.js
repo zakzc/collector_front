@@ -17,7 +17,7 @@ import {
   setDataWasProcessed,
 } from "../../../../store/mediaContext";
 
-const FormAddMedia = () => {
+const FormAdd = () => {
   // * data
   const dispatch = useDispatch();
   const currentMediaView = useSelector(
@@ -284,4 +284,4 @@ const FormAddMedia = () => {
     </Form>
   );
 };
-export default FormAddMedia;
+export default FormAdd;
