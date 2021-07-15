@@ -1,39 +1,41 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+// comps
+import MediaItemTableView from "../../views/mediaItemTableView";
+import OrderButtons from "./listOfMedias_OrderButtons";
 // data
 import UseSelectedData from "../../../hooks/useSelectedData";
 // store
 import { loadMedias } from "../../../../store/medias";
-// import { setCurrentMediaCRUD } from "../../../../store/mediaContext";
-// comps
-import MediaItemTableView from "../../views/mediaItemTableView";
-// buttons
-import PencilButton from "../../views/buttons/pencilButton";
-import TrashButton from "../../views/buttons/trashButton";
+// utils
+import getOrderedMediaList from "../../../utils/getOrderedMediaList";
 // ui
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
+// ui - buttons
+import PencilButton from "../../views/buttons/pencilButton";
+import TrashButton from "../../views/buttons/trashButton";
 
-const MediaList = ({ setCurrentOperation, setMediaToManage }) => {
+const MediaList = () => {
   // * data
   const dispatch = useDispatch();
-  // const medias = useSelector((state) => state.medias.mediasList);
   const medias = UseSelectedData();
-  // const currentMediaView = useSelector(
-  //   (state) => state.mediaContext[0].currentMediaView
-  // );
   ///
   useEffect(() => {
     dispatch(loadMedias());
   }, [medias, dispatch]);
   ///
+  const [orderCriteria, setOrderCriteria] = useState("author");
+  let orderedMediaList = getOrderedMediaList(medias, orderCriteria);
 
   // * view
   return (
     <>
-      {medias.map((media) => (
+      {medias.length > 1 ? (
+        <OrderButtons setOrderCriteria={setOrderCriteria} />
+      ) : null}
+      {orderedMediaList.map((media) => (
         <ListGroup key={media.title}>
           <ListGroup.Item key={media.mediaId} variant="info">
             <h4>

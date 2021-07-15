@@ -90,17 +90,12 @@ let initialFetch = true;
 let timeDifference;
 
 export const loadMedias = () => (dispatch, getState) => {
-  // if (initialFetch) {
-  //   console.log("Initiation", initialFetch, fetchTimer, timeDifference);
-  //   timeDifference = 0;
-  // }
   let now = new Date().getTime();
   timeDifference = now - fetchTimer;
   // console.info("Values pre-conditional :", initialFetch, timeDifference);
   if (timeDifference > 300000 || initialFetch === true) {
     fetchTimer = new Date().getTime();
     initialFetch = false;
-    // console.info("Got data. Values:", initialFetch, timeDifference);
     return dispatch(
       apiCallBegan({
         url: url + "/getAll",
@@ -109,13 +104,6 @@ export const loadMedias = () => (dispatch, getState) => {
         onError: mediasRequestFailed.type,
       })
     );
-  } else {
-    // console.info(
-    //   "No Diff, no fetch, keeping current data:",
-    //   initialFetch,
-    //   timeDifference
-    // );
-    return;
   }
 };
 

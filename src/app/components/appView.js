@@ -9,6 +9,7 @@ import UseSelectedData from "../hooks/useSelectedData";
 import { loadMedias } from "../../store/medias";
 
 const AppView = () => {
+  // * data
   const dispatch = useDispatch();
   const medias = UseSelectedData();
   const appIsConnected = useSelector((state) => state.medias.connectedToAPI);

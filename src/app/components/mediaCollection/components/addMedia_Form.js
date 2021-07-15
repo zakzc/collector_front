@@ -23,9 +23,6 @@ const FormAddMedia = () => {
   const currentMediaView = useSelector(
     (state) => state.mediaContext[0].currentMediaView
   );
-  const currentMediaCRUD = useSelector(
-    (state) => state.mediaContext[0].currentMediaCRUD
-  );
 
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
