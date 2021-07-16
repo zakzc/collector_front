@@ -1,6 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { loadMedias, addMedia } from "../medias";
+import { loadMedias } from "../medias";
 import configureStore from "../configureStore";
 
 describe("Test for media slice", () => {
@@ -38,24 +38,4 @@ describe("Test for media slice", () => {
       });
     });
   });
-
-  //   describe("adding medias", () => {
-  //     it("should add a media", async () => {
-  //       const fakemedia = { description: "fakemedia" };
-  //       const savedmedia = { ...fakemedia, id: 1 };
-  //       fakeAxios
-  //         .onPost("/addNewItem")
-  //         .reply(200, { success: true, data: savedmedia });
-  //       await store.dispatch(addMedia(fakemedia));
-  //       console.log("===\n", mediasSlice());
-  //       expect(mediasSlice().mediasList).toBe(true);
-  //       //   expect(mediasSlice().data).toContainEqual(savedmedia);
-  //     });
-  //     it("should not add a media if it not saved to the server", async () => {
-  //       const fakemedia2 = { id: 2 };
-  //       fakeAxios.onPost("./addNewItem").reply(500);
-  //       await store.dispatch(addMedia(fakemedia2));
-  //       expect(mediasSlice().mediasList).toHaveLength(0);
-  //     });
-  //   });
 });

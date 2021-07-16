@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
-import Layout from "./app_Layout";
+import Layout from "./appView_Layout";
 import AppIsOffline from "./views/appIsOffline";
 // data
 import UseSelectedData from "../hooks/useSelectedData";
