@@ -2,26 +2,25 @@ import React from "react";
 //import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 // comps
-import CheckButton from "../../components/views/buttons/checkButton";
+import CheckButton from "../views/buttons/checkButton";
 // ui
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // utils
 //import adjustFormValues from "../../../utils/adjustFormValues";
-//import validationSchema from "../../../utils/mediaSchema";
+import validationSchema from "../../utils/userSchema";
 // store
 
-const LogInForm = () => {
-  // * data
-
+const EnterForm = ({ mode }) => {
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
       initialValues: {
         email: "",
         password: "",
+        name: "",
       },
-      // validationSchema,
+      validationSchema,
       onSubmit: (values) => {
         console.log("values: ", values);
         // let adjustedValues = adjustFormValues(values);
@@ -36,7 +35,6 @@ const LogInForm = () => {
   return (
     <Form onSubmit={handleSubmit} className="m-3">
       <Form.Row>
-        <Col></Col>
         <Col
           style={{
             backgroundColor: "CadetBlue",
@@ -60,7 +58,13 @@ const LogInForm = () => {
           ) : null}
 
           <Form.Group as={Col} controlId="formGridAuthor">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>
+              Password{" "}
+              <span className="text-white-50">
+                {" "}
+                (Minimum of 4, maximum of 70 characters)
+              </span>
+            </Form.Label>
             <Form.Control
               placeholder="Password"
               as="textarea"
@@ -74,13 +78,31 @@ const LogInForm = () => {
           {touched.password && errors.password ? (
             <span className="text-danger ml-3">{errors.password}</span>
           ) : null}
+
+          {mode === false ? null : (
+            <>
+              <Form.Group as={Col} controlId="formGridTitle">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  placeholder="Name"
+                  as="textarea"
+                  name="name"
+                  className="text-black-50"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                />
+              </Form.Group>
+              {touched.name && errors.name ? (
+                <span className="text-danger ml-3">{errors.name}</span>
+              ) : null}
+            </>
+          )}
         </Col>
-        <Col></Col>
       </Form.Row>
       <br />
       <CheckButton />
-      <Col sm={7}></Col>
     </Form>
   );
 };
-export default LogInForm;
+export default EnterForm;

@@ -16,6 +16,10 @@ const slice = createSlice({
       const { id, description } = action.payload;
       state[id] = { id, description };
     },
+    logUserIn: (state, action) => {
+      const { id, description } = action.payload;
+      state[id] = { id, description };
+    },
   },
 });
 

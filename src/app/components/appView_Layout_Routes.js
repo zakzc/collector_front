@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LogInForm from "./credentials/loginForm";
+import EnterApp from "./credentials/enterApp_baseComp";
 // comps
 import MediaLayout from "./mediaCollection/mediaLayout";
 
@@ -10,7 +10,7 @@ const Routes = () => {
     <Router>
       {/* <p>{user}</p> */}
       <Switch>
-        <Route exact path="/logIn" render={(props) => <LogInForm />} />
+        <Route exact path="/logIn" render={(props) => <EnterApp />} />
         <Route exact path="/" render={(props) => <MediaLayout />} />
       </Switch>
     </Router>
