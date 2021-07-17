@@ -7,7 +7,7 @@ const slice = createSlice({
       connected: true,
       currentMediaView: "Book",
       currentMediaCRUD: "read",
-      dataWasProcessed: false,
+      dataWasSent: false,
       currentSelectedItem: null,
     },
   ],
@@ -21,8 +21,8 @@ const slice = createSlice({
     setCurrentMediaCRUD: (state, action) => {
       state[0].currentMediaCRUD = action.payload;
     },
-    setDataWasProcessed: (state, action) => {
-      state[0].dataWasProcessed = action.payload;
+    setDataWasSent: (state, action) => {
+      state[0].dataWasSent = action.payload;
     },
     setCurrentSelectedItem: (state, action) => {
       state[0].currentSelectedItem = action.payload;
@@ -34,7 +34,7 @@ export const {
   setConnection,
   setCurrentMediaView,
   setCurrentMediaCRUD,
-  setDataWasProcessed,
+  setDataWasSent,
   setCurrentSelectedItem,
 } = slice.actions;
 export default slice.reducer;

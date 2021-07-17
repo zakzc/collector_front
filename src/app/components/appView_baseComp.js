@@ -21,8 +21,3 @@ const AppView = () => {
   return <>{appIsConnected === true ? <Layout /> : <AppIsOffline />}</>;
 };
 export default AppView;
-
-//  connected: true,
-//   currentMediaView: "Book",
-//   currentMediaCRUD: "read",
-//   dataWasProcessed: false,

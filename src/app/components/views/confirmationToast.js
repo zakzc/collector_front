@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Toast from "react-bootstrap/Toast";
 // ui - icon
 import { CheckCircle } from "react-bootstrap-icons";
@@ -9,21 +9,15 @@ const ConfirmationToast = ({ success, message }) => {
   const [showA, setShowA] = useState(true);
   const toggleShowA = () => setShowA(!showA);
 
-  useEffect(() => {
-    setTimeToDisappear();
-  }, []);
-
-  const setTimeToDisappear = () => {
-    setTimeout(() => {
-      setShowA(false);
-    }, 3000);
-  };
-
   // * view
   return (
     <>
       <Toast show={showA} onClose={toggleShowA}>
-        <Toast.Header className="bg-info shadow-1-strong">
+        <Toast.Header
+          className={
+            success ? "bg-info shadow-1-strong" : "bg-danger shadow-1-strong"
+          }
+        >
           <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
           <strong className="mr-auto text-white">
             {success ? (

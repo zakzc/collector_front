@@ -21,10 +21,10 @@ const PencilButton = ({ id }) => {
     <Button
       variant="outline-secondary"
       className="m-1"
-      style={{ width: "80px", height: "60px", border: "none" }}
+      style={{ width: "50px", height: "30px", border: "none" }}
       onClick={() => handleUpdateClick()}
     >
-      <Pencil size="lg" />
+      <Pencil size="30px" />
     </Button>
   );
 };

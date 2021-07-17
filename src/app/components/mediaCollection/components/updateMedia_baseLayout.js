@@ -30,9 +30,9 @@ const UpdateMedia = () => {
   return (
     <>
       <SmallHeader subtitle={`Update ${currentMediaView.toLowerCase()}`} />
-      <h4>Original Values</h4>
+      <h4 className="text-secondary">Original Values</h4>
       <ItemToUpdate />
-      <h4>Values to Update</h4>
+      <h4 className="text-info">Values to Update</h4>
       <FormUpdateMedia />
     </>
   );

@@ -16,7 +16,7 @@ const GoBackButton = ({ setCurrentOperation }) => {
         style={{ width: "80px", height: "60px", border: "none" }}
         onClick={() => dispatch(setCurrentMediaCRUD("read"))}
       >
-        <SkipBackward size="lg" />
+        <SkipBackward size="50px" />
       </Button>
     </div>
   );

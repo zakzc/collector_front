@@ -15,7 +15,7 @@ import { loadMedias, removeMedia } from "../../../../store/medias";
 import {
   setCurrentMediaCRUD,
   setCurrentMediaView,
-  setDataWasProcessed,
+  setDataWasSent,
 } from "../../../../store/mediaContext";
 
 const DeleteMedia = () => {
@@ -28,7 +28,7 @@ const DeleteMedia = () => {
     (state) => state.mediaContext[0].currentMediaView
   );
   const dataProcessed = useSelector(
-    (state) => state.mediaContext[0].dataWasProcessed
+    (state) => state.mediaContext[0].dataWasSent
   );
   const getItem = useSelector((state) =>
     state.medias.mediasList.filter((item) => item._id === currentItemId)
@@ -45,7 +45,7 @@ const DeleteMedia = () => {
   ///
   const handleClickDelete = () => {
     dispatch(removeMedia(currentItemId));
-    dispatch(setDataWasProcessed(true));
+    dispatch(setDataWasSent(true));
     dispatch(setCurrentMediaView(currentMediaView));
     dispatch(setCurrentMediaCRUD("read"));
     setDeleteProcess(true);

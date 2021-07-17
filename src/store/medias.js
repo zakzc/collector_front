@@ -11,6 +11,7 @@ const slice = createSlice({
     loading: false,
     lastFetch: null,
     connectedToAPI: false,
+    backEndProcessConfirmed: false,
   },
   ///
   reducers: {
@@ -22,12 +23,14 @@ const slice = createSlice({
       if (action.payload.success === true) {
         medias.mediasList = action.payload.data;
         medias.connectedToAPI = true;
+        medias.backEndProcessConfirmed = true;
       }
       medias.loading = false;
       medias.lastFetch = Date.now();
     },
     mediasRequestFailed: (medias, action) => {
       medias.loading = false;
+      medias.backEndProcessConfirmed = false;
     },
     mediasAssignedToUser: (medias, action) => {
       const { id: mediaId, userId } = action.payload;

@@ -10,7 +10,7 @@ const MediaItemTableView = ({ media }) => {
   let mediaType = media.typeOfMedia.toLowerCase().split("_").join(" ");
   // * view
   return (
-    <Table striped bordered hover variant="light" size="sm">
+    <Table striped bordered hover variant="light" size="sm" className="rounded">
       <thead>
         <tr>
           <th>Type</th>

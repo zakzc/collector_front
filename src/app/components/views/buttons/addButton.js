@@ -14,10 +14,10 @@ const AddButton = ({ setCurrentOperation }) => {
       <Button
         variant="outline-info"
         className="mb-3"
-        style={{ width: "80px", height: "60px", border: "none" }}
+        style={{ width: "80px", border: "none" }}
         onClick={() => dispatch(setCurrentMediaCRUD("create"))}
       >
-        <PlusCircle size="lg" />
+        <PlusCircle size="50px" />
       </Button>
     </div>
   );

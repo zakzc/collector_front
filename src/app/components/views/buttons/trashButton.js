@@ -22,10 +22,10 @@ const TrashButton = ({ id }) => {
     <Button
       variant="outline-danger"
       className="m-1"
-      style={{ width: "80px", height: "60px", border: "none" }}
+      style={{ width: "50px", height: "30px", border: "none" }}
       onClick={() => handleDeleteClick()}
     >
-      <Trash size="lg" />
+      <Trash size="30px" />
     </Button>
   );
 };

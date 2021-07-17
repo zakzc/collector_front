@@ -13,7 +13,7 @@ const CheckButton = () => {
         style={{ width: "80px", height: "60px", border: "none" }}
         type="submit"
       >
-        <CheckCircle size="lg" />
+        <CheckCircle size="50px" />
       </Button>
     </div>
   );
