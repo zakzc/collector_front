@@ -1,14 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 // comps
 import Layout from "./appView_Layout";
-import EnterApp from "../components/credentials/enterApp_baseComp";
+// store
+import { logUserOut } from "../../store/users";
 
 const AppView = () => {
   // * data
-  const userIsLoggedIn = useSelector((state) => state.users.userIsLoggedIn);
+  const dispatch = useDispatch();
+  let history = useHistory();
+  let checkForUser = useSelector((state) => state.users.userIsLoggedIn);
+
+  if (checkForUser === false) {
+    dispatch(logUserOut());
+    history.push("/logIn");
+  }
 
   // * view
-  return <>{userIsLoggedIn === true ? <Layout /> : <EnterApp />}</>;
+  return <Layout />;
 };
 export default AppView;

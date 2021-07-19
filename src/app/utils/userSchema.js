@@ -8,8 +8,8 @@ const UserSchema = Yup.object().shape({
     .required("Password is mandatory"),
 });
 
-UserSchema.validate({}).catch(function (e) {
-  console.log("Another validation error on user: ", e);
-});
+// UserSchema.validate({}).catch(function (e) {
+//   console.log("Another validation error on user: ", e);
+// });
 
 export default UserSchema;

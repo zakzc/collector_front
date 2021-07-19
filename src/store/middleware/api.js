@@ -13,6 +13,7 @@ const api =
     try {
       const response = await axios.request({
         baseURL: "http://localhost:3000/",
+        headers: { "x-auth-token": localStorage.getItem("token") },
         url,
         method,
         data,

@@ -1,13 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { apiCallBegan } from "./api_actions";
 
 const slice = createSlice({
   name: "user",
   initialState: {
     userIsLoggedIn: false,
-    token: null,
-    userID: null,
-    userName: null,
+    userID: localStorage.getItem("user_ID"),
     loading: false,
     backEndProcessConfirmed: false,
     error: "",
@@ -23,10 +21,13 @@ const slice = createSlice({
       if (action.payload.success === true) {
         // state.user.token = action.payload.token;
         state.userIsLoggedIn = true;
-        state.userID = action.payload.message.id;
-        state.userName = action.payload.message.name;
-        state.token = action.payload.message.userToken;
+        // state.userID = action.payload.message.id;
+        //state.userName = action.payload.message.name;
+        // state.token = action.payload.message.userToken;
         state.backEndProcessConfirmed = true;
+        localStorage.setItem("user_ID", action.payload.message.id);
+        localStorage.setItem("token", action.payload.message.userToken);
+        localStorage.setItem("name", action.payload.message.name);
       }
       state.loading = false;
       state.backEndProcessConfirmed = true;
@@ -34,16 +35,13 @@ const slice = createSlice({
     userRequestFailed: (state, action) => {
       state.loading = false;
       state.backEndProcessConfirmed = false;
-      state.token = null;
       state.userIsLoggedIn = false;
-      state.userID = null;
       state.error = action.payload;
+      localStorage.clear();
     },
     logUserOut: (state) => {
       state.userIsLoggedIn = false;
-      state.token = null;
-      state.userID = null;
-      state.userName = null;
+      localStorage.clear();
     },
   },
 });
@@ -81,3 +79,5 @@ export const login = (userData) =>
     onSuccess: userReceived.type,
     onError: userRequestFailed.type,
   });
+
+export const selectUserID = createSelector((state) => state);

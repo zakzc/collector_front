@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
 import AppIsOffline from "./views/appIsOffline";
-import MediaLayout from "../components/mediaCollection/mediaLayout";
-import Navigation from "./views/navigation";
+import Routes from "./appView_Layout_Routes";
 // data
 import UseSelectedData from "../hooks/useSelectedData";
 // store
@@ -17,6 +16,7 @@ const Layout = () => {
   const appIsConnected = useSelector(
     (state) => state.medias.backEndProcessConfirmed
   );
+
   ///
   useEffect(() => {
     dispatch(loadMedias());
@@ -27,8 +27,7 @@ const Layout = () => {
     <>
       {appIsConnected === true ? (
         <>
-          <Navigation />
-          <MediaLayout />
+          <Routes />
         </>
       ) : (
         <AppIsOffline />

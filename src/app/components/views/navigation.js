@@ -21,7 +21,7 @@ const Navigation = () => {
   const currentMediaCRUD = useSelector(
     (state) => state.appContext.currentMediaCRUD
   );
-  const currentUser = useSelector((state) => state.users.userName);
+  const currentUser = localStorage.getItem("name");
 
   const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();

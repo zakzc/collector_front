@@ -11,9 +11,11 @@ import Form from "react-bootstrap/Form";
 import validationSchema from "../../utils/userSchema";
 // store
 import { register, login } from "../../../store/users";
+import { useHistory } from "react-router-dom";
 
 const EnterForm = ({ mode }) => {
   const dispatch = useDispatch();
+  let history = useHistory();
   ///
   const adjustedValues = (data) => {
     return { email: data.email, password: data.password };
@@ -28,12 +30,12 @@ const EnterForm = ({ mode }) => {
       },
       validationSchema,
       onSubmit: (values) => {
-        console.log("values: ", values);
         if (mode === true) {
           dispatch(register(values));
         } else if (mode === false) {
           dispatch(login(adjustedValues(values)));
         }
+        history.push("/");
         // let adjustedValues = adjustFormValues(values);
         // dispatch(addMedia(adjustedValues));
         // dispatch(setDataWasSent(true));

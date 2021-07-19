@@ -21,7 +21,7 @@ const MediaLayout = () => {
   const loading = useSelector((state) => state.medias.loading);
 
   // * view
-
+  //<Redirect to="/somewhere/else" />;
   const MediasMenu = () => (
     <>
       <div className="ml-2">

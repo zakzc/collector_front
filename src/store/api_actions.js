@@ -18,3 +18,5 @@ export const setCurrentSelectedItem = createAction(
 export const setBackEndProcessConfirmed = createAction(
   "appContext/setBackEndProcessConfirmed"
 );
+// medias
+export const setCurrentUserId = createAction("medias/setCurrentUserId");

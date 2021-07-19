@@ -3,7 +3,6 @@ import { createSelector } from "reselect";
 // import axios from "axios";
 /// comps
 import { apiCallBegan } from "./api_actions";
-import { addError } from "./errors";
 
 const slice = createSlice({
   name: "medias",
@@ -12,6 +11,7 @@ const slice = createSlice({
     loading: false,
     lastFetch: null,
     backEndProcessConfirmed: false,
+    currentUserId: localStorage.getItem("user_ID"),
   },
   ///
   reducers: {
@@ -31,13 +31,6 @@ const slice = createSlice({
       medias.loading = false;
       medias.backEndProcessConfirmed = false;
     },
-    // mediasAssignedToUser: (medias, action) => {
-    //   const { id: mediaId, userId } = action.payload;
-    //   const index = medias.mediasList.findIndex(
-    //     (media) => media.id === mediaId
-    //   );
-    //   medias.mediasList[index].userId = userId;
-    // },
     /// events
     addNewMedia: (medias, action) => {
       if (action.payload.success === true) {
@@ -75,7 +68,7 @@ export const {
   mediasRequested,
   mediasReceived,
   mediasRequestFailed,
-  // mediasAssignedToUser,
+  setCurrentUserId,
   addNewMedia,
   mediaRemoved,
   mediaUpdated,
@@ -92,7 +85,8 @@ let initialFetch = true;
 let timeDifference;
 
 export const loadMedias = () => (dispatch, getState) => {
-  dispatch(addError({ msg: "hey there", id: "great" }));
+  // const tryme = getState(users);
+  // dispatch(addError({ msg: tryme, id: "great" }));
   let now = new Date().getTime();
   timeDifference = now - fetchTimer;
   if (timeDifference > 300000 || initialFetch === true) {

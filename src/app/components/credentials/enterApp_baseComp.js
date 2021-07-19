@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
-const EnterApp = () => {
+const EnterApp = ({ setUserIsLoggedIn }) => {
   // ? true = log in, false = register
   const [mode, setMode] = useState(false);
 
