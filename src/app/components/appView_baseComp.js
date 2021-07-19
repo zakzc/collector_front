@@ -1,23 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 // comps
 import Layout from "./appView_Layout";
-import AppIsOffline from "./views/appIsOffline";
-// data
-import UseSelectedData from "../hooks/useSelectedData";
-// store
-import { loadMedias } from "../../store/medias";
+import EnterApp from "../components/credentials/enterApp_baseComp";
 
 const AppView = () => {
   // * data
-  const dispatch = useDispatch();
-  const medias = UseSelectedData();
-  const appIsConnected = useSelector((state) => state.medias.connectedToAPI);
-  useEffect(() => {
-    dispatch(loadMedias());
-  }, [medias, dispatch]);
+  const userIsLoggedIn = useSelector((state) => state.users.userIsLoggedIn);
+
+  console.log("App View", userIsLoggedIn);
 
   // * view
-  return <>{appIsConnected === true ? <Layout /> : <AppIsOffline />}</>;
+  return <>{userIsLoggedIn === true ? <Layout /> : <EnterApp />}</>;
 };
 export default AppView;

@@ -12,13 +12,13 @@ const UpdateMedia = () => {
   // * data
   const dispatch = useDispatch();
   // const currentItemId = useSelector(
-  //   (state) => state.mediaContext[0].currentSelectedItem
+  //   (state) => state.appContext.currentSelectedItem
   // );
   // const currentItem = useSelector((state) =>
   //   state.medias.mediasList.filter((item) => item._id === currentItemId)
   // );
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
 
   ///

@@ -15,7 +15,7 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   const dispatch = useDispatch();
   const medias = UseSelectedData();
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
   ///
   useEffect(() => {

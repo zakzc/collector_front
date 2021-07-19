@@ -10,7 +10,7 @@ import { selectVideo } from "../../store/medias";
 
 export default function UseSelectedData() {
   let currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
   let audioAnalog = useSelector(selectAudioAnalog);
   let audioDigital = useSelector(selectAudioDigital);

@@ -16,20 +16,18 @@ import {
   setCurrentMediaCRUD,
   setCurrentMediaView,
   setDataWasSent,
-} from "../../../../store/mediaContext";
+} from "../../../../store/appContext";
 
 const DeleteMedia = () => {
   // * data
   const dispatch = useDispatch();
   const currentItemId = useSelector(
-    (state) => state.mediaContext[0].currentSelectedItem
+    (state) => state.appContext.currentSelectedItem
   );
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
-  const dataProcessed = useSelector(
-    (state) => state.mediaContext[0].dataWasSent
-  );
+  const dataProcessed = useSelector((state) => state.appContext.dataWasSent);
   const getItem = useSelector((state) =>
     state.medias.mediasList.filter((item) => item._id === currentItemId)
   );

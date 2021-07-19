@@ -1,27 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let lastId = 0;
-
 const slice = createSlice({
-  name: "users",
-  initialState: [],
+  name: "user",
+  initialState: {
+    // backEndIsOnline: false,
+    userIsLoggedIn: false,
+    token: null,
+    userID: null,
+    userCollection: [],
+  },
+
+  ///
   reducers: {
-    addUser: (state, action) => {
-      state.push({ id: ++lastId, description: action.payload.description });
-    },
-    removeUser: (state, action) => {
-      state.filter((user) => user.id !== action.payload.id);
-    },
-    updateUser: (state, action) => {
-      const { id, description } = action.payload;
-      state[id] = { id, description };
+    registerUser: (state, action) => {
+      state.userIsLoggedIn = action.payload.msg;
+      state.token = action.payload.token;
     },
     logUserIn: (state, action) => {
-      const { id, description } = action.payload;
-      state[id] = { id, description };
+      state.userIsLoggedIn = action.payload.msg;
+      state.token = action.payload.token;
+      state.userCollection = action.payload.userCollection;
+    },
+    logUserOut: (state) => {
+      state.userIsLoggedIn = false;
+      state.token = null;
+      state.userID = null;
     },
   },
 });
 
-export const { addUser, removeUser, updateUser } = slice.actions;
+export const { registerUser, logUserIn, logUserOut } = slice.actions;
 export default slice.reducer;
+
+// actions
+
+// export const errorExists = () => (dispatch, getState) => {
+//   const exists = getState().errors;
+//   return exists;
+// };
+
+// const url = "http://localhost:3000/collectors";
+
+// export const loadUser = () => (dispatch, getState) => {
+//   return dispatch(
+//     apiCallBegan({
+//       url: url + "/getAll",
+//       onStart: mediasRequested.type,
+//       onSuccess: mediasReceived.type,
+//       onError: mediasRequestFailed.type,
+//     })
+//   );
+// };

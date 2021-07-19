@@ -16,17 +16,17 @@ import {
   setCurrentMediaCRUD,
   setCurrentMediaView,
   setDataWasSent,
-} from "../../../../store/mediaContext";
+} from "../../../../store/appContext";
 
 const FormUpdateMedia = () => {
   // * data
   const dispatch = useDispatch();
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
 
   const currentItemId = useSelector(
-    (state) => state.mediaContext[0].currentSelectedItem
+    (state) => state.appContext.currentSelectedItem
   );
   const getItem = useSelector((state) =>
     state.medias.mediasList.filter((item) => item._id === currentItemId)

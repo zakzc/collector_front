@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 // store
-import { setCurrentMediaCRUD } from "../../../../store/mediaContext";
+import { setCurrentMediaCRUD } from "../../../../store/appContext";
 // ui
 import Button from "react-bootstrap/Button";
 // ico

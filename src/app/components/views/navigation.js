@@ -6,15 +6,15 @@ import AppLogo from "../assets/appLogo";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 // store
-import { setCurrentMediaView } from "../../../store/mediaContext";
+import { setCurrentMediaView } from "../../../store/appContext";
 
 const Navigation = () => {
   // * data
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
   const currentMediaCRUD = useSelector(
-    (state) => state.mediaContext[0].currentMediaCRUD
+    (state) => state.appContext.currentMediaCRUD
   );
   const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();
@@ -67,6 +67,9 @@ const Navigation = () => {
               <h4 className="text-light">Delete</h4>
             ) : null}
             {currentMediaCRUD === "update" ? (
+              <h4 className="text-light">Update</h4>
+            ) : null}
+            {currentMediaCRUD === "enter" ? (
               <h4 className="text-light">Update</h4>
             ) : null}
           </div>

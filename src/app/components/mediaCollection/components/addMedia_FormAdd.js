@@ -15,13 +15,13 @@ import {
   setCurrentMediaCRUD,
   setCurrentMediaView,
   setDataWasSent,
-} from "../../../../store/mediaContext";
+} from "../../../../store/appContext";
 
 const FormAdd = () => {
   // * data
   const dispatch = useDispatch();
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
 
   ///

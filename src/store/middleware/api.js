@@ -19,6 +19,7 @@ const api =
       });
       // general call
       dispatch(actions.apiCallSuccess(response.data));
+      dispatch(actions.setBackEndProcessConfirmed(true));
       // specific
       if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {

@@ -1,5 +1,5 @@
 import React from "react";
-//import { useSelector, useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../views/buttons/checkButton";
@@ -10,8 +10,10 @@ import Form from "react-bootstrap/Form";
 //import adjustFormValues from "../../../utils/adjustFormValues";
 import validationSchema from "../../utils/userSchema";
 // store
+// import { login } from "../../../store/users";
 
 const EnterForm = ({ mode }) => {
+  // const dispatch = useDispatch();
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
@@ -23,6 +25,7 @@ const EnterForm = ({ mode }) => {
       validationSchema,
       onSubmit: (values) => {
         console.log("values: ", values);
+        // dispatch(login(values));
         // let adjustedValues = adjustFormValues(values);
         // dispatch(addMedia(adjustedValues));
         // dispatch(setDataWasSent(true));

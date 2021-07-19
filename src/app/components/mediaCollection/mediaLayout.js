@@ -13,10 +13,10 @@ import LoadingSpinner from "../views/loadingSpinner";
 const MediaLayout = () => {
   // * data
   const currentMediaCRUD = useSelector(
-    (state) => state.mediaContext[0].currentMediaCRUD
+    (state) => state.appContext.currentMediaCRUD
   );
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
   const loading = useSelector((state) => state.medias.loading);
 

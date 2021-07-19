@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 // import axios from "axios";
 /// comps
 import { apiCallBegan } from "./api_actions";
+import { addError } from "./errors";
 
 const slice = createSlice({
   name: "medias",
@@ -93,6 +94,7 @@ let initialFetch = true;
 let timeDifference;
 
 export const loadMedias = () => (dispatch, getState) => {
+  dispatch(addError({ msg: "hey there", id: "great" }));
   let now = new Date().getTime();
   timeDifference = now - fetchTimer;
   // console.info("Values pre-conditional :", initialFetch, timeDifference);
@@ -141,11 +143,6 @@ export const selectSells = createSelector(
   (state) => state.medias.mediasList,
   (mediasList) => mediasList.filter((item) => item.sellable === true)
 );
-
-// export const selectMedias = createSelector(
-//   (state) => state.medias.mediasList,
-//   (mediasList) => mediasList.filter((item) => item.typeOfMedia === "BOOK")
-// );
 
 export const selectMediasToSell = createSelector(
   (state) => state.medias.mediasList,

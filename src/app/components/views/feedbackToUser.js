@@ -9,7 +9,7 @@ const FeedbackToUser = () => {
   const backEndConfirmedProcessing = useSelector(
     (state) => state.medias.backEndProcessConfirmed
   );
-  const dataWasSent = useSelector((state) => state.mediaContext[0].dataWasSent);
+  const dataWasSent = useSelector((state) => state.appContext.dataWasSent);
 
   console.log("Feed: ", backEndConfirmedProcessing, dataWasSent);
 

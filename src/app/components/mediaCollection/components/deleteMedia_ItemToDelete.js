@@ -11,7 +11,7 @@ const ItemToDelete = () => {
   // * data
   const dispatch = useDispatch();
   const currentItemId = useSelector(
-    (state) => state.mediaContext[0].currentSelectedItem
+    (state) => state.appContext.currentSelectedItem
   );
   const getItem = useSelector((state) =>
     state.medias.mediasList.filter((item) => item._id === currentItemId)

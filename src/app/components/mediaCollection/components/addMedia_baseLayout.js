@@ -7,7 +7,7 @@ import SmallHeader from "../../views/smallHeader";
 const AddMedia = () => {
   // * data
   const currentMediaView = useSelector(
-    (state) => state.mediaContext[0].currentMediaView
+    (state) => state.appContext.currentMediaView
   );
 
   // * view

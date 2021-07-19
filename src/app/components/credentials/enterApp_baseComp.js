@@ -17,11 +17,6 @@ const EnterApp = () => {
     { name: "Register", value: false },
   ];
 
-  const handleEnterOptions = (e) => {
-    console.log("but: ", mode);
-    setMode(!mode);
-  };
-
   // * view
   return (
     <Container>
