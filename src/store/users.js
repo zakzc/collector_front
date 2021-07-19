@@ -43,6 +43,7 @@ const slice = createSlice({
       state.userIsLoggedIn = false;
       state.token = null;
       state.userID = null;
+      state.userName = null;
     },
   },
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 // store
-import { setCurrentMediaCRUD } from "../../../../store/appContext";
+import { logUserOut } from "../../../../store/users";
 // ui
 import Button from "react-bootstrap/Button";
 // ico
@@ -14,7 +14,7 @@ const LogOutButton = ({ setCurrentOperation }) => {
     <Button
       variant="outline-light"
       style={{ width: "35px", border: "none" }}
-      onClick={() => dispatch(setCurrentMediaCRUD("create"))}
+      onClick={() => dispatch(logUserOut())}
     >
       <BoxArrowRight size="25px" />
     </Button>
