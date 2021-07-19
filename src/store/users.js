@@ -7,6 +7,7 @@ const slice = createSlice({
     userIsLoggedIn: false,
     token: null,
     userID: null,
+    userName: null,
     loading: false,
     backEndProcessConfirmed: false,
     error: "",
@@ -22,7 +23,9 @@ const slice = createSlice({
       if (action.payload.success === true) {
         // state.user.token = action.payload.token;
         state.userIsLoggedIn = true;
-        state.userID = action.payload.id;
+        state.userID = action.payload.message.id;
+        state.userName = action.payload.message.name;
+        state.token = action.payload.message.userToken;
         state.backEndProcessConfirmed = true;
       }
       state.loading = false;

@@ -11,10 +11,7 @@ const FeedbackToUser = () => {
   );
   const dataWasSent = useSelector((state) => state.appContext.dataWasSent);
 
-  console.log("Feed: ", backEndConfirmedProcessing, dataWasSent);
-
   // * view
-
   if (dataWasSent === true && backEndConfirmedProcessing === true) {
     return <ConfirmationToast success={true} message={"Data was processed"} />;
   }

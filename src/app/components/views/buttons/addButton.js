@@ -9,6 +9,7 @@ import { PlusCircle } from "react-bootstrap-icons";
 
 const AddButton = ({ setCurrentOperation }) => {
   const dispatch = useDispatch();
+
   return (
     <div className="text-center">
       <Button

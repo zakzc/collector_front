@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // comps
 import AppIsOffline from "./views/appIsOffline";
 import MediaLayout from "../components/mediaCollection/mediaLayout";
+import Navigation from "./views/navigation";
 // data
 import UseSelectedData from "../hooks/useSelectedData";
 // store
@@ -22,6 +23,17 @@ const Layout = () => {
   }, [medias, dispatch]);
 
   // * view
-  return <>{appIsConnected === true ? <MediaLayout /> : <AppIsOffline />}</>;
+  return (
+    <>
+      {appIsConnected === true ? (
+        <>
+          <Navigation />
+          <MediaLayout />
+        </>
+      ) : (
+        <AppIsOffline />
+      )}
+    </>
+  );
 };
 export default Layout;
