@@ -1,25 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "./api_actions";
 
 const slice = createSlice({
   name: "user",
   initialState: {
-    // backEndIsOnline: false,
     userIsLoggedIn: false,
     token: null,
     userID: null,
-    userCollection: [],
+    loading: false,
+    backEndProcessConfirmed: false,
+    error: "",
   },
 
   ///
   reducers: {
-    registerUser: (state, action) => {
-      state.userIsLoggedIn = action.payload.msg;
-      state.token = action.payload.token;
+    /// calls
+    userRequested: (state, action) => {
+      state.loading = true;
     },
-    logUserIn: (state, action) => {
-      state.userIsLoggedIn = action.payload.msg;
-      state.token = action.payload.token;
-      state.userCollection = action.payload.userCollection;
+    userReceived: (state, action) => {
+      if (action.payload.success === true) {
+        // state.user.token = action.payload.token;
+        state.userIsLoggedIn = true;
+        state.userID = action.payload.id;
+        state.backEndProcessConfirmed = true;
+      }
+      state.loading = false;
+      state.backEndProcessConfirmed = true;
+    },
+    userRequestFailed: (state, action) => {
+      state.loading = false;
+      state.backEndProcessConfirmed = false;
+      state.token = null;
+      state.userIsLoggedIn = false;
+      state.userID = null;
+      state.error = action.payload;
     },
     logUserOut: (state) => {
       state.userIsLoggedIn = false;
@@ -29,25 +44,36 @@ const slice = createSlice({
   },
 });
 
-export const { registerUser, logUserIn, logUserOut } = slice.actions;
+export const {
+  userRequested,
+  userReceived,
+  userRequestFailed,
+  registerUser,
+  logUserIn,
+  logUserOut,
+} = slice.actions;
 export default slice.reducer;
 
 // actions
 
-// export const errorExists = () => (dispatch, getState) => {
-//   const exists = getState().errors;
-//   return exists;
-// };
+const url = "http://localhost:3000/collectors";
 
-// const url = "http://localhost:3000/collectors";
+export const register = (userData) =>
+  apiCallBegan({
+    url: url + "/register",
+    method: "post",
+    data: userData,
+    onStart: userRequested.type,
+    onSuccess: userReceived.type,
+    onError: userRequestFailed.type,
+  });
 
-// export const loadUser = () => (dispatch, getState) => {
-//   return dispatch(
-//     apiCallBegan({
-//       url: url + "/getAll",
-//       onStart: mediasRequested.type,
-//       onSuccess: mediasReceived.type,
-//       onError: mediasRequestFailed.type,
-//     })
-//   );
-// };
+export const login = (userData) =>
+  apiCallBegan({
+    url: url + "/login",
+    method: "post",
+    data: userData,
+    onStart: userRequested.type,
+    onSuccess: userReceived.type,
+    onError: userRequestFailed.type,
+  });

@@ -8,8 +8,6 @@ const AppView = () => {
   // * data
   const userIsLoggedIn = useSelector((state) => state.users.userIsLoggedIn);
 
-  console.log("App View", userIsLoggedIn);
-
   // * view
   return <>{userIsLoggedIn === true ? <Layout /> : <EnterApp />}</>;
 };

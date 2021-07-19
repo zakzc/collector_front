@@ -1,5 +1,5 @@
 import React from "react";
-//import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 // comps
 import CheckButton from "../views/buttons/checkButton";
@@ -10,10 +10,14 @@ import Form from "react-bootstrap/Form";
 //import adjustFormValues from "../../../utils/adjustFormValues";
 import validationSchema from "../../utils/userSchema";
 // store
-// import { login } from "../../../store/users";
+import { register, login } from "../../../store/users";
 
 const EnterForm = ({ mode }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  ///
+  const adjustedValues = (data) => {
+    return { email: data.email, password: data.password };
+  };
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
@@ -25,7 +29,11 @@ const EnterForm = ({ mode }) => {
       validationSchema,
       onSubmit: (values) => {
         console.log("values: ", values);
-        // dispatch(login(values));
+        if (mode === true) {
+          dispatch(register(values));
+        } else if (mode === false) {
+          dispatch(login(adjustedValues(values)));
+        }
         // let adjustedValues = adjustFormValues(values);
         // dispatch(addMedia(adjustedValues));
         // dispatch(setDataWasSent(true));
@@ -70,7 +78,7 @@ const EnterForm = ({ mode }) => {
             </Form.Label>
             <Form.Control
               placeholder="Password"
-              as="textarea"
+              type="password"
               name="password"
               className="text-black-50"
               onChange={handleChange}

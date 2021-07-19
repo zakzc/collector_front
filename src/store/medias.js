@@ -11,7 +11,6 @@ const slice = createSlice({
     mediasList: [],
     loading: false,
     lastFetch: null,
-    connectedToAPI: false,
     backEndProcessConfirmed: false,
   },
   ///
@@ -23,7 +22,6 @@ const slice = createSlice({
     mediasReceived: (medias, action) => {
       if (action.payload.success === true) {
         medias.mediasList = action.payload.data;
-        medias.connectedToAPI = true;
         medias.backEndProcessConfirmed = true;
       }
       medias.loading = false;
@@ -33,13 +31,13 @@ const slice = createSlice({
       medias.loading = false;
       medias.backEndProcessConfirmed = false;
     },
-    mediasAssignedToUser: (medias, action) => {
-      const { id: mediaId, userId } = action.payload;
-      const index = medias.mediasList.findIndex(
-        (media) => media.id === mediaId
-      );
-      medias.mediasList[index].userId = userId;
-    },
+    // mediasAssignedToUser: (medias, action) => {
+    //   const { id: mediaId, userId } = action.payload;
+    //   const index = medias.mediasList.findIndex(
+    //     (media) => media.id === mediaId
+    //   );
+    //   medias.mediasList[index].userId = userId;
+    // },
     /// events
     addNewMedia: (medias, action) => {
       if (action.payload.success === true) {
@@ -77,7 +75,7 @@ export const {
   mediasRequested,
   mediasReceived,
   mediasRequestFailed,
-  mediasAssignedToUser,
+  // mediasAssignedToUser,
   addNewMedia,
   mediaRemoved,
   mediaUpdated,
@@ -97,7 +95,6 @@ export const loadMedias = () => (dispatch, getState) => {
   dispatch(addError({ msg: "hey there", id: "great" }));
   let now = new Date().getTime();
   timeDifference = now - fetchTimer;
-  // console.info("Values pre-conditional :", initialFetch, timeDifference);
   if (timeDifference > 300000 || initialFetch === true) {
     fetchTimer = new Date().getTime();
     initialFetch = false;

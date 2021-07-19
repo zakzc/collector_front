@@ -13,13 +13,13 @@ const Layout = () => {
   // * data
   const dispatch = useDispatch();
   const medias = UseSelectedData();
-  const appIsConnected = useSelector((state) => state.medias.connectedToAPI);
+  const appIsConnected = useSelector(
+    (state) => state.medias.backEndProcessConfirmed
+  );
   ///
   useEffect(() => {
     dispatch(loadMedias());
   }, [medias, dispatch]);
-
-  console.log("app connected", appIsConnected);
 
   // * view
   return <>{appIsConnected === true ? <MediaLayout /> : <AppIsOffline />}</>;
