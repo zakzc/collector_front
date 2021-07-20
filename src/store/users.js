@@ -8,7 +8,7 @@ const slice = createSlice({
     userID: localStorage.getItem("user_ID"),
     loading: false,
     backEndProcessConfirmed: false,
-    error: null,
+    error: { isError: false, message: null },
   },
 
   ///
@@ -25,7 +25,8 @@ const slice = createSlice({
         localStorage.setItem("name", action.payload.message.name);
         state.userIsLoggedIn = true;
         state.userID = localStorage.getItem("user_ID");
-                state.loading = false;
+        state.loading = false;
+        state.error = { isError: false, message: "no errors" };
       } else {
         state.loading = false;
         state.backEndProcessConfirmed = true;
@@ -36,7 +37,7 @@ const slice = createSlice({
       state.loading = false;
       state.backEndProcessConfirmed = false;
       state.userIsLoggedIn = false;
-      state.error = action.payload;
+      state.error = { isError: true, message: action.payload };
       localStorage.clear();
     },
     logUserOut: (state) => {

@@ -12,7 +12,7 @@ const slice = createSlice({
     lastFetch: null,
     backEndProcessConfirmed: false,
     currentUserId: localStorage.getItem("user_ID"),
-    error: null,
+    error: { isError: false, message: null },
   },
   ///
   reducers: {
@@ -25,6 +25,10 @@ const slice = createSlice({
         medias.mediasList = action.payload.data;
         medias.backEndProcessConfirmed = true;
         medias.currentUserId = localStorage.getItem("user_ID");
+        medias.error = { isError: false, message: "no errors" };
+      } else {
+        medias.mediasList = action.payload.data;
+        medias.backEndProcessConfirmed = true;
       }
       medias.loading = false;
       medias.lastFetch = Date.now();
@@ -32,6 +36,7 @@ const slice = createSlice({
     mediasRequestFailed: (medias, action) => {
       medias.loading = false;
       medias.backEndProcessConfirmed = false;
+      medias.error = { isError: true, message: action.payload };
     },
     errorRegister: (medias, action) => {
       medias.loading = false;
