@@ -22,6 +22,7 @@ const Navigation = () => {
     (state) => state.appContext.currentMediaCRUD
   );
   const currentUser = localStorage.getItem("name");
+  let userIsLoggedIn = useSelector((state) => state.users.userIsLoggedIn);
 
   const [selected, setSelected] = useState(currentMediaView);
   const dispatch = useDispatch();
@@ -47,6 +48,53 @@ const Navigation = () => {
     </span>
   );
 
+  const NavBarRead = () => (
+    <>
+      <Navbar bg="dark" variant="dark" className="m-0 p-0">
+        <div>
+          {categories.map((c) => (
+            <Button
+              key={c}
+              className="m-1"
+              variant={selected === c ? "light" : "dark"}
+              value={c}
+              onClick={setNewMediaView}
+            >
+              {c}
+            </Button>
+          ))}
+        </div>
+      </Navbar>
+    </>
+  );
+
+  const NavBarCRUD = () => (
+    <Navbar bg="dark" variant="dark">
+      <div className="ml-5">
+        {currentMediaCRUD === "create" ? (
+          <h4 className="text-light">Add</h4>
+        ) : null}
+        {currentMediaCRUD === "delete" ? (
+          <h4 className="text-light">Delete</h4>
+        ) : null}
+        {currentMediaCRUD === "update" ? (
+          <h4 className="text-light">Update</h4>
+        ) : null}
+        {currentMediaCRUD === "enter" ? (
+          <h4 className="text-light">Update</h4>
+        ) : null}
+      </div>
+    </Navbar>
+  );
+
+  const NavBarUserOffline = () => (
+    <h4 className="text-light">Enter Application</h4>
+  );
+
+  const NavBarUserOnline = () => (
+    <> {currentMediaCRUD === "read" ? <NavBarRead /> : <NavBarCRUD />}</>
+  );
+
   // * view
   return (
     <Container fluid className="bg-dark text-white">
@@ -55,48 +103,17 @@ const Navigation = () => {
           <AppLogo bg="dark" variant="dark" extraStyle={{}} />
         </Col>
         <Col xs={10} md={9} lg={9} className="m-0 p-0">
-          {currentMediaCRUD === "read" ? (
-            <>
-              <Navbar bg="dark" variant="dark" className="m-0 p-0">
-                <div>
-                  {categories.map((c) => (
-                    <Button
-                      key={c}
-                      className="m-1"
-                      variant={selected === c ? "light" : "dark"}
-                      value={c}
-                      onClick={setNewMediaView}
-                    >
-                      {c}
-                    </Button>
-                  ))}
-                </div>
-              </Navbar>
-            </>
+          {userIsLoggedIn === false ? (
+            <NavBarUserOffline />
           ) : (
-            <Navbar bg="dark" variant="dark">
-              <div className="ml-5">
-                {currentMediaCRUD === "create" ? (
-                  <h4 className="text-light">Add</h4>
-                ) : null}
-                {currentMediaCRUD === "delete" ? (
-                  <h4 className="text-light">Delete</h4>
-                ) : null}
-                {currentMediaCRUD === "update" ? (
-                  <h4 className="text-light">Update</h4>
-                ) : null}
-                {currentMediaCRUD === "enter" ? (
-                  <h4 className="text-light">Update</h4>
-                ) : null}
-              </div>
-            </Navbar>
+            <NavBarUserOnline />
           )}
         </Col>
         <Col xs={6} md={1} lg={1}>
-          <CurrentUserName />
+          {userIsLoggedIn ? <CurrentUserName /> : null}
         </Col>
         <Col xs={6} md={1} lg={1}>
-          <LogOutButton />
+          {userIsLoggedIn ? <LogOutButton /> : null}
         </Col>
       </Row>
     </Container>

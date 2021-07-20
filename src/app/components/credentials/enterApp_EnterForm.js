@@ -36,11 +36,6 @@ const EnterForm = ({ mode }) => {
           dispatch(login(adjustedValues(values)));
         }
         history.push("/");
-        // let adjustedValues = adjustFormValues(values);
-        // dispatch(addMedia(adjustedValues));
-        // dispatch(setDataWasSent(true));
-        // dispatch(setCurrentMediaCRUD("read"));
-        // dispatch(setCurrentMediaView(currentMediaView));
       },
     });
 

@@ -12,6 +12,7 @@ const slice = createSlice({
     lastFetch: null,
     backEndProcessConfirmed: false,
     currentUserId: localStorage.getItem("user_ID"),
+    error: null,
   },
   ///
   reducers: {
@@ -23,12 +24,23 @@ const slice = createSlice({
       if (action.payload.success === true) {
         medias.mediasList = action.payload.data;
         medias.backEndProcessConfirmed = true;
+        medias.currentUserId = localStorage.getItem("user_ID");
       }
       medias.loading = false;
       medias.lastFetch = Date.now();
     },
     mediasRequestFailed: (medias, action) => {
       medias.loading = false;
+      medias.backEndProcessConfirmed = false;
+    },
+    errorRegister: (medias, action) => {
+      medias.loading = false;
+      medias.backEndProcessConfirmed = false;
+      medias.error = action.payload.message;
+    },
+    userIsLoggedOut: (medias) => {
+      medias.currentUserId = null;
+      medias.mediasList = [];
       medias.backEndProcessConfirmed = false;
     },
     /// events
@@ -69,6 +81,8 @@ export const {
   mediasReceived,
   mediasRequestFailed,
   setCurrentUserId,
+  errorRegister,
+  userIsLoggedOut,
   addNewMedia,
   mediaRemoved,
   mediaUpdated,
@@ -94,7 +108,7 @@ export const loadMedias = () => (dispatch, getState) => {
     initialFetch = false;
     return dispatch(
       apiCallBegan({
-        url: url + "/getAll",
+        url: url + "/getByCollectorId/" + localStorage.getItem("user_ID"),
         onStart: mediasRequested.type,
         onSuccess: mediasReceived.type,
         onError: mediasRequestFailed.type,

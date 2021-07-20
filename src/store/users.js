@@ -8,7 +8,7 @@ const slice = createSlice({
     userID: localStorage.getItem("user_ID"),
     loading: false,
     backEndProcessConfirmed: false,
-    error: "",
+    error: null,
   },
 
   ///
@@ -19,18 +19,18 @@ const slice = createSlice({
     },
     userReceived: (state, action) => {
       if (action.payload.success === true) {
-        // state.user.token = action.payload.token;
-        state.userIsLoggedIn = true;
-        // state.userID = action.payload.message.id;
-        //state.userName = action.payload.message.name;
-        // state.token = action.payload.message.userToken;
         state.backEndProcessConfirmed = true;
         localStorage.setItem("user_ID", action.payload.message.id);
         localStorage.setItem("token", action.payload.message.userToken);
         localStorage.setItem("name", action.payload.message.name);
+        state.userIsLoggedIn = true;
+        state.userID = localStorage.getItem("user_ID");
+                state.loading = false;
+      } else {
+        state.loading = false;
+        state.backEndProcessConfirmed = true;
+        state.userIsLoggedIn = false;
       }
-      state.loading = false;
-      state.backEndProcessConfirmed = true;
     },
     userRequestFailed: (state, action) => {
       state.loading = false;

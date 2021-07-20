@@ -23,11 +23,13 @@ const FormAdd = () => {
   const currentMediaView = useSelector(
     (state) => state.appContext.currentMediaView
   );
+  const currentUser = localStorage.getItem("user_ID");
 
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
       initialValues: {
+        collector: currentUser,
         title: "",
         author: "",
         subType: "",

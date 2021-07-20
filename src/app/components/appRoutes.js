@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import EnterApp from "./credentials/enterApp_baseComp";
 // comps
-import MediaLayout from "./mediaCollection/mediaLayout";
+import Layout from "./appLayout";
+// import MediaLayout from "./mediaCollection/mediaLayout";
 import Navigation from "./views/navigation";
 
 const Routes = () => {
-  // const [user, setUser] = useState("john smith");
   return (
     <Router>
+      <Navigation />
       <Switch>
         <Route exact path="/logIn" render={(props) => <EnterApp />} />
         <Route
@@ -16,8 +17,7 @@ const Routes = () => {
           path="/"
           render={(props) => (
             <>
-              <Navigation />
-              <MediaLayout />
+              <Layout />
             </>
           )}
         />
