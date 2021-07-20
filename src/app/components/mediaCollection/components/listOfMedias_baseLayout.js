@@ -21,7 +21,6 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   useEffect(() => {
     dispatch(loadMedias());
   }, [medias, dispatch]);
-  ///
 
   // * view
   return (

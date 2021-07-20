@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import EnterApp from "./credentials/enterApp_baseComp";
 // comps
 import AppErrorCheck from "./appErrorCheck";
-// import MediaLayout from "./mediaCollection/mediaLayout";
+import EnterApp from "./credentials/enterApp_baseComp";
 import Navigation from "./views/navigation";
 
 const Routes = () => {

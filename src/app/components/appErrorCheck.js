@@ -26,6 +26,7 @@ const AppErrorCheck = () => {
     } else if (mediaError.message === "Request failed with status code 404") {
       dispatch(logUserOut());
       history.push("/logIn");
+      return <UnknownError />;
     } else {
       return <UnknownError />;
     }
@@ -33,6 +34,7 @@ const AppErrorCheck = () => {
     // * Check for user offline
     dispatch(logUserOut());
     history.push("/logIn");
+    return <UnknownError />;
   }
   return <MediaLayout />;
 };
