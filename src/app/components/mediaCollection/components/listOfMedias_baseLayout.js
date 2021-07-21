@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // data
 import UseSelectedData from "../../../hooks/useSelectedData";
 // store
@@ -14,9 +14,6 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   // * data
   const dispatch = useDispatch();
   const medias = UseSelectedData();
-  const currentMediaView = useSelector(
-    (state) => state.appContext.currentMediaView
-  );
   ///
   useEffect(() => {
     dispatch(loadMedias());

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // comps
 import AppErrorCheck from "./appErrorCheck";
 import EnterApp from "./credentials/enterApp_baseComp";
-import Navigation from "../components/navigation/navigation";
+import Navigation from "../components/navigation/navigation_baseLayout";
 
 const Routes = () => {
   return (
