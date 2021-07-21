@@ -39,7 +39,7 @@ const slice = createSlice({
     errorRegister: (medias, action) => {
       medias.loading = false;
       medias.backEndProcessConfirmed = false;
-      medias.error = action.payload.message;
+      medias.error = { isError: true, message: action.payload };
     },
     userIsLoggedOut: (medias) => {
       medias.currentUserId = null;
@@ -48,6 +48,7 @@ const slice = createSlice({
     },
     resetDataProcessing: (medias) => {
       medias.backEndProcessConfirmed = false;
+      medias.error = { isError: false, message: null };
     },
     /// events
     addNewMedia: (medias, action) => {

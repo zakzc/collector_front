@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 /// comps
-import FeedbackToUser from "../views/feedbackToUser";
+import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
 import GoBackButton from "../views/buttons/goBackButton";
 import MediaView from "./mediaView";
@@ -24,7 +24,7 @@ const MediaLayout = () => {
       <div className="ml-2">
         {currentMediaCRUD === "read" ? null : <GoBackButton />}
       </div>
-      <FeedbackToUser />
+      {currentMediaCRUD === "read" ? <ConfirmationToast /> : null}
       <MediaView />
     </>
   );
