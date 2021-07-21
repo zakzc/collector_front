@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // comps
-import EnterForm from "./enterApp_EnterForm";
+import EnterForm from "./components/enterApp_EnterForm";
 // ui
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Col from "react-bootstrap/Col";

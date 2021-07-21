@@ -9,6 +9,7 @@ const adjustFormValues = (data) => {
   let adjustedSubType = data.subType.trim();
   ///
   let adjustedValues = {
+    collector: data.collector,
     author: adjustedAuthor,
     // collector: data.collector,
     dateOfPurchase: adjustedDate,

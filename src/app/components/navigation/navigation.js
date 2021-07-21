@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // ui comps
-import LogOutButton from "../../components/views/buttons/logOutButton";
+import LogOutButton from "../views/buttons/logOutButton";
 // ui Elements
 import AppLogo from "../assets/appLogo";
 // ui

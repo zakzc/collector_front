@@ -13,7 +13,7 @@ const AddMedia = () => {
   // * view
   return (
     <>
-      <SmallHeader subtitle={`Add new ${currentMediaView.toLowerCase()}`} />
+      <SmallHeader />
       <FormAdd />
     </>
   );

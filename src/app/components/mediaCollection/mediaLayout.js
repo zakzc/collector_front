@@ -15,13 +15,10 @@ const MediaLayout = () => {
   const currentMediaCRUD = useSelector(
     (state) => state.appContext.currentMediaCRUD
   );
-  const currentMediaView = useSelector(
-    (state) => state.appContext.currentMediaView
-  );
+
   const loading = useSelector((state) => state.medias.loading);
 
   // * view
-  //<Redirect to="/somewhere/else" />;
   const MediasMenu = () => (
     <>
       <div className="ml-2">
@@ -34,7 +31,7 @@ const MediaLayout = () => {
 
   return (
     <>
-      <Header title={currentMediaView} />
+      <Header />
       <Row>
         <Col></Col>
         <Col xs={12} md={9}>

@@ -1,17 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom";
 // comps
-import CheckButton from "../views/buttons/checkButton";
+import CheckButton from "../../views/buttons/checkButton";
 // ui
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // utils
-//import adjustFormValues from "../../../utils/adjustFormValues";
-import validationSchema from "../../utils/userSchema";
+import validationSchema from "../../../utils/userSchema";
 // store
-import { register, login } from "../../../store/users";
-import { useHistory } from "react-router-dom";
+import { register, login } from "../../../../store/users";
 
 const EnterForm = ({ mode }) => {
   const dispatch = useDispatch();

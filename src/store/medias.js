@@ -11,7 +11,6 @@ const slice = createSlice({
     loading: false,
     lastFetch: null,
     backEndProcessConfirmed: false,
-    currentUserId: localStorage.getItem("user_ID"),
     error: { isError: false, message: null },
   },
   ///
@@ -24,7 +23,6 @@ const slice = createSlice({
       if (action.payload.success === true) {
         medias.mediasList = action.payload.data;
         medias.backEndProcessConfirmed = true;
-        medias.currentUserId = localStorage.getItem("user_ID");
         medias.error = { isError: false, message: "no errors" };
       } else {
         medias.mediasList = action.payload.data;
@@ -46,6 +44,9 @@ const slice = createSlice({
     userIsLoggedOut: (medias) => {
       medias.currentUserId = null;
       medias.mediasList = [];
+      medias.backEndProcessConfirmed = false;
+    },
+    resetDataProcessing: (medias) => {
       medias.backEndProcessConfirmed = false;
     },
     /// events
@@ -88,6 +89,7 @@ export const {
   setCurrentUserId,
   errorRegister,
   userIsLoggedOut,
+  resetDataProcessing,
   addNewMedia,
   mediaRemoved,
   mediaUpdated,

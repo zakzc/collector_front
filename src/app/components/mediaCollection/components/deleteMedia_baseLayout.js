@@ -57,7 +57,7 @@ const DeleteMedia = () => {
   // * view
   return (
     <>
-      <SmallHeader subtitle={`Delete this ${currentMediaView.toLowerCase()}`} />
+      <SmallHeader />
       <h3>You selected this entry to delete:</h3>
       <ItemToDelete />
       <Row>

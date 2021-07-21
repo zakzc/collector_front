@@ -26,7 +26,7 @@ const ListOfMedias = ({ setCurrentOperation, setMediaToManage }) => {
   return (
     <>
       <AddButton setCurrentOperation={setCurrentOperation} />
-      <SmallHeader subtitle={`List of ${currentMediaView.toLowerCase()}s`} />
+      <SmallHeader />
       {medias.length === 0 ? <NoMediaToShow /> : <MediaList />}
     </>
   );

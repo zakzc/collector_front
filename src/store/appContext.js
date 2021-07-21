@@ -8,7 +8,7 @@ const slice = createSlice({
     currentMediaCRUD: "read",
     dataWasSent: false,
     currentSelectedItem: null,
-    backEndProcessConfirmed: false,
+    // backEndProcessConfirmed: false,
   },
 
   reducers: {
@@ -27,9 +27,9 @@ const slice = createSlice({
     setCurrentSelectedItem: (state, action) => {
       state.currentSelectedItem = action.payload;
     },
-    setBackEndProcessConfirmed: (state, action) => {
-      state.backEndProcessConfirmed = action.payload;
-    },
+    // setBackEndProcessConfirmed: (state, action) => {
+    //   state.backEndProcessConfirmed = action.payload;
+    // },
   },
 });
 

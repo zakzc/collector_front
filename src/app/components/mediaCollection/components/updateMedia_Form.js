@@ -32,6 +32,7 @@ const FormUpdateMedia = () => {
     state.medias.mediasList.filter((item) => item._id === currentItemId)
   );
   const itemToUpdate = getItem[0];
+  const currentUser = localStorage.getItem("user_ID");
 
   // data treatment
   let formattedDate = formatDateView(itemToUpdate.dateOfPurchase);
@@ -45,6 +46,7 @@ const FormUpdateMedia = () => {
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
     useFormik({
       initialValues: {
+        collector: currentUser,
         title: itemToUpdate.title,
         author: itemToUpdate.author,
         subType: itemToUpdate.subType,

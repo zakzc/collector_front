@@ -23,7 +23,7 @@ const FormAdd = () => {
   const currentMediaView = useSelector(
     (state) => state.appContext.currentMediaView
   );
-  const currentUser = localStorage.getItem("user_ID");
+  const currentUser = useSelector((state) => state.users.userID);
 
   ///
   const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
