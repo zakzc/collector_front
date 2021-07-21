@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 // comps
 import EnterForm from "./components/enterApp_EnterForm";
 // ui
@@ -7,18 +8,27 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+// hooks
+import useCheckForUser from "../../hooks/useCheckForUser";
 
 const EnterApp = ({ setUserIsLoggedIn }) => {
-  // ? true = log in, false = register
+  // * true = log in, false = register
   const [mode, setMode] = useState(false);
+  let history = useHistory();
+  const userIsConnected = useCheckForUser();
 
   const enteringOptions = [
     { name: "Enter", value: true },
     { name: "Register", value: false },
   ];
 
-  // * view
-  return (
+  const RedirectToMainPage = () => {
+    if (userIsConnected === true) {
+      history.push("/");
+    }
+  };
+
+  const LogInForm = () => (
     <Container>
       <Row>
         <Col></Col>
@@ -53,5 +63,8 @@ const EnterApp = ({ setUserIsLoggedIn }) => {
       </Row>
     </Container>
   );
+
+  // * view
+  return <>{userIsConnected ? <RedirectToMainPage /> : <LogInForm />}</>;
 };
 export default EnterApp;

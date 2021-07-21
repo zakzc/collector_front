@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 // ui icons
-import Error from "../assets/error";
+import Error from "../../assets/error";
 
 const UnknownError = () => {
   return (
@@ -18,7 +18,6 @@ const UnknownError = () => {
             <Error />
             <br />
             <br />
-
             <p>Reload page. For most cases, this should fix it.</p>
           </Col>
           <Col></Col>

@@ -1,22 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 // ui comps
 import LogOutButton from "../views/buttons/logOutButton";
 // ui
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-// store
+// hook
+import useCheckForUser from "../../hooks/useCheckForUser";
 
 const UserArea = () => {
   // * data
   const currentUser = localStorage.getItem("name");
-  let userIsLoggedIn = useSelector((state) => state.users.userIsLoggedIn);
+  let userIsLoggedIn = useCheckForUser();
 
   const CurrentUserName = () => (
-    <span>
-      Hello <br />
-      <span className="text-info">{currentUser}</span>
+    <span className="mt-1">
+      Hello <span className="text-info">{currentUser}</span>
     </span>
   );
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+// import { useHistory } from "react-router-dom";
 /// comps
 import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
@@ -29,7 +30,7 @@ const MediaLayout = () => {
     </>
   );
 
-  return (
+  const MediaLayoutView = () => (
     <>
       <Header />
       <Row>
@@ -39,6 +40,12 @@ const MediaLayout = () => {
         </Col>
         <Col></Col>
       </Row>
+    </>
+  );
+
+  return (
+    <>
+      <MediaLayoutView />
     </>
   );
 };

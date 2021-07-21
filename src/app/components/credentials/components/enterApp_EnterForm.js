@@ -13,6 +13,7 @@ import validationSchema from "../../../utils/userSchema";
 import { register, login } from "../../../../store/users";
 
 const EnterForm = ({ mode }) => {
+  // * true = log in, false = register
   const dispatch = useDispatch();
   let history = useHistory();
   ///

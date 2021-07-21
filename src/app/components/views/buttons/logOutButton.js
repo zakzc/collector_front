@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 // store
 import { logUserOut } from "../../../../store/users";
-import { userIsLoggedOut } from "../../../../store/medias";
+import { resetMediaData } from "../../../../store/medias";
 // ui
 import Button from "react-bootstrap/Button";
 // ico
@@ -15,7 +15,7 @@ const LogOutButton = ({ setCurrentOperation }) => {
 
   const handleLogOut = () => {
     dispatch(logUserOut());
-    dispatch(userIsLoggedOut());
+    dispatch(resetMediaData());
     history.push("/logIn");
   };
 

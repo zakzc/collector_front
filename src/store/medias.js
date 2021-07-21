@@ -41,12 +41,14 @@ const slice = createSlice({
       medias.backEndProcessConfirmed = false;
       medias.error = { isError: true, message: action.payload };
     },
-    userIsLoggedOut: (medias) => {
-      medias.currentUserId = null;
-      medias.mediasList = [];
-      medias.backEndProcessConfirmed = false;
-    },
     resetDataProcessing: (medias) => {
+      medias.backEndProcessConfirmed = false;
+      medias.error = { isError: false, message: null };
+    },
+    resetMediaData: (medias) => {
+      medias.mediasList = [];
+      medias.loading = false;
+      medias.lastFetch = null;
       medias.backEndProcessConfirmed = false;
       medias.error = { isError: false, message: null };
     },
@@ -91,6 +93,7 @@ export const {
   errorRegister,
   userIsLoggedOut,
   resetDataProcessing,
+  resetMediaData,
   addNewMedia,
   mediaRemoved,
   mediaUpdated,

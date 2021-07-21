@@ -4,8 +4,8 @@ import { apiCallBegan } from "./api_actions";
 const slice = createSlice({
   name: "user",
   initialState: {
-    userIsLoggedIn: false,
     userID: localStorage.getItem("user_ID"),
+    name: localStorage.getItem("name"),
     loading: false,
     backEndProcessConfirmed: false,
     error: { isError: false, message: null },
@@ -23,25 +23,28 @@ const slice = createSlice({
         localStorage.setItem("user_ID", action.payload.message.id);
         localStorage.setItem("token", action.payload.message.userToken);
         localStorage.setItem("name", action.payload.message.name);
-        state.userIsLoggedIn = true;
-        state.userID = localStorage.getItem("user_ID");
         state.loading = false;
         state.error = { isError: false, message: "no errors" };
-      } else {
+      } else if (action.payload.success === false) {
         state.loading = false;
         state.backEndProcessConfirmed = true;
-        state.userIsLoggedIn = false;
+        state.error = { isError: true, message: action.payload.message };
+      } else {
+        state.error = { isError: true, message: "Unknown error" };
       }
     },
     userRequestFailed: (state, action) => {
       state.loading = false;
       state.backEndProcessConfirmed = false;
-      state.userIsLoggedIn = false;
       state.error = { isError: true, message: action.payload };
       localStorage.clear();
     },
     logUserOut: (state) => {
-      state.userIsLoggedIn = false;
+      state.userID = null;
+      state.name = null;
+      state.loading = false;
+      state.backEndProcessConfirmed = false;
+      state.error = { isError: false, message: null };
       localStorage.clear();
     },
   },
