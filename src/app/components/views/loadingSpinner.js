@@ -1,7 +1,19 @@
 import React from "react";
-// import Spinner from "react-bootstrap/Spinner";
+// ui
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const LoadingSpinner = () => {
-  return <div className="lds-hourglass"></div>;
+  return (
+    <>
+      <Row>
+        <Col></Col>
+        <Col>
+          <div className="lds-hourglass"></div>
+        </Col>
+        <Col></Col>
+      </Row>
+    </>
+  );
 };
 export default LoadingSpinner;

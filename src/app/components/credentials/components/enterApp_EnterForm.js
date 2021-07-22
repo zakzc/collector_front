@@ -11,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import validationSchema from "../../../utils/userSchema";
 // store
 import { register, login } from "../../../../store/users";
+import { setDataWasSent } from "../../../../store/appContext";
 
 const EnterForm = ({ mode }) => {
   // * true = log in, false = register
@@ -35,6 +36,7 @@ const EnterForm = ({ mode }) => {
         } else if (mode === false) {
           dispatch(login(adjustedValues(values)));
         }
+        dispatch(setDataWasSent(true));
         history.push("/");
       },
     });

@@ -39,7 +39,10 @@ const slice = createSlice({
     errorRegister: (medias, action) => {
       medias.loading = false;
       medias.backEndProcessConfirmed = false;
-      medias.error = { isError: true, message: action.payload };
+      medias.error = {
+        isError: action.payload.isError,
+        message: action.payload.message,
+      };
     },
     resetDataProcessing: (medias) => {
       medias.backEndProcessConfirmed = false;
@@ -117,14 +120,20 @@ export const loadMedias = () => (dispatch, getState) => {
   if (timeDifference > 300000 || initialFetch === true) {
     fetchTimer = new Date().getTime();
     initialFetch = false;
-    return dispatch(
-      apiCallBegan({
-        url: url + "/getByCollectorId/" + localStorage.getItem("user_ID"),
-        onStart: mediasRequested.type,
-        onSuccess: mediasReceived.type,
-        onError: mediasRequestFailed.type,
-      })
-    );
+    if (localStorage.getItem("user_ID") === null) {
+      dispatch(
+        errorRegister({ isError: true, message: "User is set to null" })
+      );
+    } else {
+      return dispatch(
+        apiCallBegan({
+          url: url + "/getByCollectorId/" + localStorage.getItem("user_ID"),
+          onStart: mediasRequested.type,
+          onSuccess: mediasReceived.type,
+          onError: mediasRequestFailed.type,
+        })
+      );
+    }
   }
 };
 

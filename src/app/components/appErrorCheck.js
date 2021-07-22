@@ -1,35 +1,41 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 // comps
 import AppIsOffline from "./views/errorAndOfflineViews/appIsOffline";
+import AppUserCheck from "./appUserCheck";
 import LoadingSpinner from "./views/loadingSpinner";
-import MediaLayout from "./mediaCollection/mediaLayout";
 import UnknownError from "./views/errorAndOfflineViews/unknownError";
-// ui comps
-import { logUserOut } from "../../store/users";
 
 const AppErrorCheck = () => {
   // * data
-  const dispatch = useDispatch();
-  let history = useHistory();
   let loading = useSelector((state) => state.users.loading);
+  // check for API errors
   let mediaError = useSelector((state) => state.medias.error);
+  let userError = useSelector((state) => state.users.error);
 
   const ErrorOnLoad = () => {
-    if (mediaError.message === "Network Error") {
+    if (
+      mediaError.message === "Network Error" ||
+      userError.message === "Network Error"
+    ) {
       return <AppIsOffline />;
+    } else if (userError.message === "Unknown error") {
+      return <UnknownError errorMessage={mediaError.message} />;
     } else {
-      console.log("ERROR:", mediaError.message);
-      dispatch(logUserOut());
-      history.push("/logIn");
-      return <UnknownError />;
+      console.log("ERROR:", mediaError.message, userError.message);
+      return <h1>Error came up here</h1>;
     }
   };
 
   const AppIsLoaded = () => {
     return (
-      <>{mediaError.isError === true ? <ErrorOnLoad /> : <MediaLayout />}</>
+      <>
+        {userError.isError === true || mediaError.isError === true ? (
+          <ErrorOnLoad />
+        ) : (
+          <AppUserCheck />
+        )}
+      </>
     );
   };
 

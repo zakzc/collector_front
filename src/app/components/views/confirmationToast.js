@@ -61,7 +61,7 @@ const ConfirmationToast = () => {
                 </strong>
               </Toast.Header>
               <Toast.Body>
-                Some changes might require you to reload the page
+                Some changes might require you to reload the page.
               </Toast.Body>
             </Toast>
           </Col>

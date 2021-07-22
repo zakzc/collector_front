@@ -11,7 +11,6 @@ const adjustFormValues = (data) => {
   let adjustedValues = {
     collector: data.collector,
     author: adjustedAuthor,
-    // collector: data.collector,
     dateOfPurchase: adjustedDate,
     details: data.details,
     mediaID: data.mediaID,
