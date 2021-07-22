@@ -19,13 +19,13 @@ const ViewCRUD = () => {
           <span className="text-light">Add</span>
         ) : null}
         {currentMediaCRUD === "delete" ? (
-          <h4 className="text-light">Delete</h4>
+          <span className="text-light">Delete</span>
         ) : null}
         {currentMediaCRUD === "update" ? (
-          <h4 className="text-light">Update</h4>
+          <span className="text-light">Update</span>
         ) : null}
         {currentMediaCRUD === "enter" ? (
-          <h4 className="text-light">Update</h4>
+          <span className="text-light">Update</span>
         ) : null}
       </div>
     </Navbar>

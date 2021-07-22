@@ -1,7 +1,6 @@
 import React from "react";
-//import { useSelector } from "react-redux";
+
 // comps
-// import CRUD from "./navigation_CRUD";
 import ConnectedUser from "./navigation_ConnectedUser";
 import UserArea from "./navigation_UserArea";
 // ui Elements
@@ -13,8 +12,6 @@ import Row from "react-bootstrap/Row";
 // store
 
 const Navigation = () => {
-  // * data
-
   // * view
   return (
     <Container fluid className="bg-dark text-white">
