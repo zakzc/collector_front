@@ -33,6 +33,19 @@ const slice = createSlice({
         state.error = { isError: true, message: "Unknown error" };
       }
     },
+    userRegistered: (state, action) => {
+      if (action.payload.success === true) {
+        state.backEndProcessConfirmed = true;
+        state.loading = false;
+        state.error = { isError: false, message: "no errors" };
+      } else if (action.payload.success === false) {
+        state.loading = false;
+        state.backEndProcessConfirmed = true;
+        state.error = { isError: true, message: action.payload.message };
+      } else {
+        state.error = { isError: true, message: "Registration Error" };
+      }
+    },
     userRequestFailed: (state, action) => {
       state.loading = false;
       state.backEndProcessConfirmed = false;
@@ -52,6 +65,7 @@ const slice = createSlice({
 
 export const {
   userRequested,
+  userRegistered,
   userReceived,
   userRequestFailed,
   registerUser,
@@ -70,7 +84,7 @@ export const register = (userData) =>
     method: "post",
     data: userData,
     onStart: userRequested.type,
-    onSuccess: userReceived.type,
+    onSuccess: userRegistered.type,
     onError: userRequestFailed.type,
   });
 

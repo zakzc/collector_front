@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 // ui icons
 import Error from "../../assets/error";
 
-const UnknownError = ({ errorMessage }) => {
+const ErrorReport = ({ errorMessage }) => {
   return (
     <>
       <Container fluid className="m-5 p-2">
@@ -17,7 +17,9 @@ const UnknownError = ({ errorMessage }) => {
             <br />
             <Error />
             <br />
-            {errorMessage ? <p>Error message is: {errorMessage}</p> : null}
+            {errorMessage ? (
+              <p className="text-info">Error message: {errorMessage}</p>
+            ) : null}
             <br />
             <p>Reload page. For most cases, this should fix it.</p>
           </Col>
@@ -27,4 +29,4 @@ const UnknownError = ({ errorMessage }) => {
     </>
   );
 };
-export default UnknownError;
+export default ErrorReport;

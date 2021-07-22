@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import AppIsOffline from "./views/errorAndOfflineViews/appIsOffline";
 import AppUserCheck from "./appUserCheck";
 import LoadingSpinner from "./views/loadingSpinner";
-import UnknownError from "./views/errorAndOfflineViews/unknownError";
+import ErrorReport from "./views/errorAndOfflineViews/appErrorReport";
 
 const AppErrorCheck = () => {
   // * data
@@ -19,11 +19,8 @@ const AppErrorCheck = () => {
       userError.message === "Network Error"
     ) {
       return <AppIsOffline />;
-    } else if (userError.message === "Unknown error") {
-      return <UnknownError errorMessage={mediaError.message} />;
     } else {
-      console.log("ERROR:", mediaError.message, userError.message);
-      return <h1>Error came up here</h1>;
+      return <ErrorReport errorMessage={mediaError.message} />;
     }
   };
 

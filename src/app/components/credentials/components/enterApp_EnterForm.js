@@ -33,11 +33,13 @@ const EnterForm = ({ mode }) => {
       onSubmit: (values) => {
         if (mode === true) {
           dispatch(register(values));
+          dispatch(setDataWasSent(true));
+          history.push("/");
         } else if (mode === false) {
           dispatch(login(adjustedValues(values)));
+          dispatch(setDataWasSent(true));
+          history.push("/");
         }
-        dispatch(setDataWasSent(true));
-        history.push("/");
       },
     });
 
