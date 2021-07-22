@@ -14,9 +14,9 @@ const ViewCRUD = () => {
   // * view
   return (
     <Navbar bg="dark" variant="dark">
-      <div className="ml-5">
+      <div>
         {currentMediaCRUD === "create" ? (
-          <h4 className="text-light">Add</h4>
+          <span className="text-light">Add</span>
         ) : null}
         {currentMediaCRUD === "delete" ? (
           <h4 className="text-light">Delete</h4>

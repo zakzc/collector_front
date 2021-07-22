@@ -21,10 +21,11 @@ const MediaLayout = () => {
   const loading = useSelector((state) => state.medias.loading);
   // animation data
   const pageVariants = {
-    in: { opacity: 1, x: 0 },
-    out: { opacity: 0, x: "100vh" },
+    initial: { opacity: 0, x: "100vh", scale: 0.9 },
+    in: { opacity: 1, x: 0, scale: 1 },
+    out: { opacity: 0, x: "-100vh", scale: 1.1 },
   };
-  const pageTransition = { duration: 0.6 };
+  const pageTransition = { type: "tween", ease: "anticipate", duration: 0.7 };
 
   // * view
   const MediasMenu = () => (
@@ -37,7 +38,7 @@ const MediaLayout = () => {
   const MediaAnimation = ({ isVisible }) => (
     <AnimatePresence>
       <motion.div
-        initial="out"
+        initial="initial"
         animate="in"
         exit="out"
         variants={pageVariants}
