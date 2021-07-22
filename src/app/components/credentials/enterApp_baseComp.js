@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // comps
 import EnterForm from "./components/enterApp_EnterForm";
+import LoadingSpinner from "../views/loadingSpinner";
 // ui
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Col from "react-bootstrap/Col";
@@ -25,7 +26,9 @@ const EnterApp = ({ setUserIsLoggedIn }) => {
   const RedirectToMainPage = () => {
     if (userIsConnected === true) {
       history.push("/");
+      window.location.reload();
     }
+    return <LoadingSpinner />;
   };
 
   const LogInForm = () => (

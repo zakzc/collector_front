@@ -5,10 +5,12 @@ import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
 import GoBackButton from "../views/buttons/goBackButton";
 import MediaView from "./mediaView";
+import LoadingSpinner from "../views/loadingSpinner";
 // ui
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import LoadingSpinner from "../views/loadingSpinner";
+// hook
+import useCheckForUser from "../../hooks/useCheckForUser";
 
 const MediaLayout = () => {
   // * data
@@ -35,17 +37,13 @@ const MediaLayout = () => {
       <Row>
         <Col></Col>
         <Col xs={12} md={9}>
-          {loading ? <LoadingSpinner /> : <MediasMenu />}
+          {useCheckForUser() ? <MediasMenu /> : <LoadingSpinner />}
         </Col>
         <Col></Col>
       </Row>
     </>
   );
 
-  return (
-    <>
-      <MediaLayoutView />
-    </>
-  );
+  return <>{loading ? <LoadingSpinner /> : <MediaLayoutView />}</>;
 };
 export default MediaLayout;

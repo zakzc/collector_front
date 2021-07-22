@@ -13,7 +13,7 @@ const ErrorReport = ({ errorMessage }) => {
         <Row>
           <Col></Col>
           <Col>
-            <h2 className="text-info">Some unknown error ocurred</h2>
+            <h2 className="text-info">An error occurred</h2>
             <br />
             <Error />
             <br />
