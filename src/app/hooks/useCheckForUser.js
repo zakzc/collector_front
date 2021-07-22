@@ -7,7 +7,6 @@ const useCheckForUser = () => {
   let userIsInStore = localStorage.getItem("user_ID");
 
   if (userConnected === true) {
-    console.log("USER: True by userConnected");
     return true;
   } else {
     if (
@@ -17,10 +16,8 @@ const useCheckForUser = () => {
       userHasName === undefined ||
       userIsInStore === null
     ) {
-      console.log("USER: FALSE");
       return false;
     } else {
-      console.log("USER: True");
       return true;
     }
   }

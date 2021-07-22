@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   BrowserRouter as Router,
   Switch,
-  Redirect,
   Route,
   useLocation,
 } from "react-router-dom";
@@ -11,14 +10,11 @@ import {
 import AppErrorCheck from "./appErrorCheck";
 import EnterApp from "./credentials/enterApp_baseComp";
 import Navigation from "../components/navigation/navigation_baseLayout";
-// hook
-import useCheckForUser from "../hooks/useCheckForUser";
 
 const Routes = () => {
   // * data
-  const userIsDefined = useCheckForUser();
   const location = useLocation();
-  const pageTransition = {
+  const pageVariants = {
     in: { opacity: 1, y: 0 },
     out: { opacity: 0, y: "-100vh" },
   };
@@ -34,25 +30,12 @@ const Routes = () => {
               initial="out"
               animate="in"
               exit="out"
-              variants={pageTransition}
+              variants={pageVariants}
             >
               <EnterApp />
             </motion.div>
           </Route>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              // <motion.div
-              //   initial="out"
-              //   animate="in"
-              //   exit="out"
-              //   variants={pageTransition}
-              // >
-              <AppErrorCheck />
-              // </motion.div>
-            )}
-          />
+          <Route exact path="/" render={(props) => <AppErrorCheck />} />
         </Switch>
       </AnimatePresence>
     </Router>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { AnimatePresence, motion } from "framer-motion";
 /// comps
 import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
@@ -17,18 +18,37 @@ const MediaLayout = () => {
   const currentMediaCRUD = useSelector(
     (state) => state.appContext.currentMediaCRUD
   );
-
   const loading = useSelector((state) => state.medias.loading);
+  // animation data
+  const pageVariants = {
+    in: { opacity: 1, x: 0 },
+    out: { opacity: 0, x: "100vh" },
+  };
+  const pageTransition = { duration: 0.6 };
 
   // * view
   const MediasMenu = () => (
     <>
-      <div className="ml-2">
-        {currentMediaCRUD === "read" ? null : <GoBackButton />}
-      </div>
       {currentMediaCRUD === "read" ? <ConfirmationToast /> : null}
-      <MediaView />
+      <MediaAnimation />
     </>
+  );
+
+  const MediaAnimation = ({ isVisible }) => (
+    <AnimatePresence>
+      <motion.div
+        initial="out"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        <div className="ml-2">
+          {currentMediaCRUD === "read" ? null : <GoBackButton />}
+        </div>
+        <MediaView />
+      </motion.div>
+    </AnimatePresence>
   );
 
   const MediaLayoutView = () => (
