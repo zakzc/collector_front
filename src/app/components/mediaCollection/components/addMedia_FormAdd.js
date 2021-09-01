@@ -60,6 +60,7 @@ const FormAdd = () => {
       <div
         style={{
           backgroundColor: "CadetBlue",
+          opacity: "0.9",
         }}
         className="text-white rounded"
       >

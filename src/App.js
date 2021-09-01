@@ -17,6 +17,7 @@ const App = () => {
           backgroundImage: `url(${appBackground})`,
           opacity: 0.8,
           height: "100%",
+          overflowY: "scroll",
         }}
       >
         <BrowserRouter>
