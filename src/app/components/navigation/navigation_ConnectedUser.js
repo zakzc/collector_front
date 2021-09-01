@@ -19,7 +19,7 @@ const ConnectedUser = () => {
     in: { opacity: 1 },
     out: { opacity: 0 },
   };
-  const pageTransition = { duration: 0.4 };
+  const pageTransition = { duration: 0.6 };
 
   const ConnectedMenuAnimation = ({ isVisible }) => (
     <AnimatePresence>

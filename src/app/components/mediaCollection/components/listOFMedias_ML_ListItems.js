@@ -11,7 +11,7 @@ import TrashButton from "../../views/buttons/trashButton";
 
 const ListItems = ({ orderedMediaList }) =>
   orderedMediaList.map((media) => (
-    <ListGroup key={media.title}>
+    <ListGroup key={media.title} style={{ opacity: 0.9 }}>
       <ListGroup.Item key={media.mediaId} variant="info">
         <h4>
           <span className="font-weight-bold text-secondary">{media.title}</span>{" "}

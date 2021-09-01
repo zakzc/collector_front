@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 // comps
@@ -17,6 +17,8 @@ const EnterForm = ({ mode }) => {
   // * true = log in, false = register
   const dispatch = useDispatch();
   let history = useHistory();
+  /// error
+  const errorFound = useSelector((state) => state.users.error.isError);
   ///
   const adjustedValues = (data) => {
     return { email: data.email, password: data.password };
@@ -43,7 +45,15 @@ const EnterForm = ({ mode }) => {
       },
     });
 
-  // * view
+  // * views
+
+  const ErrorMessage = () => (
+    <div className="text-danger ml-3">
+      <h2>Log in unsuccessful</h2>
+      <p>Please, check your data and try again.</p>
+    </div>
+  );
+
   return (
     <Form onSubmit={handleSubmit} className="m-3">
       <Form.Row>
@@ -53,7 +63,7 @@ const EnterForm = ({ mode }) => {
           }}
           className="text-white rounded"
         >
-          <Form.Group as={Col} controlId="formGridTitle">
+          <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               placeholder="Email"
@@ -114,6 +124,7 @@ const EnterForm = ({ mode }) => {
       </Form.Row>
       <br />
       <CheckButton />
+      {errorFound ? <ErrorMessage /> : null}
     </Form>
   );
 };

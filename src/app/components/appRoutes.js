@@ -18,6 +18,11 @@ const Routes = () => {
     in: { opacity: 1, y: 0 },
     out: { opacity: 0, y: "-100vh" },
   };
+  const pageTransition = {
+    delay: 1,
+    x: { type: "spring", stiffness: 100 },
+    default: { duration: 1 },
+  };
 
   // * view
   return (
@@ -30,6 +35,7 @@ const Routes = () => {
               initial="out"
               animate="in"
               exit="out"
+              transition={pageTransition}
               variants={pageVariants}
             >
               <EnterApp />
