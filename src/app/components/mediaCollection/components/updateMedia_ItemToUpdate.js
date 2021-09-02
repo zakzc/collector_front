@@ -24,7 +24,11 @@ const ItemToUpdate = () => {
 
   //* view
   return (
-    <ListGroup className="ml-2 mr-2" key={itemToUpdate.title}>
+    <ListGroup
+      className="ml-2 mr-2"
+      key={itemToUpdate.title}
+      style={{ opacity: 0.85 }}
+    >
       <ListGroup.Item key={itemToUpdate.mediaId} variant="info">
         <h4 className="ml-1 mt-2 ">
           <span className="font-weight-bold">{itemToUpdate.title}</span> by{" "}

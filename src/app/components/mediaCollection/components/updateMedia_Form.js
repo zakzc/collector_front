@@ -74,7 +74,7 @@ const FormUpdateMedia = () => {
 
   // * view
   return (
-    <Form onSubmit={handleSubmit} className="m-3">
+    <Form onSubmit={handleSubmit} className="m-3" style={{ opacity: 0.85 }}>
       <p>
         Only the items that are filled in will be updated. The rest will retain
         its original value.

@@ -27,19 +27,19 @@ const DeleteMedia = () => {
   const currentMediaView = useSelector(
     (state) => state.appContext.currentMediaView
   );
-  const dataProcessed = useSelector((state) => state.appContext.dataWasSent);
-  const getItem = useSelector((state) =>
-    state.medias.mediasList.filter((item) => item._id === currentItemId)
-  );
-  const itemToDelete = getItem[0];
+  // const dataProcessed = useSelector((state) => state.appContext.dataWasSent);
+  // const getItem = useSelector((state) =>
+  //   state.medias.mediasList.filter((item) => item._id === currentItemId)
+  // );
+  // const itemToDelete = getItem[0];
   const [deleteProcess, setDeleteProcess] = useState(false);
-  console.log(
-    "delete media: ",
-    dataProcessed,
-    itemToDelete.typeOfMedia,
-    currentItemId,
-    currentMediaView
-  );
+  // console.log(
+  //   "delete media: ",
+  //   dataProcessed,
+  //   itemToDelete.typeOfMedia,
+  //   currentItemId,
+  //   currentMediaView
+  // );
   ///
   const handleClickDelete = () => {
     dispatch(removeMedia(currentItemId));
@@ -62,10 +62,28 @@ const DeleteMedia = () => {
       <ItemToDelete />
       <Row>
         <Col>
-          <h4>Are you sure you want to delete this item?</h4>
+          <h4
+            className="text-info"
+            style={{
+              backgroundColor: "#f8f8ff",
+              borderRadius: 5,
+              padding: 10,
+              opacity: 0.85,
+            }}
+          >
+            Are you sure you want to delete this item?
+          </h4>
         </Col>
         <Col></Col>
-        <p className="text-danger">
+        <p
+          className="text-info"
+          style={{
+            backgroundColor: "#f8f8ff",
+            borderRadius: 5,
+            padding: 10,
+            opacity: 0.85,
+          }}
+        >
           Click this icon
           <Button
             className="m-2"

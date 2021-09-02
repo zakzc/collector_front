@@ -17,7 +17,7 @@ const OrderButtons = ({ setOrderCriteria }) => {
       <Row>
         <Col xs={2} md={1} lg={1}></Col>
         <Col xs={8} md={10} lg={10}>
-          <span style={{ color: "whitesmoke" }}>Order this list: </span>
+          <span className="text-info">Order this list: </span>
           <br />
           <ButtonGroup aria-label="Basic example">
             <br />
@@ -25,7 +25,7 @@ const OrderButtons = ({ setOrderCriteria }) => {
               {listOfOptions.map((option) => (
                 <Button
                   key={option}
-                  variant="outline-light"
+                  variant="info"
                   className="m-2"
                   onClick={() => handleListOrder({ option })}
                 >
