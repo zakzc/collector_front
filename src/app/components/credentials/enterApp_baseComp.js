@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // comps
 import EnterForm from "./components/enterApp_EnterForm";
+import EnterExternal from "./components/enterExternal";
 import LoadingSpinner from "../views/loadingSpinner";
 // ui
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -62,8 +63,10 @@ const EnterApp = ({ setUserIsLoggedIn }) => {
       <Row>
         <Col></Col>
         <EnterForm mode={mode} />
+
         <Col></Col>
       </Row>
+      <EnterExternal />
     </Container>
   );
 
