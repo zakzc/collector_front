@@ -63,7 +63,6 @@ const EnterApp = ({ setUserIsLoggedIn }) => {
       <Row>
         <Col></Col>
         <EnterForm mode={mode} />
-
         <Col></Col>
       </Row>
       <EnterExternal />

@@ -1,60 +1,33 @@
 import React from "react";
-// assets
-import { Facebook } from "react-bootstrap-icons";
-import { Google } from "react-bootstrap-icons";
+// credentials google
+import { GoogleLogin } from "react-google-login";
 // ui
-//import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 
 const EnterExternal = () => {
-  const FaceLog = () => (
-    <Button
-      variant="light"
-      style={{
-        backgroundColor: "CadetBlue",
-        border: "none",
-      }}
-    >
-      <Facebook />
-    </Button>
-  );
-  const GooLog = () => (
-    <Button
-      variant="light"
-      style={{
-        backgroundColor: "CadetBlue",
-        border: "none",
-      }}
-    >
-      <Google />
-    </Button>
-  );
+  // * Data
+  const responseSuccessGoogle = (response) => {
+    console.log("goo told me: ", response.error, response.details, response);
+  };
+  const responseFailGoogle = (response) => {
+    console.log("Failed: ", response.error, response.details, response);
+  };
+
+  // * View
   return (
     <Container>
       <Row>
         <Col></Col>
-        <Col>
-          <Col
-            style={{
-              backgroundColor: "CadetBlue",
-            }}
-            className="text-white rounded"
-          >
-            <h3>Log in with:</h3>
-            <Row>
-              <Col></Col>
-              <Col>
-                <FaceLog />
-              </Col>
-              <Col>
-                <GooLog />
-              </Col>
-            </Row>
-          </Col>
-        </Col>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          buttonText="Log in with Google"
+          onSuccess={responseSuccessGoogle}
+          onFailure={responseFailGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
         <Col></Col>
       </Row>
     </Container>
