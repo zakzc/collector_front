@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 // comps
 import AppErrorCheck from "./appErrorCheck";
-import EnterApp from "./credentials/enterApp_baseComp";
-import Navigation from "../components/navigation/navigation_baseLayout";
+import EnterApp from "./credentials/enterApp";
+import Navigation from "../components/navigation/navigation";
 
 const Routes = () => {
   // * data

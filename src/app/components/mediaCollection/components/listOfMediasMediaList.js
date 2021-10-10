@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 // comps
-import ListItems from "./listOFMedias_ML_ListItems";
-import OrderButtons from "./listOfMedias_ML_OrderButtons";
+import ListItems from "./listOFMediasMediaListListItems";
+import OrderButtons from "./listOfMediasMediaLIstOrderButtons";
 // data
 import UseSelectedData from "../../../hooks/useSelectedData";
 // store

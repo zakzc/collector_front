@@ -6,7 +6,7 @@ import UseSelectedData from "../../../hooks/useSelectedData";
 import { loadMedias } from "../../../../store/medias";
 // comps
 import AddButton from "../../views/buttons/addButton";
-import MediaList from "./listOfMedias_MediaList";
+import MediaList from "./listOfMediasMediaList";
 import NoMediaToShow from "../../views/noMediaToShow";
 import SmallHeader from "../../views/smallHeader";
 

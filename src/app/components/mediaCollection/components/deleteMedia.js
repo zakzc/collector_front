@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // comps
 import ConfirmationToast from "../../views/confirmationToast";
-import ItemToDelete from "./deleteMedia_ItemToDelete";
+import ItemToDelete from "./deleteMediaItemToDelete";
 import SmallHeader from "../../views/smallHeader";
 // ico
 import { Trash } from "react-bootstrap-icons";

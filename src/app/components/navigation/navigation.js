@@ -1,8 +1,8 @@
 import React from "react";
 
 // comps
-import ConnectedUser from "./navigation_ConnectedUser";
-import UserArea from "./navigation_UserArea";
+import ConnectedUser from "./navigationConnectedUser";
+import UserArea from "./navigationUserArea";
 // ui Elements
 import AppLogo from "../assets/appLogo";
 // ui

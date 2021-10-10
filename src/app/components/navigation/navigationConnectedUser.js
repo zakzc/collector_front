@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 // comps
-import CRUD from "./navigation_CRUD";
-import MediaMenu from "./navigation_MediaMenu";
+import CRUD from "./navigationCRUD";
+import MediaMenu from "./navigationMediaMenu";
 // hook
 import useCheckForUser from "../../hooks/useCheckForUser";
 

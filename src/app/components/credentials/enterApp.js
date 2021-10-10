@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // comps
-import EnterForm from "./components/enterApp_EnterForm";
-import EnterExternal from "./components/enterExternal";
+import EnterForm from "./enterAppEnterForm";
+import EnterExternal from "./enterExternal";
 import LoadingSpinner from "../views/loadingSpinner";
 // ui
 import ButtonGroup from "react-bootstrap/ButtonGroup";

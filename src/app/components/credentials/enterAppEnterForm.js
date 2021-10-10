@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 // comps
-import CheckButton from "../../views/buttons/checkButton";
+import CheckButton from "../views/buttons/checkButton";
 // ui
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 // utils
-import validationSchema from "../../../utils/userSchema";
+import validationSchema from "../../utils/userSchema";
 // store
-import { register, login } from "../../../../store/users";
-import { setDataWasSent } from "../../../../store/appContext";
+import { register, login } from "../../../store/users";
+import { setDataWasSent } from "../../../store/appContext";
 
 const EnterForm = ({ mode }) => {
   // * true = log in, false = register
