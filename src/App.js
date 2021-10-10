@@ -7,6 +7,9 @@ import configureStore from "./store/configureStore";
 import Routes from "./app/components/appRoutes";
 import appBackground from "./app/components/assets/img/LPsCollection.jpg";
 
+// loads .env values
+require("dotenv").config();
+
 const store = configureStore();
 
 const App = () => {

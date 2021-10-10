@@ -12,7 +12,7 @@ const api =
     next(action);
     try {
       const response = await axios.request({
-        baseURL: "http://localhost:3000/",
+        baseURL: process.env.REACT_APP_BACKEND_API_URL,
         headers: { "x-auth-token": localStorage.getItem("token") },
         url,
         method,

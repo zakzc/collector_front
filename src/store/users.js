@@ -85,7 +85,7 @@ export default slice.reducer;
 
 // actions
 
-const url = "http://localhost:3000/collectors";
+const url = "http://localhost:3001/collectors";
 
 export const register = (userData) =>
   apiCallBegan({

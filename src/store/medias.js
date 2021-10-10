@@ -105,7 +105,7 @@ export default slice.reducer;
 
 // Action creators
 
-const url = "http://localhost:3000/collections";
+const url = "http://localhost:3001/collections";
 // const header = { "Content-type": "application/x-www-form-urlencoded" };
 
 let fetchTimer = new Date().getTime();

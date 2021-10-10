@@ -69,7 +69,7 @@ export default slice.reducer;
 
 // Action creators
 
-const url = "http://localhost:3000/collectors";
+const url = process.env.REACT_BACKEND_API_COLLECTORS;
 
 export const loadUser = (userData) => {
   userLoading();
