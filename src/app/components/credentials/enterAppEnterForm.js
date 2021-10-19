@@ -14,7 +14,6 @@ import { register, login } from "../../../store/users";
 import { setDataWasSent } from "../../../store/appContext";
 
 const EnterForm = ({ mode }) => {
-  // * true = log in, false = register
   const dispatch = useDispatch();
   let history = useHistory();
   /// error
@@ -33,6 +32,7 @@ const EnterForm = ({ mode }) => {
       },
       validationSchema,
       onSubmit: (values) => {
+        // * true = register, false = log in
         if (mode === true) {
           dispatch(register(values));
           dispatch(setDataWasSent(true));

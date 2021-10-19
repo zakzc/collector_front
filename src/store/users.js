@@ -107,4 +107,14 @@ export const login = (userData) =>
     onError: userRequestFailed.type,
   });
 
+export const authAccess = (userData) =>
+  apiCallBegan({
+    url: url + "/oauth",
+    method: "post",
+    data: userData,
+    onStart: userRequested.type,
+    onSuccess: userRegistered.type,
+    onError: userRequestFailed.type,
+  });
+
 export const selectUserID = createSelector((state) => state);

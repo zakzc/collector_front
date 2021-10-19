@@ -1,58 +1,37 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 // credentials google
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 // ui
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-//
-//import axios from "axios";
+// store
+import { authAccess } from "../../../store/users";
+import { setDataWasSent } from "../../../store/appContext";
 
 const EnterExternal = () => {
   const [showLogInButton, setShowLogInButton] = useState(true);
   const [googleMe, setGoogleMe] = useState([
-    { gId: " ", gEmail: "", gName: "" },
+    { gId: "", gEmail: "", gName: "" },
   ]);
   const [googleError, setGoogleError] = useState(false);
-  // // * Data
-  // const responseSuccessGoogle = async (response) => {
-  //   console.log("Success: ", response);
-  //   const res = await fetch("https://localhost:3001/collectors/googleAuth", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       token: response.tokenId,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const data = await res.json();
-  //   // do something with data
-  //   console.log("response data was", data);
-  // };
-
-  //const responseSuccessGoogle = async (response) => {
-  //console.log("Response is: ", response);
-  // let authData;
-  // authData = await axios({
-  //   method: "post",
-  //   url: process.env.REACT_APP_BACKEND_API_OAUTH,
-  //   data: {
-  //     userToken: response.tokenId,
-  //   },
-  // }).then(console.log("back:", authData));
-  // console.log("back 1:", authData.data.userToken);
-  //};
+  const dispatch = useDispatch();
+  let history = useHistory();
 
   const responseSuccessGoogle = (response) => {
-    console.log("Log in success:", response, response.profileObj);
+    console.log("Log in success:", response.profileObj);
     setGoogleMe({
       gId: response.profileObj.googleId,
       gEmail: response.profileObj.name,
       gName: response.profileObj.email,
     });
     setShowLogInButton(false);
-    console.log("REceived from google: ", googleMe);
+    console.log("Received from google: ", googleMe);
+    dispatch(authAccess(googleMe));
+    dispatch(setDataWasSent(true));
+    history.push("/");
   };
 
   const responseFailGoogle = (response) => {
@@ -71,7 +50,7 @@ const EnterExternal = () => {
     setShowLogInButton(true);
   };
 
-  console.log("value:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
+  // console.log("value:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
   // * View
   return (
