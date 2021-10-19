@@ -113,7 +113,7 @@ export const authAccess = (userData) =>
     method: "post",
     data: userData,
     onStart: userRequested.type,
-    onSuccess: userRegistered.type,
+    onSuccess: userReceived.type,
     onError: userRequestFailed.type,
   });
 

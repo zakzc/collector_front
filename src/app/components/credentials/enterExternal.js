@@ -8,14 +8,12 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 // store
-import { authAccess } from "../../../store/users";
+import { authAccess, logUserOut } from "../../../store/users";
 import { setDataWasSent } from "../../../store/appContext";
 
 const EnterExternal = () => {
   const [showLogInButton, setShowLogInButton] = useState(true);
-  const [googleMe, setGoogleMe] = useState([
-    { gId: "", gEmail: "", gName: "" },
-  ]);
+  const [googleMe, setGoogleMe] = useState([{ data: [{}] }]);
   const [googleError, setGoogleError] = useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
@@ -23,9 +21,7 @@ const EnterExternal = () => {
   const responseSuccessGoogle = (response) => {
     console.log("Log in success:", response.profileObj);
     setGoogleMe({
-      gId: response.profileObj.googleId,
-      gEmail: response.profileObj.name,
-      gName: response.profileObj.email,
+      data: response.profileObj,
     });
     setShowLogInButton(false);
     console.log("Received from google: ", googleMe);
@@ -47,6 +43,7 @@ const EnterExternal = () => {
   const logOutSuccess = () => {
     console.log("Log out success");
     console.clear();
+    dispatch(logUserOut);
     setShowLogInButton(true);
   };
 
