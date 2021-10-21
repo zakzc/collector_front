@@ -38,7 +38,8 @@ const AppErrorCheck = () => {
     return (
       <>
         {(userError.isError === true && mediaError.isError === true) ||
-        environmentError ? (
+        environmentError === null ||
+        environmentError === undefined ? (
           <ErrorOnLoad />
         ) : (
           <AppLayout />
