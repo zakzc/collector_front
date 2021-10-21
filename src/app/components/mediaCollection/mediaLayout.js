@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { AnimatePresence, motion } from "framer-motion";
 /// comps
 import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
@@ -18,38 +17,30 @@ const MediaLayout = () => {
   const currentMediaCRUD = useSelector(
     (state) => state.appContext.currentMediaCRUD
   );
-  const loading = useSelector((state) => state.medias.loading);
+  //const loading = useSelector((state) => state.medias.loading);
   // animation data
-  const pageVariants = {
-    initial: { opacity: 0, x: "100vh", scale: 0.9 },
-    in: { opacity: 1, x: 0, scale: 1 },
-    out: { opacity: 0, x: "-100vh", scale: 1.1 },
-  };
-  const pageTransition = { type: "tween", ease: "anticipate", duration: 1.5 };
+  // const pageVariants = {
+  //   initial: { opacity: 0, x: "100vh", scale: 0.9 },
+  //   in: { opacity: 1, x: 0, scale: 1 },
+  //   out: { opacity: 0, x: "-100vh", scale: 1.1 },
+  // };
+  // const pageTransition = { type: "tween", ease: "anticipate", duration: 1.5 };
 
   // * view
   const MediasMenu = () => (
     <>
       {currentMediaCRUD === "read" ? <ConfirmationToast /> : null}
-      <MediaAnimation />
+      <MediaMiniMenu />
     </>
   );
 
-  const MediaAnimation = ({ isVisible }) => (
-    <AnimatePresence>
-      <motion.div
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-      >
-        <div className="ml-2">
-          {currentMediaCRUD === "read" ? null : <GoBackButton />}
-        </div>
-        <MediaView />
-      </motion.div>
-    </AnimatePresence>
+  const MediaMiniMenu = ({ isVisible }) => (
+    <>
+      <div className="ml-2">
+        {currentMediaCRUD === "read" ? null : <GoBackButton />}
+      </div>
+      <MediaView />
+    </>
   );
 
   const MediaLayoutView = () => (
@@ -65,6 +56,6 @@ const MediaLayout = () => {
     </>
   );
 
-  return <>{loading ? <LoadingSpinner /> : <MediaLayoutView />}</>;
+  return <MediaLayoutView />;
 };
 export default MediaLayout;

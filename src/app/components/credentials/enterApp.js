@@ -1,36 +1,22 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 // comps
 import EnterForm from "./enterAppEnterForm";
-import EnterExternal from "./enterExternal";
-import LoadingSpinner from "../views/loadingSpinner";
+import EnterWithGoogle from "./enterWithGoogle";
 // ui
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-// hooks
-import useCheckForUser from "../../hooks/useCheckForUser";
 
 const EnterApp = ({ setUserIsLoggedIn }) => {
   // * true = log in, false = register
   const [mode, setMode] = useState(false);
-  let history = useHistory();
-  const userIsConnected = useCheckForUser();
 
   const enteringOptions = [
     { name: "Enter", value: true },
     { name: "Register", value: false },
   ];
-
-  const RedirectToMainPage = () => {
-    if (userIsConnected === true) {
-      history.push("/");
-      window.location.reload();
-    }
-    return <LoadingSpinner />;
-  };
 
   const LogInForm = () => (
     <Container>
@@ -65,11 +51,11 @@ const EnterApp = ({ setUserIsLoggedIn }) => {
         <EnterForm mode={mode} />
         <Col></Col>
       </Row>
-      <EnterExternal />
+      <EnterWithGoogle />
     </Container>
   );
 
   // * view
-  return <>{userIsConnected ? <RedirectToMainPage /> : <LogInForm />}</>;
+  return <LogInForm />;
 };
 export default EnterApp;

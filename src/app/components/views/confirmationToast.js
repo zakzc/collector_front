@@ -10,7 +10,7 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 // ui - icon
 import { CheckCircle } from "react-bootstrap-icons";
-import { XCircle } from "react-bootstrap-icons";
+//import { XCircle } from "react-bootstrap-icons";
 
 const ConfirmationToast = () => {
   // * data
@@ -35,13 +35,13 @@ const ConfirmationToast = () => {
               onClose={() => handleClose()}
               show={show}
               delay={3000}
-              autohide
+              autohide={true}
             >
               <Toast.Header
                 className={
                   success
                     ? "bg-info shadow-1-strong"
-                    : "bg-danger shadow-1-strong"
+                    : "bg-info shadow-1-strong"
                 }
               >
                 <img
@@ -50,19 +50,11 @@ const ConfirmationToast = () => {
                   alt=""
                 />
                 <strong className="mr-auto text-white">
-                  {success ? (
-                    <CheckCircle className="mr-2" />
-                  ) : (
-                    <XCircle className="mr-2" />
-                  )}
-                  {success
-                    ? "Data was processed"
-                    : "Problems with data processing"}
+                  <CheckCircle className="mr-2" />
+                  "Data is being processed"
                 </strong>
               </Toast.Header>
-              <Toast.Body>
-                Some changes might require you to reload the page.
-              </Toast.Body>
+              <Toast.Body>Just wait a bit as we reach for data</Toast.Body>
             </Toast>
           </Col>
         </Row>

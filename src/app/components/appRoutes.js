@@ -2,14 +2,14 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BrowserRouter as Router,
-  Switch,
+  Redirect,
   Route,
+  Switch,
   useLocation,
 } from "react-router-dom";
 // comps
 import AppErrorCheck from "./appErrorCheck";
-import EnterApp from "./credentials/enterApp";
-import Navigation from "../components/navigation/navigation";
+//import Navigation from "../components/navigation/navigation";
 
 const Routes = () => {
   // * data
@@ -19,30 +19,31 @@ const Routes = () => {
     out: { opacity: 0, y: "-100vh" },
   };
   const pageTransition = {
-    delay: 1,
+    delay: 0,
     x: { type: "spring", stiffness: 100 },
-    default: { duration: 1 },
+    default: { duration: 0.5 },
   };
 
   // * view
   return (
     <Router>
-      <Navigation />
+      {/* <Navigation /> */}
       <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.pathname}>
-          <Route exact path="/logIn">
-            <motion.div
-              initial="out"
-              animate="in"
-              exit="out"
-              transition={pageTransition}
-              variants={pageVariants}
-            >
-              <EnterApp />
-            </motion.div>
-          </Route>
-          <Route exact path="/" render={(props) => <AppErrorCheck />} />
-        </Switch>
+        <motion.div
+          initial="out"
+          animate="in"
+          exit="out"
+          transition={pageTransition}
+          variants={pageVariants}
+        >
+          <Switch location={location} key={location.pathname}>
+            {/* <Route exact path="/" render={(props) => <AppErrorCheck />} /> */}
+            <Route exact path="/">
+              <AppErrorCheck />
+            </Route>
+            <Redirect from="*" to="/" />
+          </Switch>
+        </motion.div>
       </AnimatePresence>
     </Router>
   );

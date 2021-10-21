@@ -7,6 +7,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 // hook
 import useCheckForUser from "../../hooks/useCheckForUser";
+// store
+import OutWithGoogle from "../credentials/outWithGoogle";
 
 const UserArea = () => {
   // * data
@@ -19,19 +21,26 @@ const UserArea = () => {
     </span>
   );
 
+  const UserAreaNavigationView = () => {
+    return (
+      <Container fluid className="bg-dark text-white">
+        <Row>
+          <Col xs={6} md={6} lg={6}>
+            <CurrentUserName />
+          </Col>
+          <Col xs={2} md={2} lg={2}>
+            <LogOutButton />
+          </Col>
+          <Col xs={4} md={4} lg={4}>
+            <OutWithGoogle />
+          </Col>
+        </Row>
+      </Container>
+    );
+  };
+
   // * view
-  return (
-    <Container fluid className="bg-dark text-white">
-      <Row>
-        <Col xs={8} md={8} lg={8}>
-          {userIsLoggedIn ? <CurrentUserName /> : null}
-        </Col>
-        <Col xs={4} md={4} lg={4}>
-          {userIsLoggedIn ? <LogOutButton /> : null}
-        </Col>
-      </Row>
-    </Container>
-  );
+  return <> {userIsLoggedIn ? <UserAreaNavigationView /> : null}</>;
 };
 
 export default UserArea;
