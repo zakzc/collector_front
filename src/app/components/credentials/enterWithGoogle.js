@@ -12,20 +12,21 @@ import { authAccess } from "../../../store/users";
 import { setDataWasSent } from "../../../store/appContext";
 
 const EnterWithGoogle = () => {
-  const [googleMe, setGoogleMe] = useState([{ data: [{}] }]);
   const [googleError, setGoogleError] = useState(false);
   const dispatch = useDispatch();
-  //let history = useHistory();
 
   const responseSuccessGoogle = async (response) => {
-    console.log("Log in success:", response.profileObj);
-    setGoogleMe({
-      data: response.profileObj,
-    });
-    console.log("google gets me: ", response.profileObj.email);
-    if (response.profileObj.email !== undefined) {
-      console.log("Received from google: ", googleMe);
-      dispatch(authAccess(googleMe));
+    console.log("profile object is:", response.profileObj);
+    let dataToSend = {
+      data: {
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+        id: response.profileObj.googleId,
+      },
+    };
+    console.log("Data to send is :", dataToSend);
+    if (dataToSend.data.email !== undefined) {
+      dispatch(authAccess(dataToSend));
       dispatch(setDataWasSent(true));
     }
   };
@@ -39,8 +40,6 @@ const EnterWithGoogle = () => {
     );
     setGoogleError(true);
   };
-
-  // console.log("value:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
   // * View
   return (

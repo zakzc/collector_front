@@ -33,7 +33,7 @@ const AppErrorCheck = () => {
 
   // User detected on local storage, now check for errors
   // that includes errors reported on the store or lack of env variables
-  // if no errors, show media Page
+  // if no errors, show main layout Page
   const UserDetectedCheckForErrors = () => {
     return (
       <>
