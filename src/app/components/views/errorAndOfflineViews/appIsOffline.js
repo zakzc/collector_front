@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 // ui icons
-import BrokenLink from "../../assets/brokenLink";
+import BrokenLink from "../../../assets/brokenLink";
 
 const AppIsOffline = () => {
   return (

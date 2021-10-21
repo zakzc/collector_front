@@ -5,7 +5,7 @@ import CRUD from "./navigationCRUD";
 import MediaMenu from "./navigationMediaMenu";
 import UserArea from "./navigationUserArea";
 // ui Elements
-import AppLogo from "../assets/appLogo";
+import AppLogo from "../../assets/appLogo";
 // ui
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";

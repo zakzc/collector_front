@@ -5,7 +5,7 @@ import configureStore from "./store/configureStore";
 // comp
 // import AppView from "./app/components/appView_baseComp";
 import Routes from "./app/components/appRoutes";
-import appBackground from "./app/components/assets/img/LPsCollection.jpg";
+import appBackground from "./app/assets/img/LPsCollection.jpg";
 
 // loads .env values
 require("dotenv").config();
