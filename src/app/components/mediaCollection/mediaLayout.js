@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 /// comps
-import ConfirmationToast from "../views/confirmationToast";
 import Header from "../views/header";
 import GoBackButton from "../views/buttons/goBackButton";
 import MediaView from "./mediaView";
+// effects and transitions
+import ConfirmationToast from "../views/confirmationToast";
 import LoadingSpinner from "../views/loadingSpinner";
 // ui
 import Col from "react-bootstrap/Col";
